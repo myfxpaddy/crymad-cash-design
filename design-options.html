@@ -316,6 +316,79 @@
     .d5l .keypad .key { border-radius: 50%; border: 1px solid rgba(27,140,62,0.1); color: #0d6b2e; font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 300; background: rgba(27,140,62,0.02); }
 
 
+    /* ====================================================================
+       DESIGN 6: CYBER RPG (Hybrid — Cyber Grid + Gamified RPG)
+       Orbitron font, grid overlays, scan lines, HUD corners
+       + XP bars, achievement rings, level badges, particles
+       ==================================================================== */
+    .d6 .screen-base { background: var(--bg-dark); }
+    .d6 .grid-overlay {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(27,140,62,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(27,140,62,0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .d6 .particles {
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1.5px 1.5px at 15% 25%, rgba(27,140,62,0.35), transparent),
+        radial-gradient(1px 1px at 65% 15%, rgba(0,200,83,0.25), transparent),
+        radial-gradient(1.5px 1.5px at 35% 65%, rgba(27,140,62,0.2), transparent),
+        radial-gradient(1px 1px at 85% 55%, rgba(105,240,174,0.15), transparent),
+        radial-gradient(1px 1px at 10% 75%, rgba(27,140,62,0.25), transparent);
+    }
+    .d6 .scan-line { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(27,140,62,0.2), transparent); animation: scanmove 4s infinite linear; z-index: 3; }
+    .d6 .hud-corner-tl { position: absolute; top: 36px; left: 12px; width: 20px; height: 20px; border-top: 1px solid rgba(27,140,62,0.2); border-left: 1px solid rgba(27,140,62,0.2); z-index: 4; }
+    .d6 .hud-corner-br { position: absolute; bottom: 12px; right: 12px; width: 20px; height: 20px; border-bottom: 1px solid rgba(27,140,62,0.2); border-right: 1px solid rgba(27,140,62,0.2); z-index: 4; }
+    .d6 .xp-bar { position: absolute; top: 32px; left: 14px; right: 14px; height: 3px; background: rgba(27,140,62,0.1); border-radius: 2px; z-index: 5; }
+    .d6 .xp-bar .fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--green), var(--green-light)); box-shadow: 0 0 6px rgba(27,140,62,0.5); }
+    .d6 .xp-label { position: absolute; top: 38px; right: 14px; font-family: 'Orbitron', sans-serif; font-size: 7px; color: rgba(27,140,62,0.4); z-index: 5; letter-spacing: 1px; }
+    .d6 .level-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 10px; background: rgba(27,140,62,0.08); border: 1px solid rgba(27,140,62,0.2); z-index: 2; }
+    .d6 .level-badge span { font-family: 'Orbitron', sans-serif; font-size: 7px; color: var(--green-light); letter-spacing: 1px; }
+    .d6 .achievement-ring { width: 110px; height: 110px; border-radius: 50%; border: 2px solid rgba(27,140,62,0.25); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(27,140,62,0.04); z-index: 2; position: relative; }
+    .d6 .achievement-ring svg { stroke: var(--green); stroke-width: 1.5; }
+    .d6 .badge-label { font-family: 'Orbitron', sans-serif; font-size: 7px; color: var(--green-accent); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+    .d6 .icon-circle { border: 1.5px solid rgba(27,140,62,0.3); background: rgba(27,140,62,0.06); }
+    .d6 .icon-circle svg { stroke: var(--green); stroke-width: 1.5; }
+    .d6 h3 { font-family: 'Orbitron', sans-serif; font-size: 12px; color: var(--green-light); letter-spacing: 1px; z-index: 2; }
+    .d6 .sub-text { font-size: 11px; color: #3a5a42; z-index: 2; text-align: center; padding: 0 18px; line-height: 1.5; }
+    .d6 .dots .dot { background: rgba(27,140,62,0.15); }
+    .d6 .dots .dot.active { background: var(--green); box-shadow: 0 0 8px rgba(27,140,62,0.5); }
+    .d6 .cta-btn { margin: 6px 16px 16px; padding: 12px; border-radius: 8px; border: 1px solid rgba(27,140,62,0.3); background: rgba(27,140,62,0.06); color: var(--green); font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 700; text-align: center; letter-spacing: 2px; z-index: 2; }
+    .d6 .cta-btn.solid { background: linear-gradient(135deg, var(--green), var(--green-light)); color: #fff; border: none; box-shadow: 0 4px 16px rgba(27,140,62,0.3); }
+    .d6 .pin-dots .pdot { border: 1.5px solid rgba(27,140,62,0.3); }
+    .d6 .pin-dots .pdot.filled { background: var(--green); border-color: var(--green); box-shadow: 0 0 8px rgba(27,140,62,0.4); }
+    .d6 .keypad .key { border-radius: 50%; border: 1px solid rgba(27,140,62,0.15); color: var(--green); font-family: 'Orbitron', sans-serif; font-size: 15px; }
+
+    /* D6 LIGHT */
+    .d6l .phone { background: linear-gradient(135deg, #c8d6cb, #a8b8ab); box-shadow: 0 10px 40px rgba(0,0,0,0.15); }
+    .d6l .screen-base { background: linear-gradient(180deg, #f0f8f2, #e8f4ea, #f5fbf6); }
+    .d6l .notch { background: #d4e2d6; }
+    .d6l .grid-overlay { position: absolute; inset: 0; background-image: linear-gradient(rgba(27,140,62,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(27,140,62,0.05) 1px, transparent 1px); background-size: 28px 28px; }
+    .d6l .particles { position: absolute; inset: 0; background-image: radial-gradient(2px 2px at 15% 25%, rgba(27,140,62,0.18), transparent), radial-gradient(1.5px 1.5px at 65% 15%, rgba(0,200,83,0.12), transparent), radial-gradient(2px 2px at 35% 65%, rgba(27,140,62,0.1), transparent), radial-gradient(1.5px 1.5px at 85% 55%, rgba(105,240,174,0.12), transparent), radial-gradient(1.5px 1.5px at 10% 75%, rgba(27,140,62,0.15), transparent); }
+    .d6l .scan-line { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(27,140,62,0.15), transparent); animation: scanmove 4s infinite linear; z-index: 3; }
+    .d6l .hud-corner-tl { position: absolute; top: 36px; left: 12px; width: 20px; height: 20px; border-top: 1px solid rgba(27,140,62,0.15); border-left: 1px solid rgba(27,140,62,0.15); z-index: 4; }
+    .d6l .hud-corner-br { position: absolute; bottom: 12px; right: 12px; width: 20px; height: 20px; border-bottom: 1px solid rgba(27,140,62,0.15); border-right: 1px solid rgba(27,140,62,0.15); z-index: 4; }
+    .d6l .xp-bar { position: absolute; top: 32px; left: 14px; right: 14px; height: 3px; background: rgba(27,140,62,0.1); border-radius: 2px; z-index: 5; }
+    .d6l .xp-bar .fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--green), var(--green-light)); box-shadow: 0 0 6px rgba(27,140,62,0.3); }
+    .d6l .xp-label { position: absolute; top: 38px; right: 14px; font-family: 'Orbitron', sans-serif; font-size: 7px; color: rgba(27,140,62,0.5); z-index: 5; letter-spacing: 1px; }
+    .d6l .level-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 10px; background: rgba(27,140,62,0.06); border: 1px solid rgba(27,140,62,0.15); z-index: 2; }
+    .d6l .level-badge span { font-family: 'Orbitron', sans-serif; font-size: 7px; color: var(--green); letter-spacing: 1px; }
+    .d6l .achievement-ring { width: 110px; height: 110px; border-radius: 50%; border: 2px solid rgba(27,140,62,0.2); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(27,140,62,0.03); z-index: 2; position: relative; box-shadow: 0 4px 16px rgba(27,140,62,0.06); }
+    .d6l .achievement-ring svg { stroke: var(--green); stroke-width: 1.5; }
+    .d6l .badge-label { font-family: 'Orbitron', sans-serif; font-size: 7px; color: var(--green); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+    .d6l .icon-circle { border: 1.5px solid rgba(27,140,62,0.25); background: rgba(27,140,62,0.05); }
+    .d6l .icon-circle svg { stroke: var(--green); stroke-width: 1.5; }
+    .d6l h3 { font-family: 'Orbitron', sans-serif; font-size: 12px; color: #0d6b2e; letter-spacing: 1px; z-index: 2; }
+    .d6l .sub-text { font-size: 11px; color: #5a7d62; z-index: 2; text-align: center; padding: 0 18px; line-height: 1.5; }
+    .d6l .dots .dot { background: rgba(27,140,62,0.15); }
+    .d6l .dots .dot.active { background: var(--green); box-shadow: 0 0 6px rgba(27,140,62,0.3); }
+    .d6l .cta-btn { margin: 6px 16px 16px; padding: 12px; border-radius: 8px; border: 1px solid rgba(27,140,62,0.25); background: rgba(27,140,62,0.04); color: var(--green); font-family: 'Orbitron', sans-serif; font-size: 10px; font-weight: 700; text-align: center; letter-spacing: 2px; z-index: 2; }
+    .d6l .cta-btn.solid { background: linear-gradient(135deg, var(--green), var(--green-light)); color: #fff; border: none; box-shadow: 0 4px 14px rgba(27,140,62,0.25); }
+    .d6l .pin-dots .pdot { border: 1.5px solid rgba(27,140,62,0.25); }
+    .d6l .pin-dots .pdot.filled { background: var(--green); border-color: var(--green); box-shadow: 0 0 6px rgba(27,140,62,0.3); }
+    .d6l .keypad .key { border-radius: 50%; border: 1px solid rgba(27,140,62,0.15); color: #0d6b2e; font-family: 'Orbitron', sans-serif; font-size: 15px; background: rgba(27,140,62,0.03); }
+    .d6l .float-coin { background: rgba(27,140,62,0.06) !important; border: 1px solid rgba(27,140,62,0.12) !important; }
+
     /* Animations */
     @keyframes pulse-glow { 0%,100%{ box-shadow: 0 0 20px rgba(27,140,62,0.15); } 50%{ box-shadow: 0 0 40px rgba(27,140,62,0.3); } }
     @keyframes float-bob { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-5px); } }
@@ -449,6 +522,252 @@
      We'll write all screens inline for each design
      ============================================================ -->
 
+<!-- =========================== DESIGN 6: CYBER RPG (Boss Pick - Hybrid) =========================== -->
+<div class="category d6" style="border-color: rgba(27,140,62,0.3); box-shadow: 0 0 30px rgba(27,140,62,0.05);">
+  <div class="category-header"><div class="num" style="background:linear-gradient(135deg,#00C853,#1B8C3E);font-size:18px">&#9733;</div><h2>Cyber RPG <span style="font-size:14px;color:#69f0ae;font-weight:400;margin-left:8px">— Boss Pick: Cyber Grid + Gamified</span></h2></div>
+  <p class="category-desc">Orbitron typography &amp; HUD aesthetics from Cyber Grid + XP bars, achievement badges &amp; level progression from Gamified RPG. The best of both.</p>
+
+  <p class="screen-group-label">Splash &amp; Onboarding</p>
+  <div class="screens-row">
+    <!-- Splash -->
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div><div class="scan-line"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="xp-bar"><div class="fill" style="width:100%"></div></div><div class="xp-label">MAX LVL</div>
+      <img src="play_store_512.png" class="app-logo pulse" width="90" height="90" style="border-radius:22px">
+      <h3 style="margin-top:12px">CRYMAD CASH</h3>
+      <div class="level-badge" style="margin-top:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--green-accent)" stroke="none"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg><span>LEVEL 1 — NEW PLAYER</span></div>
+    </div></div><div class="phone-label">Splash</div></div>
+
+    <!-- OB1 -->
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="xp-bar"><div class="fill" style="width:20%"></div></div><div class="xp-label">20% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="achievement-ring"><svg width="48" height="48"><use href="#ico-wallet"/></svg><span class="badge-label">UNLOCKED</span></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>MANAGE YOUR MONEY</h3><div class="sub-text" style="margin-top:4px">E-wallet, bank accounts, and crypto — all in one place.</div>
+        <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 1</div></div>
+
+    <!-- OB2 -->
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="xp-bar"><div class="fill" style="width:40%"></div></div><div class="xp-label">40% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+        <div class="achievement-ring"><svg width="48" height="48"><use href="#ico-btc"/></svg><span class="badge-label">CRYPTO</span></div>
+        <div class="float-coin bob" style="top:25%;left:10%;background:rgba(27,140,62,0.08);border:1px solid rgba(27,140,62,0.15)"><svg width="16" height="16" stroke="var(--green)" fill="none"><use href="#ico-eth"/></svg></div>
+        <div class="float-coin bob bob-d1" style="top:20%;right:10%;background:rgba(27,140,62,0.08);border:1px solid rgba(27,140,62,0.15)"><svg width="16" height="16" stroke="var(--green-light)" fill="none"><use href="#ico-dollar"/></svg></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>GO CRYPTO</h3><div class="sub-text" style="margin-top:4px">Convert, send, and store USDT and USDC with TygaPay security.</div>
+        <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 2</div></div>
+
+    <!-- OB3 -->
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="xp-bar"><div class="fill" style="width:60%"></div></div><div class="xp-label">60% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="achievement-ring"><svg width="48" height="48" stroke="var(--gold)"><use href="#ico-shield"/></svg><span class="badge-label">SECURED</span></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>BANK-GRADE SECURITY</h3><div class="sub-text" style="margin-top:4px">2FA, biometric auth, and encrypted transactions protect your funds.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 3</div></div>
+
+    <!-- OB4 -->
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="xp-bar"><div class="fill" style="width:80%"></div></div><div class="xp-label">80% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+        <div class="achievement-ring"><svg width="48" height="48"><use href="#ico-globe"/></svg><span class="badge-label">GLOBAL</span></div>
+        <div class="float-coin bob" style="bottom:18%;left:10%;background:rgba(27,140,62,0.08);border:1px solid rgba(27,140,62,0.15)"><svg width="16" height="16" stroke="var(--green)" fill="none"><use href="#ico-dollar"/></svg></div>
+        <div class="float-coin bob bob-d2" style="top:20%;right:10%;background:rgba(27,140,62,0.08);border:1px solid rgba(27,140,62,0.15)"><svg width="16" height="16" stroke="var(--green-light)" fill="none"><use href="#ico-btc"/></svg></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>SEND GLOBALLY</h3><div class="sub-text" style="margin-top:4px">Cross-border payments and remittances with low fees.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 4</div></div>
+
+    <!-- OB5 -->
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="xp-bar"><div class="fill" style="width:100%"></div></div><div class="xp-label">100% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="card-stack">
+          <div class="mini-card" style="background:linear-gradient(135deg,#1a2a1e,#2d3d32);transform:rotate(-5deg);top:0;left:0"><div class="card-chip" style="background:rgba(212,165,60,0.3)"></div><div class="card-dots" style="color:rgba(255,255,255,0.4)">•••• •••• •••• 4829</div><div class="card-brand"><svg width="32" height="16"><use href="#ico-visa"/></svg></div></div>
+          <div class="mini-card" style="background:linear-gradient(135deg,var(--green),var(--green-light));transform:rotate(3deg);top:10px;left:14px"><div class="card-chip" style="background:rgba(255,255,255,0.3)"></div><div class="card-dots" style="color:rgba(255,255,255,0.7)">•••• •••• •••• 3156</div><div class="card-brand"><svg width="36" height="22"><use href="#ico-mc"/></svg></div></div>
+        </div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2">
+        <div class="level-badge" style="margin-bottom:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--green-accent)" stroke="none"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg><span>QUEST COMPLETE!</span></div>
+        <h3>YOUR CARDS, YOUR WAY</h3><div class="sub-text" style="margin-top:4px">Physical and virtual debit cards. Spend anywhere.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div></div>
+      <div class="cta-btn solid">ENTER THE GRID</div>
+    </div></div><div class="phone-label">Onboarding 5</div></div>
+  </div>
+
+  <p class="screen-group-label">Auth &amp; System Screens</p>
+  <div class="screens-row">
+    <!-- Login/Signup -->
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:10px">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <img src="play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
+      <h3 style="margin-top:6px">ACCESS TERMINAL</h3><div class="sub-text" style="font-size:9px">Select your entry mode</div>
+      <div class="cta-btn solid" style="width:180px;margin:6px auto 4px"><svg width="14" height="14" stroke="#fff" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-login"/></svg>LOGIN</div>
+      <div class="cta-btn" style="width:180px;margin:0 auto"><svg width="14" height="14" stroke="var(--green)" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-userplus"/></svg>REGISTER</div>
+    </div></div><div class="phone-label">Login / Signup</div></div>
+
+    <!-- Biometric -->
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="icon-circle pulse" style="width:90px;height:90px"><svg width="44" height="44"><use href="#ico-fingerprint"/></svg></div>
+      <h3 style="margin-top:16px">BIOMETRIC SCAN</h3><div class="sub-text" style="margin-top:4px">Place your finger to authenticate</div>
+    </div></div><div class="phone-label">Biometric</div></div>
+
+    <!-- PIN -->
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:60px">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <h3>ENTER ACCESS CODE</h3><div class="sub-text" style="margin:4px 0 18px;font-size:10px">6-digit security PIN</div>
+      <div class="pin-dots" style="margin-bottom:24px"><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+      <div class="keypad" style="padding:0 24px"><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key"></div><div class="key">0</div><div class="key" style="font-size:14px">&#x232B;</div></div>
+    </div></div><div class="phone-label">PIN Setup</div></div>
+
+    <!-- Offline -->
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40" stroke="#ef4444"><use href="#ico-wifioff"/></svg></div>
+      <h3 style="margin-top:16px;color:#ef4444">CONNECTION LOST</h3><div class="sub-text" style="margin-top:6px">Unable to reach server. Check your network.</div>
+      <div class="cta-btn" style="width:140px;margin-top:16px;border-color:rgba(239,68,68,0.3);color:#ef4444"><svg width="12" height="12" stroke="#ef4444" fill="none" style="vertical-align:middle;margin-right:4px"><use href="#ico-refresh"/></svg>RETRY</div>
+    </div></div><div class="phone-label">Offline</div></div>
+
+    <!-- Force Update -->
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40"><use href="#ico-download"/></svg></div>
+      <h3 style="margin-top:16px">UPGRADE REQUIRED</h3><div class="sub-text" style="margin-top:6px">A new version is available. Update to continue.</div>
+      <div class="cta-btn solid" style="width:160px;margin-top:16px">UPDATE NOW</div>
+    </div></div><div class="phone-label">Force Update</div></div>
+  </div>
+</div>
+
+<!-- CYBER RPG LIGHT -->
+<div class="category d6l" style="border-color: rgba(27,140,62,0.2);">
+  <div class="category-header"><div class="num" style="background:linear-gradient(135deg,#00C853,#1B8C3E);font-size:18px">&#9733;</div><h2>Cyber RPG — Light</h2></div>
+  <p class="category-desc">Same hybrid design on light backgrounds.</p>
+
+  <p class="screen-group-label">Splash &amp; Onboarding</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div><div class="scan-line"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="xp-bar"><div class="fill" style="width:100%"></div></div><div class="xp-label">MAX LVL</div>
+      <img src="play_store_512.png" class="app-logo pulse" width="90" height="90" style="border-radius:22px">
+      <h3 style="margin-top:12px">CRYMAD CASH</h3>
+      <div class="level-badge" style="margin-top:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--green)" stroke="none"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg><span>LEVEL 1 — NEW PLAYER</span></div>
+    </div></div><div class="phone-label">Splash</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="xp-bar"><div class="fill" style="width:20%"></div></div><div class="xp-label">20% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="achievement-ring"><svg width="48" height="48"><use href="#ico-wallet"/></svg><span class="badge-label">UNLOCKED</span></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>MANAGE YOUR MONEY</h3><div class="sub-text" style="margin-top:4px">E-wallet, bank accounts, and crypto — all in one place.</div><div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 1</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="xp-bar"><div class="fill" style="width:40%"></div></div><div class="xp-label">40% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative"><div class="achievement-ring"><svg width="48" height="48"><use href="#ico-btc"/></svg><span class="badge-label">CRYPTO</span></div>
+        <div class="float-coin bob" style="top:25%;left:10%"><svg width="16" height="16" stroke="var(--green)" fill="none"><use href="#ico-eth"/></svg></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>GO CRYPTO</h3><div class="sub-text" style="margin-top:4px">Convert, send, and store USDT and USDC with TygaPay security.</div><div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 2</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="xp-bar"><div class="fill" style="width:60%"></div></div><div class="xp-label">60% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="achievement-ring"><svg width="48" height="48" stroke="var(--gold)"><use href="#ico-shield"/></svg><span class="badge-label" style="color:var(--gold)">SECURED</span></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>BANK-GRADE SECURITY</h3><div class="sub-text" style="margin-top:4px">2FA, biometric auth, and encrypted transactions.</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 3</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="xp-bar"><div class="fill" style="width:80%"></div></div><div class="xp-label">80% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative"><div class="achievement-ring"><svg width="48" height="48"><use href="#ico-globe"/></svg><span class="badge-label">GLOBAL</span></div>
+        <div class="float-coin bob bob-d2" style="bottom:18%;right:10%"><svg width="16" height="16" stroke="var(--green)" fill="none"><use href="#ico-dollar"/></svg></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>SEND GLOBALLY</h3><div class="sub-text" style="margin-top:4px">Cross-border payments and remittances with low fees.</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 4</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="xp-bar"><div class="fill" style="width:100%"></div></div><div class="xp-label">100% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="card-stack">
+          <div class="mini-card" style="background:linear-gradient(135deg,#e8f0ea,#d4e6d8);transform:rotate(-5deg);top:0;left:0"><div class="card-chip" style="background:rgba(212,165,60,0.25)"></div><div class="card-dots" style="color:rgba(0,0,0,0.3)">•••• 4829</div><div class="card-brand"><svg width="32" height="16"><use href="#ico-visa"/></svg></div></div>
+          <div class="mini-card" style="background:linear-gradient(135deg,var(--green),var(--green-light));transform:rotate(3deg);top:10px;left:14px"><div class="card-chip" style="background:rgba(255,255,255,0.3)"></div><div class="card-dots" style="color:rgba(255,255,255,0.7)">•••• 3156</div><div class="card-brand"><svg width="36" height="22"><use href="#ico-mc"/></svg></div></div>
+        </div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2">
+        <div class="level-badge" style="margin-bottom:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--green)" stroke="none"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg><span>QUEST COMPLETE!</span></div>
+        <h3>YOUR CARDS, YOUR WAY</h3><div class="sub-text" style="margin-top:4px">Physical and virtual debit cards. Spend anywhere.</div><div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div></div>
+      <div class="cta-btn solid">ENTER THE GRID</div>
+    </div></div><div class="phone-label">Onboarding 5</div></div>
+  </div>
+
+  <p class="screen-group-label">Auth &amp; System Screens</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:10px">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <img src="play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
+      <h3 style="margin-top:6px">ACCESS TERMINAL</h3><div class="sub-text" style="font-size:9px">Select your entry mode</div>
+      <div class="cta-btn solid" style="width:180px;margin:6px auto 4px"><svg width="14" height="14" stroke="#fff" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-login"/></svg>LOGIN</div>
+      <div class="cta-btn" style="width:180px;margin:0 auto"><svg width="14" height="14" stroke="var(--green)" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-userplus"/></svg>REGISTER</div>
+    </div></div><div class="phone-label">Login / Signup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="icon-circle pulse" style="width:90px;height:90px"><svg width="44" height="44"><use href="#ico-fingerprint"/></svg></div>
+      <h3 style="margin-top:16px">BIOMETRIC SCAN</h3><div class="sub-text" style="margin-top:4px">Place your finger to authenticate</div>
+    </div></div><div class="phone-label">Biometric</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:60px">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <h3>ENTER ACCESS CODE</h3><div class="sub-text" style="margin:4px 0 18px;font-size:10px">6-digit security PIN</div>
+      <div class="pin-dots" style="margin-bottom:24px"><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+      <div class="keypad" style="padding:0 24px"><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key"></div><div class="key">0</div><div class="key" style="font-size:14px">&#x232B;</div></div>
+    </div></div><div class="phone-label">PIN Setup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40" stroke="#ef4444"><use href="#ico-wifioff"/></svg></div>
+      <h3 style="margin-top:16px;color:#ef4444">CONNECTION LOST</h3><div class="sub-text" style="margin-top:6px">Unable to reach server. Check your network.</div>
+      <div class="cta-btn" style="width:140px;margin-top:16px;border-color:rgba(239,68,68,0.2);color:#ef4444">RETRY</div>
+    </div></div><div class="phone-label">Offline</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="particles"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40"><use href="#ico-download"/></svg></div>
+      <h3 style="margin-top:16px">UPGRADE REQUIRED</h3><div class="sub-text" style="margin-top:6px">A new version is available.</div>
+      <div class="cta-btn solid" style="width:160px;margin-top:16px">UPDATE NOW</div>
+    </div></div><div class="phone-label">Force Update</div></div>
+  </div>
+</div>
+
 <!-- =========================== DESIGN 1: CYBER GRID =========================== -->
 <div class="category d1">
   <div class="category-header">
@@ -463,7 +782,7 @@
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
       <div class="notch"></div><div class="grid-overlay"></div><div class="scan-line"></div>
       <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
-      <img src="play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:22px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:22px">
       <h3 style="margin-top:14px">CRYMAD CASH</h3>
       <div class="sub-text" style="margin-top:4px;font-size:9px;letter-spacing:3px">INITIALIZING SYSTEM</div>
       <div style="width:120px;height:2px;background:rgba(27,140,62,0.15);border-radius:1px;margin-top:12px;z-index:2">
@@ -576,7 +895,7 @@
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:12px">
       <div class="notch"></div><div class="grid-overlay"></div>
       <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
-      <img src="play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
       <h3 style="margin-top:8px">ACCESS TERMINAL</h3>
       <div class="sub-text" style="font-size:10px">Choose your entry mode</div>
       <div class="cta-btn solid" style="width:180px;margin:8px auto 4px">
@@ -653,7 +972,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:linear-gradient(160deg,#071510,#0a2118,#050f0a)">
       <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
-      <img src="play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:24px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:24px">
       <h3 style="margin-top:14px">Crymad Cash</h3>
       <div class="sub-text" style="margin-top:4px;font-size:10px;letter-spacing:2px">Smart Money Moves</div>
     </div></div><div class="phone-label">Splash</div></div>
@@ -713,7 +1032,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:12px;background:linear-gradient(160deg,#071510,#0a2118,#050f0a)">
       <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
-      <img src="play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:20px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:20px">
       <h3>Welcome</h3><div class="sub-text" style="font-size:10px">Choose how to continue</div>
       <div class="cta-btn" style="width:180px;margin:6px auto 4px">Log In</div>
       <div class="cta-btn outline" style="width:180px;margin:0 auto">Create Account</div>
@@ -758,7 +1077,7 @@
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
       <div class="notch"></div><div class="particles"></div>
       <div class="xp-bar"><div class="fill" style="width:100%"></div></div><div class="xp-label">MAX LVL</div>
-      <img src="play_store_512.png" class="app-logo pulse" width="100" height="100">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo pulse" width="100" height="100">
       <h3 style="margin-top:12px;font-size:20px">CRYMAD CASH</h3>
       <div class="level-badge" style="margin-top:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--green-accent)" stroke="none"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg><span>LEVEL 1 — NEW PLAYER</span></div>
     </div></div><div class="phone-label">Splash</div></div>
@@ -830,7 +1149,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:10px;background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
       <div class="notch"></div><div class="particles"></div>
-      <img src="play_store_512.png" class="app-logo" width="70" height="70">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70">
       <h3>SELECT MODE</h3>
       <div class="cta-btn" style="width:180px;margin:6px auto 4px"><svg width="14" height="14" stroke="#fff" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-login"/></svg>LOGIN</div>
       <div class="cta-btn outline" style="width:180px;margin:0 auto"><svg width="14" height="14" stroke="var(--green)" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-userplus"/></svg>NEW ACCOUNT</div>
@@ -874,7 +1193,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:#060d09">
       <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
-      <img src="play_store_512.png" class="app-logo pulse" width="90" height="90" style="border-radius:24px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo pulse" width="90" height="90" style="border-radius:24px">
       <h3 style="margin-top:14px;font-size:22px">Crymad Cash</h3>
       <div class="sub-text" style="margin-top:2px;font-size:11px">Your Money, Amplified</div>
     </div></div><div class="phone-label">Splash</div></div>
@@ -936,7 +1255,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:12px;background:#060d09">
       <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
-      <img src="play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:20px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:20px">
       <h3>Get Started</h3>
       <div class="cta-btn" style="width:180px;margin:6px auto 4px">Log In</div>
       <div class="cta-btn outline" style="width:180px;margin:0 auto">Sign Up</div>
@@ -981,7 +1300,7 @@
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:#060908">
       <div class="notch"></div><div class="subtle-glow"></div>
       <div class="line-h" style="top:38px"></div><div class="line-v" style="left:16px"></div><div class="line-v" style="right:16px"></div>
-      <img src="play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:22px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:22px">
       <h3 style="margin-top:16px;letter-spacing:6px">CRYMAD CASH</h3>
       <div class="sub-text" style="margin-top:2px;font-size:9px;letter-spacing:4px">PRIVATE FINANCE</div>
     </div></div><div class="phone-label">Splash</div></div>
@@ -1036,7 +1355,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:14px;background:#060908">
       <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
-      <img src="play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
       <h3>CRYMAD CASH</h3>
       <div class="cta-btn solid" style="width:180px;margin:4px auto">SIGN IN</div>
       <div class="cta-btn" style="width:180px;margin:0 auto">REGISTER</div>
@@ -1091,7 +1410,7 @@
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
       <div class="notch"></div><div class="grid-overlay"></div><div class="scan-line"></div>
       <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
-      <img src="play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:22px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:22px">
       <h3 style="margin-top:14px">CRYMAD CASH</h3>
       <div class="sub-text" style="margin-top:4px;font-size:9px;letter-spacing:3px">INITIALIZING SYSTEM</div>
       <div style="width:120px;height:2px;background:rgba(27,140,62,0.1);border-radius:1px;margin-top:12px;z-index:2"><div style="width:70%;height:100%;background:linear-gradient(90deg,var(--green),var(--green-light));border-radius:1px"></div></div>
@@ -1155,7 +1474,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:12px">
       <div class="notch"></div><div class="grid-overlay"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
-      <img src="play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
       <h3 style="margin-top:8px">ACCESS TERMINAL</h3><div class="sub-text" style="font-size:10px">Choose your entry mode</div>
       <div class="cta-btn solid" style="width:180px;margin:8px auto 4px"><svg width="14" height="14" stroke="#fff" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-login"/></svg>LOGIN</div>
       <div class="cta-btn" style="width:180px;margin:0 auto"><svg width="14" height="14" stroke="var(--green)" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-userplus"/></svg>REGISTER</div>
@@ -1199,7 +1518,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
       <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
-      <img src="play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:24px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:24px">
       <h3 style="margin-top:14px">Crymad Cash</h3><div class="sub-text" style="margin-top:4px;font-size:10px;letter-spacing:2px">Smart Money Moves</div>
     </div></div><div class="phone-label">Splash</div></div>
 
@@ -1249,7 +1568,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:12px">
       <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
-      <img src="play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:20px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:20px">
       <h3>Welcome</h3><div class="sub-text" style="font-size:10px">Choose how to continue</div>
       <div class="cta-btn" style="width:180px;margin:6px auto 4px">Log In</div>
       <div class="cta-btn outline" style="width:180px;margin:0 auto">Create Account</div>
@@ -1294,7 +1613,7 @@
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
       <div class="notch"></div><div class="particles"></div>
       <div class="xp-bar"><div class="fill" style="width:100%"></div></div><div class="xp-label">MAX LVL</div>
-      <img src="play_store_512.png" class="app-logo pulse" width="100" height="100">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo pulse" width="100" height="100">
       <h3 style="margin-top:12px;font-size:20px">CRYMAD CASH</h3>
       <div class="level-badge" style="margin-top:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--green)" stroke="none"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg><span style="color:var(--green)">LEVEL 1 — NEW PLAYER</span></div>
     </div></div><div class="phone-label">Splash</div></div>
@@ -1358,7 +1677,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:10px">
       <div class="notch"></div><div class="particles"></div>
-      <img src="play_store_512.png" class="app-logo" width="70" height="70">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70">
       <h3>SELECT MODE</h3>
       <div class="cta-btn" style="width:180px;margin:6px auto 4px"><svg width="14" height="14" stroke="#fff" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-login"/></svg>LOGIN</div>
       <div class="cta-btn outline" style="width:180px;margin:0 auto"><svg width="14" height="14" stroke="var(--green)" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-userplus"/></svg>NEW ACCOUNT</div>
@@ -1402,7 +1721,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
       <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
-      <img src="play_store_512.png" class="app-logo pulse" width="90" height="90" style="border-radius:24px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo pulse" width="90" height="90" style="border-radius:24px">
       <h3 style="margin-top:14px;font-size:22px">Crymad Cash</h3><div class="sub-text" style="margin-top:2px;font-size:11px">Your Money, Amplified</div>
     </div></div><div class="phone-label">Splash</div></div>
 
@@ -1463,7 +1782,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:12px">
       <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
-      <img src="play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:20px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:20px">
       <h3>Get Started</h3>
       <div class="cta-btn" style="width:180px;margin:6px auto 4px">Log In</div>
       <div class="cta-btn outline" style="width:180px;margin:0 auto">Sign Up</div>
@@ -1508,7 +1827,7 @@
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
       <div class="notch"></div><div class="subtle-glow"></div>
       <div class="line-h" style="top:38px"></div><div class="line-v" style="left:16px"></div><div class="line-v" style="right:16px"></div>
-      <img src="play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:22px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:22px">
       <h3 style="margin-top:16px;letter-spacing:6px">CRYMAD CASH</h3><div class="sub-text" style="margin-top:2px;font-size:9px;letter-spacing:4px">PRIVATE FINANCE</div>
     </div></div><div class="phone-label">Splash</div></div>
 
@@ -1562,7 +1881,7 @@
   <div class="screens-row">
     <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:14px">
       <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
-      <img src="play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
       <h3>CRYMAD CASH</h3>
       <div class="cta-btn solid" style="width:180px;margin:4px auto">SIGN IN</div>
       <div class="cta-btn" style="width:180px;margin:0 auto">REGISTER</div>
