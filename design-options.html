@@ -1,0 +1,1601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crymad Cash - Screen Design Options (5 Themes)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #08080f; font-family: 'Inter', sans-serif; color: #e0e0e0; padding: 40px; }
+    .page-header { text-align: center; margin-bottom: 60px; padding: 40px; border-bottom: 1px solid #1a1a2e; }
+    .page-header h1 { font-size: 42px; font-weight: 900; background: linear-gradient(135deg, #1B8C3E, #00C853, #69f0ae); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+    .page-header p { color: #666; font-size: 16px; letter-spacing: 2px; text-transform: uppercase; }
+    .page-header .sub { color: #444; font-size: 13px; margin-top: 12px; letter-spacing: 0; text-transform: none; }
+    .category { margin-bottom: 100px; padding: 40px; border-radius: 24px; background: #0c0c18; border: 1px solid #1a1a2e; }
+    .category-header { display: flex; align-items: center; gap: 16px; margin-bottom: 10px; }
+    .category-header .num { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 900; color: #fff; background: linear-gradient(135deg, #1B8C3E, #00C853); }
+    .category-header h2 { font-size: 28px; font-weight: 800; color: #fff; }
+    .category-desc { color: #666; font-size: 14px; margin-bottom: 30px; padding-left: 64px; }
+    .screens-row { display: flex; gap: 20px; overflow-x: auto; padding: 10px 0 20px; }
+    .screen-group-label { color: #1B8C3E; font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin: 20px 0 8px 4px; }
+    .phone { width: 260px; min-width: 260px; height: 540px; border-radius: 36px; padding: 6px; background: #1a1a2e; box-shadow: 0 10px 40px rgba(0,0,0,0.3); flex-shrink: 0; }
+    .phone-inner { width: 100%; height: 100%; border-radius: 30px; overflow: hidden; position: relative; }
+    .phone-label { text-align: center; margin-top: 8px; font-size: 11px; font-weight: 600; color: #888; letter-spacing: 1px; }
+    .notch { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 90px; height: 22px; background: #000; border-radius: 0 0 14px 14px; z-index: 10; }
+
+    /* SVG icon containers */
+    .icon-circle { display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+    .icon-circle svg { stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    .icon-rect { display: flex; align-items: center; justify-content: center; border-radius: 20px; }
+    .icon-rect svg { stroke-linecap: round; stroke-linejoin: round; fill: none; }
+
+    /* Brand colors (same for ALL themes) */
+    :root {
+      --green: #1B8C3E;
+      --green-light: #00C853;
+      --green-accent: #69f0ae;
+      --green-dim: rgba(27,140,62,0.15);
+      --green-glow: rgba(27,140,62,0.25);
+      --gold: #C9A84C;
+      --blue: #1565c0;
+      --purple: #7c4dff;
+      --bg-dark: #0a1f12;
+      --bg-dark2: #0d2818;
+      --bg-dark3: #0f1a0f;
+    }
+
+    /* Common screen base */
+    .screen-base { display: flex; flex-direction: column; align-items: center; position: relative; overflow: hidden; }
+
+    /* Dot indicators */
+    .dots { display: flex; gap: 6px; justify-content: center; margin: 10px 0; }
+    .dots .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dots .dot.active { width: 22px; border-radius: 4px; }
+
+    /* PIN dots */
+    .pin-dots { display: flex; gap: 14px; z-index: 2; }
+    .pin-dots .pdot { width: 14px; height: 14px; border-radius: 50%; }
+
+    /* Keypad */
+    .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; z-index: 2; }
+    .keypad .key { width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; font-size: 18px; margin: 0 auto; }
+
+    /* Floating crypto icons (small) */
+    .float-coin { width: 36px; height: 36px; border-radius: 50%; position: absolute; display: flex; align-items: center; justify-content: center; z-index: 3; }
+    .float-coin svg { width: 20px; height: 20px; }
+
+    /* Card stack for onboarding slide 5 */
+    .card-stack { position: relative; width: 180px; height: 110px; z-index: 2; }
+    .mini-card { position: absolute; width: 170px; height: 100px; border-radius: 12px; padding: 12px; }
+    .mini-card .card-chip { width: 24px; height: 18px; border-radius: 3px; }
+    .mini-card .card-dots { font-size: 8px; letter-spacing: 2px; margin-top: 8px; }
+    .mini-card .card-brand { position: absolute; bottom: 10px; right: 12px; }
+    .mini-card .card-brand svg { width: 32px; height: 20px; }
+
+    /* ====================================================================
+       DESIGN 1: CYBER GRID — Grid overlays, sharp edges, tech HUD feel
+       ==================================================================== */
+    .d1 .screen-base { background: var(--bg-dark); }
+    .d1 .grid-overlay {
+      position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(27,140,62,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(27,140,62,0.03) 1px, transparent 1px);
+      background-size: 28px 28px;
+    }
+    .d1 .scan-line { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(27,140,62,0.2), transparent); animation: scanmove 4s infinite linear; z-index: 3; }
+    @keyframes scanmove { 0%{top:0} 100%{top:100%} }
+    .d1 .hud-corner-tl { position: absolute; top: 36px; left: 12px; width: 20px; height: 20px; border-top: 1px solid rgba(27,140,62,0.2); border-left: 1px solid rgba(27,140,62,0.2); z-index: 4; }
+    .d1 .hud-corner-br { position: absolute; bottom: 12px; right: 12px; width: 20px; height: 20px; border-bottom: 1px solid rgba(27,140,62,0.2); border-right: 1px solid rgba(27,140,62,0.2); z-index: 4; }
+
+    .d1 .icon-circle { border: 1.5px solid rgba(27,140,62,0.3); background: rgba(27,140,62,0.06); }
+    .d1 .icon-circle svg { stroke: var(--green); stroke-width: 1.5; }
+    .d1 h3 { font-family: 'Orbitron', sans-serif; font-size: 13px; color: var(--green-light); letter-spacing: 1px; z-index: 2; }
+    .d1 .sub-text { font-size: 11px; color: #3a5a42; z-index: 2; text-align: center; padding: 0 20px; line-height: 1.5; }
+    .d1 .dots .dot { background: rgba(27,140,62,0.15); }
+    .d1 .dots .dot.active { background: var(--green); box-shadow: 0 0 8px rgba(27,140,62,0.5); }
+    .d1 .cta-btn { margin: 6px 16px 16px; padding: 12px; border-radius: 8px; border: 1px solid rgba(27,140,62,0.3); background: rgba(27,140,62,0.06); color: var(--green); font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 700; text-align: center; letter-spacing: 2px; z-index: 2; }
+    .d1 .cta-btn.solid { background: linear-gradient(135deg, var(--green), var(--green-light)); color: #fff; border: none; }
+    .d1 .pin-dots .pdot { border: 1.5px solid rgba(27,140,62,0.3); }
+    .d1 .pin-dots .pdot.filled { background: var(--green); border-color: var(--green); box-shadow: 0 0 8px rgba(27,140,62,0.4); }
+    .d1 .keypad .key { border-radius: 50%; border: 1px solid rgba(27,140,62,0.15); color: var(--green); font-family: 'Orbitron', sans-serif; font-size: 16px; }
+
+    /* ====================================================================
+       DESIGN 2: GLASS CARDS — Frosted glass containers, soft blur, floating cards
+       ==================================================================== */
+    .d2 .screen-base { background: linear-gradient(160deg, #071510, #0a2118, #050f0a); }
+    .d2 .blob1 { position: absolute; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(27,140,62,0.18) 0%, transparent 70%); top: -60px; right: -60px; }
+    .d2 .blob2 { position: absolute; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(0,200,83,0.12) 0%, transparent 70%); bottom: 40px; left: -40px; }
+    .d2 .glass { background: rgba(255,255,255,0.04); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); border-radius: 20px; }
+
+    .d2 .icon-circle { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 24px; }
+    .d2 .icon-circle svg { stroke: var(--green-light); stroke-width: 1.5; }
+    .d2 h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: #fff; z-index: 2; }
+    .d2 .sub-text { font-size: 11px; color: rgba(255,255,255,0.4); z-index: 2; text-align: center; padding: 0 16px; line-height: 1.5; }
+    .d2 .dots .dot { background: rgba(255,255,255,0.1); }
+    .d2 .dots .dot.active { background: var(--green-light); box-shadow: 0 0 8px rgba(0,200,83,0.4); }
+    .d2 .cta-btn { margin: 6px 16px 16px; padding: 12px; border-radius: 14px; background: linear-gradient(135deg, var(--green), var(--green-light)); color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; text-align: center; z-index: 2; }
+    .d2 .cta-btn.outline { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); color: var(--green-light); }
+    .d2 .pin-dots .pdot { border: 1.5px solid rgba(27,140,62,0.25); }
+    .d2 .pin-dots .pdot.filled { background: var(--green-light); border-color: var(--green-light); box-shadow: 0 0 8px rgba(0,200,83,0.4); }
+    .d2 .keypad .key { border-radius: 16px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: #fff; font-size: 17px; }
+    .d2 .ob-card { padding: 24px 16px; margin: 10px 16px; text-align: center; z-index: 2; }
+
+    /* ====================================================================
+       DESIGN 3: GAMIFIED RPG — XP bars, badges, level indicators, particles
+       ==================================================================== */
+    .d3 .screen-base { background: linear-gradient(180deg, #021a0f, #041f13, #010d08); }
+    .d3 .particles {
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(1.5px 1.5px at 15% 25%, rgba(27,140,62,0.4), transparent),
+        radial-gradient(1px 1px at 65% 15%, rgba(0,200,83,0.3), transparent),
+        radial-gradient(1.5px 1.5px at 35% 65%, rgba(27,140,62,0.25), transparent),
+        radial-gradient(1px 1px at 85% 55%, rgba(105,240,174,0.2), transparent),
+        radial-gradient(1px 1px at 10% 75%, rgba(27,140,62,0.3), transparent);
+    }
+    .d3 .xp-bar { position: absolute; top: 32px; left: 14px; right: 14px; height: 3px; background: rgba(27,140,62,0.1); border-radius: 2px; z-index: 5; }
+    .d3 .xp-bar .fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--green), var(--green-light)); box-shadow: 0 0 6px rgba(27,140,62,0.5); }
+    .d3 .xp-label { position: absolute; top: 38px; right: 14px; font-family: 'Rajdhani', sans-serif; font-size: 8px; color: rgba(27,140,62,0.4); z-index: 5; letter-spacing: 1px; }
+    .d3 .level-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 10px; background: rgba(27,140,62,0.1); border: 1px solid rgba(27,140,62,0.2); z-index: 2; }
+    .d3 .level-badge span { font-family: 'Rajdhani', sans-serif; font-size: 9px; color: var(--green-light); letter-spacing: 1px; }
+
+    .d3 .achievement-ring { width: 110px; height: 110px; border-radius: 50%; border: 2.5px solid rgba(27,140,62,0.25); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(27,140,62,0.04); z-index: 2; position: relative; }
+    .d3 .achievement-ring svg { stroke: var(--green); stroke-width: 1.5; }
+    .d3 .badge-label { font-family: 'Rajdhani', sans-serif; font-size: 8px; color: var(--green-accent); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+
+    .d3 .icon-circle { border: 2px solid rgba(27,140,62,0.25); background: rgba(27,140,62,0.04); }
+    .d3 .icon-circle svg { stroke: var(--green); stroke-width: 1.5; }
+    .d3 h3 { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: #fff; z-index: 2; }
+    .d3 .sub-text { font-size: 11px; color: rgba(255,255,255,0.3); z-index: 2; text-align: center; padding: 0 16px; line-height: 1.5; }
+    .d3 .dots .dot { background: rgba(27,140,62,0.15); }
+    .d3 .dots .dot.active { background: var(--green); box-shadow: 0 0 6px rgba(27,140,62,0.5); }
+    .d3 .cta-btn { margin: 6px 16px 16px; padding: 12px; border-radius: 10px; background: linear-gradient(135deg, var(--green), #059669); color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 700; text-align: center; letter-spacing: 1px; text-transform: uppercase; z-index: 2; }
+    .d3 .cta-btn.outline { background: rgba(27,140,62,0.06); border: 1px solid rgba(27,140,62,0.25); color: var(--green); }
+    .d3 .pin-dots .pdot { border: 2px solid rgba(27,140,62,0.25); }
+    .d3 .pin-dots .pdot.filled { background: var(--green); border-color: var(--green); box-shadow: 0 0 8px rgba(27,140,62,0.4); }
+    .d3 .keypad .key { border-radius: 12px; background: rgba(27,140,62,0.05); border: 1px solid rgba(27,140,62,0.1); color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; }
+
+    /* ====================================================================
+       DESIGN 4: BOLD WAVES — Organic wave shapes, large type, bold gradients
+       ==================================================================== */
+    .d4 .screen-base { background: #060d09; }
+    .d4 .wave-top { position: absolute; top: 0; left: 0; right: 0; height: 220px; background: linear-gradient(180deg, rgba(27,140,62,0.08) 0%, transparent 100%); clip-path: ellipse(120% 100% at 50% 0%); }
+    .d4 .wave-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 160px; background: linear-gradient(0deg, rgba(27,140,62,0.05) 0%, transparent 100%); clip-path: ellipse(120% 100% at 50% 100%); }
+
+    .d4 .icon-circle { background: linear-gradient(135deg, rgba(27,140,62,0.12), rgba(0,200,83,0.08)); border: none; }
+    .d4 .icon-circle svg { stroke: var(--green-light); stroke-width: 1.8; }
+    .d4 h3 { font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 800; color: #fff; z-index: 2; }
+    .d4 .sub-text { font-size: 11px; color: rgba(255,255,255,0.35); z-index: 2; text-align: center; padding: 0 16px; line-height: 1.5; }
+    .d4 .dots .dot { background: rgba(27,140,62,0.12); }
+    .d4 .dots .dot.active { background: linear-gradient(90deg, var(--green), var(--green-light)); box-shadow: 0 0 8px rgba(27,140,62,0.4); }
+    .d4 .cta-btn { margin: 6px 16px 16px; padding: 14px; border-radius: 16px; background: linear-gradient(135deg, var(--green), var(--green-light)); color: #fff; font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; text-align: center; z-index: 2; box-shadow: 0 6px 20px rgba(27,140,62,0.3); }
+    .d4 .cta-btn.outline { background: transparent; border: 1.5px solid rgba(27,140,62,0.3); color: var(--green-light); box-shadow: none; }
+    .d4 .pin-dots .pdot { border: 2px solid rgba(27,140,62,0.2); }
+    .d4 .pin-dots .pdot.filled { background: linear-gradient(135deg, var(--green), var(--green-light)); border-color: var(--green); box-shadow: 0 0 10px rgba(27,140,62,0.4); }
+    .d4 .keypad .key { border-radius: 50%; background: rgba(27,140,62,0.06); color: #fff; font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 600; border: none; }
+
+    /* ====================================================================
+       DESIGN 5: LUXE MINIMAL — Thin lines, gold accents on green, spacious
+       ==================================================================== */
+    .d5 .screen-base { background: #060908; }
+    .d5 .line-h { position: absolute; left: 16px; right: 16px; height: 1px; background: linear-gradient(90deg, transparent, rgba(27,140,62,0.1), transparent); z-index: 2; }
+    .d5 .line-v { position: absolute; top: 40px; bottom: 16px; width: 1px; background: linear-gradient(180deg, transparent, rgba(27,140,62,0.06), transparent); z-index: 2; }
+    .d5 .subtle-glow { position: absolute; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, rgba(27,140,62,0.04) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+
+    .d5 .icon-circle { border: 1px solid rgba(27,140,62,0.2); background: transparent; }
+    .d5 .icon-circle svg { stroke: var(--green); stroke-width: 1.2; }
+    .d5 h3 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: var(--green); letter-spacing: 3px; text-transform: uppercase; z-index: 2; }
+    .d5 .sub-text { font-size: 11px; color: rgba(255,255,255,0.25); z-index: 2; text-align: center; padding: 0 20px; line-height: 1.6; }
+    .d5 .dots .dot { background: rgba(27,140,62,0.1); }
+    .d5 .dots .dot.active { background: var(--green); }
+    .d5 .cta-btn { margin: 6px 16px 16px; padding: 12px; border-radius: 8px; border: 1px solid rgba(27,140,62,0.2); background: transparent; color: var(--green); font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; text-align: center; letter-spacing: 3px; text-transform: uppercase; z-index: 2; }
+    .d5 .cta-btn.solid { background: rgba(27,140,62,0.08); }
+    .d5 .pin-dots .pdot { border: 1px solid rgba(27,140,62,0.2); }
+    .d5 .pin-dots .pdot.filled { background: var(--green); border-color: var(--green); }
+    .d5 .keypad .key { border-radius: 50%; border: 1px solid rgba(27,140,62,0.08); color: var(--green); font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 300; }
+
+    /* App logo image */
+    .app-logo {
+      object-fit: contain;
+      border-radius: 16px;
+      z-index: 2;
+    }
+
+    /* ====================================================================
+       LIGHT MODE OVERRIDES
+       ==================================================================== */
+    .light-section { margin-top: 40px; padding-top: 60px; border-top: 2px solid #1a1a2e; }
+    .light-section .section-header { text-align: center; margin-bottom: 50px; }
+    .light-section .section-header h2 { font-size: 32px; font-weight: 900; color: #fff; margin-bottom: 4px; }
+    .light-section .section-header p { color: #666; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
+
+    /* Shared light phone frame */
+    .d1l .phone, .d2l .phone, .d3l .phone, .d4l .phone, .d5l .phone {
+      background: linear-gradient(135deg, #c8d6cb, #a8b8ab);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+
+    /* ---- D1 LIGHT: Cyber Grid ---- */
+    .d1l .screen-base { background: linear-gradient(180deg, #f0f8f2, #e8f4ea, #f5fbf6); }
+    .d1l .notch { background: #d4e2d6; }
+    .d1l .grid-overlay { position: absolute; inset: 0; background-image: linear-gradient(rgba(27,140,62,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(27,140,62,0.05) 1px, transparent 1px); background-size: 28px 28px; }
+    .d1l .scan-line { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(27,140,62,0.15), transparent); animation: scanmove 4s infinite linear; z-index: 3; }
+    .d1l .hud-corner-tl { position: absolute; top: 36px; left: 12px; width: 20px; height: 20px; border-top: 1px solid rgba(27,140,62,0.15); border-left: 1px solid rgba(27,140,62,0.15); z-index: 4; }
+    .d1l .hud-corner-br { position: absolute; bottom: 12px; right: 12px; width: 20px; height: 20px; border-bottom: 1px solid rgba(27,140,62,0.15); border-right: 1px solid rgba(27,140,62,0.15); z-index: 4; }
+    .d1l .icon-circle { border: 1.5px solid rgba(27,140,62,0.25); background: rgba(27,140,62,0.06); border-radius: 50%; }
+    .d1l .icon-circle svg { stroke: var(--green); stroke-width: 1.5; }
+    .d1l h3 { font-family: 'Orbitron', sans-serif; font-size: 13px; color: #0d6b2e; letter-spacing: 1px; z-index: 2; }
+    .d1l .sub-text { font-size: 11px; color: #5a7d62; z-index: 2; text-align: center; padding: 0 20px; line-height: 1.5; }
+    .d1l .dots .dot { background: rgba(27,140,62,0.15); }
+    .d1l .dots .dot.active { background: var(--green); box-shadow: 0 0 6px rgba(27,140,62,0.3); }
+    .d1l .cta-btn { margin: 6px 16px 16px; padding: 12px; border-radius: 8px; border: 1px solid rgba(27,140,62,0.25); background: rgba(27,140,62,0.04); color: var(--green); font-family: 'Orbitron', sans-serif; font-size: 11px; font-weight: 700; text-align: center; letter-spacing: 2px; z-index: 2; }
+    .d1l .cta-btn.solid { background: linear-gradient(135deg, var(--green), var(--green-light)); color: #fff; border: none; box-shadow: 0 4px 14px rgba(27,140,62,0.25); }
+    .d1l .pin-dots .pdot { border: 1.5px solid rgba(27,140,62,0.25); }
+    .d1l .pin-dots .pdot.filled { background: var(--green); border-color: var(--green); box-shadow: 0 0 6px rgba(27,140,62,0.3); }
+    .d1l .keypad .key { border-radius: 50%; border: 1px solid rgba(27,140,62,0.15); color: #0d6b2e; font-family: 'Orbitron', sans-serif; font-size: 16px; background: rgba(27,140,62,0.03); }
+    .d1l .float-coin { background: rgba(27,140,62,0.08) !important; border: 1px solid rgba(27,140,62,0.15) !important; }
+
+    /* ---- D2 LIGHT: Glass Cards ---- */
+    .d2l .screen-base { background: linear-gradient(160deg, #ffffff, #f0faf3, #e8f5e9); }
+    .d2l .notch { background: #c8dccb; }
+    .d2l .blob1 { position: absolute; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle, rgba(27,140,62,0.1) 0%, transparent 70%); top: -60px; right: -60px; }
+    .d2l .blob2 { position: absolute; width: 160px; height: 160px; border-radius: 50%; background: radial-gradient(circle, rgba(0,200,83,0.08) 0%, transparent 70%); bottom: 40px; left: -40px; }
+    .d2l .glass { background: rgba(255,255,255,0.7); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(27,140,62,0.12); border-radius: 20px; box-shadow: 0 4px 20px rgba(27,140,62,0.06); }
+    .d2l .ob-card { padding: 24px 16px; margin: 10px 16px; text-align: center; z-index: 2; }
+    .d2l .icon-circle { background: rgba(255,255,255,0.6); border: 1px solid rgba(27,140,62,0.15); border-radius: 24px; }
+    .d2l .icon-circle svg { stroke: var(--green); stroke-width: 1.5; }
+    .d2l h3 { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 700; color: #111; z-index: 2; }
+    .d2l .sub-text { font-size: 11px; color: #666; z-index: 2; text-align: center; padding: 0 16px; line-height: 1.5; }
+    .d2l .dots .dot { background: rgba(27,140,62,0.15); }
+    .d2l .dots .dot.active { background: var(--green); box-shadow: 0 0 6px rgba(27,140,62,0.3); }
+    .d2l .cta-btn { margin: 6px 16px 16px; padding: 12px; border-radius: 14px; background: linear-gradient(135deg, var(--green), var(--green-light)); color: #fff; font-family: 'Space Grotesk', sans-serif; font-size: 13px; font-weight: 700; text-align: center; z-index: 2; box-shadow: 0 4px 14px rgba(27,140,62,0.25); }
+    .d2l .cta-btn.outline { background: rgba(255,255,255,0.6); border: 1px solid rgba(27,140,62,0.2); color: var(--green); box-shadow: none; }
+    .d2l .pin-dots .pdot { border: 1.5px solid rgba(27,140,62,0.25); }
+    .d2l .pin-dots .pdot.filled { background: var(--green); border-color: var(--green); box-shadow: 0 0 6px rgba(27,140,62,0.3); }
+    .d2l .keypad .key { border-radius: 16px; background: rgba(255,255,255,0.7); border: 1px solid rgba(27,140,62,0.1); color: #222; font-size: 17px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+
+    /* ---- D3 LIGHT: Gamified RPG ---- */
+    .d3l .screen-base { background: linear-gradient(180deg, #f5fbf6, #edf7f0, #f0faf3); }
+    .d3l .notch { background: #c8dccb; }
+    .d3l .particles { position: absolute; inset: 0; background-image: radial-gradient(2px 2px at 15% 25%, rgba(27,140,62,0.2), transparent), radial-gradient(1.5px 1.5px at 65% 15%, rgba(0,200,83,0.15), transparent), radial-gradient(2px 2px at 35% 65%, rgba(27,140,62,0.12), transparent), radial-gradient(1.5px 1.5px at 85% 55%, rgba(105,240,174,0.15), transparent), radial-gradient(1.5px 1.5px at 10% 75%, rgba(27,140,62,0.18), transparent); }
+    .d3l .xp-bar { position: absolute; top: 32px; left: 14px; right: 14px; height: 3px; background: rgba(27,140,62,0.1); border-radius: 2px; z-index: 5; }
+    .d3l .xp-bar .fill { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--green), var(--green-light)); box-shadow: 0 0 6px rgba(27,140,62,0.3); }
+    .d3l .xp-label { position: absolute; top: 38px; right: 14px; font-family: 'Rajdhani', sans-serif; font-size: 8px; color: rgba(27,140,62,0.6); z-index: 5; letter-spacing: 1px; }
+    .d3l .level-badge { display: inline-flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 10px; background: rgba(27,140,62,0.08); border: 1px solid rgba(27,140,62,0.15); z-index: 2; }
+    .d3l .level-badge span { font-family: 'Rajdhani', sans-serif; font-size: 9px; color: var(--green); letter-spacing: 1px; }
+    .d3l .achievement-ring { width: 110px; height: 110px; border-radius: 50%; border: 2.5px solid rgba(27,140,62,0.25); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(27,140,62,0.04); z-index: 2; position: relative; box-shadow: 0 4px 20px rgba(27,140,62,0.08); }
+    .d3l .achievement-ring svg { stroke: var(--green); stroke-width: 1.5; }
+    .d3l .badge-label { font-family: 'Rajdhani', sans-serif; font-size: 8px; color: var(--green); letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+    .d3l .icon-circle { border: 2px solid rgba(27,140,62,0.25); background: rgba(27,140,62,0.05); }
+    .d3l .icon-circle svg { stroke: var(--green); stroke-width: 1.5; }
+    .d3l h3 { font-family: 'Rajdhani', sans-serif; font-size: 16px; font-weight: 700; color: #111; z-index: 2; }
+    .d3l .sub-text { font-size: 11px; color: #666; z-index: 2; text-align: center; padding: 0 16px; line-height: 1.5; }
+    .d3l .dots .dot { background: rgba(27,140,62,0.12); }
+    .d3l .dots .dot.active { background: var(--green); box-shadow: 0 0 5px rgba(27,140,62,0.3); }
+    .d3l .cta-btn { margin: 6px 16px 16px; padding: 12px; border-radius: 10px; background: linear-gradient(135deg, var(--green), #059669); color: #fff; font-family: 'Rajdhani', sans-serif; font-size: 14px; font-weight: 700; text-align: center; letter-spacing: 1px; text-transform: uppercase; z-index: 2; box-shadow: 0 4px 14px rgba(27,140,62,0.2); }
+    .d3l .cta-btn.outline { background: rgba(27,140,62,0.05); border: 1px solid rgba(27,140,62,0.2); color: var(--green); box-shadow: none; }
+    .d3l .pin-dots .pdot { border: 2px solid rgba(27,140,62,0.25); }
+    .d3l .pin-dots .pdot.filled { background: var(--green); border-color: var(--green); box-shadow: 0 0 6px rgba(27,140,62,0.3); }
+    .d3l .keypad .key { border-radius: 12px; background: rgba(27,140,62,0.04); border: 1px solid rgba(27,140,62,0.1); color: #222; font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; }
+    .d3l .float-coin { background: rgba(27,140,62,0.06) !important; border: 1px solid rgba(27,140,62,0.12) !important; }
+
+    /* ---- D4 LIGHT: Bold Waves ---- */
+    .d4l .screen-base { background: linear-gradient(180deg, #f5fbf6, #f0f8f2, #f7fcf8); }
+    .d4l .notch { background: #c8dccb; }
+    .d4l .wave-top { position: absolute; top: 0; left: 0; right: 0; height: 220px; background: linear-gradient(180deg, rgba(27,140,62,0.07) 0%, transparent 100%); clip-path: ellipse(120% 100% at 50% 0%); }
+    .d4l .wave-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 160px; background: linear-gradient(0deg, rgba(27,140,62,0.05) 0%, transparent 100%); clip-path: ellipse(120% 100% at 50% 100%); }
+    .d4l .icon-circle { background: linear-gradient(135deg, rgba(27,140,62,0.1), rgba(0,200,83,0.06)); border: none; box-shadow: 0 4px 20px rgba(27,140,62,0.08); }
+    .d4l .icon-circle svg { stroke: var(--green); stroke-width: 1.8; }
+    .d4l h3 { font-family: 'Outfit', sans-serif; font-size: 17px; font-weight: 800; color: #111; z-index: 2; }
+    .d4l .sub-text { font-size: 11px; color: #666; z-index: 2; text-align: center; padding: 0 16px; line-height: 1.5; }
+    .d4l .dots .dot { background: rgba(27,140,62,0.12); }
+    .d4l .dots .dot.active { background: linear-gradient(90deg, var(--green), var(--green-light)); box-shadow: 0 0 6px rgba(27,140,62,0.3); }
+    .d4l .cta-btn { margin: 6px 16px 16px; padding: 14px; border-radius: 16px; background: linear-gradient(135deg, var(--green), var(--green-light)); color: #fff; font-family: 'Outfit', sans-serif; font-size: 14px; font-weight: 800; text-align: center; z-index: 2; box-shadow: 0 6px 20px rgba(27,140,62,0.25); }
+    .d4l .cta-btn.outline { background: transparent; border: 1.5px solid rgba(27,140,62,0.25); color: var(--green); box-shadow: none; }
+    .d4l .pin-dots .pdot { border: 2px solid rgba(27,140,62,0.2); }
+    .d4l .pin-dots .pdot.filled { background: linear-gradient(135deg, var(--green), var(--green-light)); border-color: var(--green); box-shadow: 0 0 8px rgba(27,140,62,0.3); }
+    .d4l .keypad .key { border-radius: 50%; background: rgba(27,140,62,0.05); color: #222; font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 600; border: none; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .d4l .float-coin { background: rgba(27,140,62,0.06) !important; }
+
+    /* ---- D5 LIGHT: Luxe Minimal ---- */
+    .d5l .screen-base { background: linear-gradient(180deg, #fafdfb, #f5f9f6, #fafdfb); }
+    .d5l .notch { background: #d4ddd6; }
+    .d5l .line-h { position: absolute; left: 16px; right: 16px; height: 1px; background: linear-gradient(90deg, transparent, rgba(27,140,62,0.1), transparent); z-index: 2; }
+    .d5l .line-v { position: absolute; top: 40px; bottom: 16px; width: 1px; background: linear-gradient(180deg, transparent, rgba(27,140,62,0.06), transparent); z-index: 2; }
+    .d5l .subtle-glow { position: absolute; width: 250px; height: 250px; border-radius: 50%; background: radial-gradient(circle, rgba(27,140,62,0.04) 0%, transparent 70%); top: 50%; left: 50%; transform: translate(-50%,-50%); }
+    .d5l .icon-circle { border: 1px solid rgba(27,140,62,0.18); background: rgba(27,140,62,0.02); }
+    .d5l .icon-circle svg { stroke: var(--green); stroke-width: 1.2; }
+    .d5l h3 { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; color: #0d6b2e; letter-spacing: 3px; text-transform: uppercase; z-index: 2; }
+    .d5l .sub-text { font-size: 11px; color: #888; z-index: 2; text-align: center; padding: 0 20px; line-height: 1.6; }
+    .d5l .dots .dot { background: rgba(27,140,62,0.1); }
+    .d5l .dots .dot.active { background: var(--green); }
+    .d5l .cta-btn { margin: 6px 16px 16px; padding: 12px; border-radius: 8px; border: 1px solid rgba(27,140,62,0.2); background: rgba(27,140,62,0.02); color: #0d6b2e; font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 400; text-align: center; letter-spacing: 3px; text-transform: uppercase; z-index: 2; }
+    .d5l .cta-btn.solid { background: rgba(27,140,62,0.08); border-color: rgba(27,140,62,0.25); }
+    .d5l .pin-dots .pdot { border: 1px solid rgba(27,140,62,0.2); }
+    .d5l .pin-dots .pdot.filled { background: var(--green); border-color: var(--green); }
+    .d5l .keypad .key { border-radius: 50%; border: 1px solid rgba(27,140,62,0.1); color: #0d6b2e; font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 300; background: rgba(27,140,62,0.02); }
+
+
+    /* Animations */
+    @keyframes pulse-glow { 0%,100%{ box-shadow: 0 0 20px rgba(27,140,62,0.15); } 50%{ box-shadow: 0 0 40px rgba(27,140,62,0.3); } }
+    @keyframes float-bob { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-5px); } }
+    .pulse { animation: pulse-glow 2.5s ease-in-out infinite; }
+    .bob { animation: float-bob 3s ease-in-out infinite; }
+    .bob-d1 { animation-delay: 0.3s; }
+    .bob-d2 { animation-delay: 0.8s; }
+    .bob-d3 { animation-delay: 1.2s; }
+  </style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>Crymad Cash - Screen Design Options</h1>
+  <p>5 Design Themes &bull; Same Brand Colors &bull; All Screens</p>
+  <p class="sub">Each theme shows: Splash &bull; 5 Onboarding Slides &bull; Login/Signup Choice &bull; Biometric &bull; PIN &bull; Offline &bull; Force Update</p>
+</div>
+
+<!-- ============================================================
+     REUSABLE SVG TEMPLATES (hidden, referenced by use)
+     ============================================================ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <!-- Wallet icon -->
+  <symbol id="ico-wallet" viewBox="0 0 24 24">
+    <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/>
+    <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/>
+    <path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/>
+  </symbol>
+  <!-- Shield icon -->
+  <symbol id="ico-shield" viewBox="0 0 24 24">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    <polyline points="9 12 11 14 15 10"/>
+  </symbol>
+  <!-- Globe icon -->
+  <symbol id="ico-globe" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10"/>
+    <line x1="2" y1="12" x2="22" y2="12"/>
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+  </symbol>
+  <!-- Fingerprint icon -->
+  <symbol id="ico-fingerprint" viewBox="0 0 24 24">
+    <path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 4"/>
+    <path d="M5 19.5C5.5 18 6 15 6 12c0-3.5 2.5-6 6-6"/>
+    <path d="M12 10c-1.1 0-2 .9-2 2 0 2 1 4 1 6"/>
+    <path d="M15 13.5c0-1.5-1-3.5-3-3.5"/>
+    <path d="M17.5 12c0-3-2.5-6-5.5-6"/>
+    <path d="M22 16c-1 3-3 5.5-6 7"/>
+  </symbol>
+  <!-- Lock icon -->
+  <symbol id="ico-lock" viewBox="0 0 24 24">
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+    <circle cx="12" cy="16" r="1"/>
+  </symbol>
+  <!-- Wifi-off icon -->
+  <symbol id="ico-wifioff" viewBox="0 0 24 24">
+    <line x1="1" y1="1" x2="23" y2="23"/>
+    <path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/>
+    <path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/>
+    <path d="M10.71 5.05A16 16 0 0 1 22.56 9"/>
+    <path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/>
+    <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+    <line x1="12" y1="20" x2="12.01" y2="20"/>
+  </symbol>
+  <!-- Download/Update icon -->
+  <symbol id="ico-download" viewBox="0 0 24 24">
+    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+    <polyline points="7 10 12 15 17 10"/>
+    <line x1="12" y1="15" x2="12" y2="3"/>
+  </symbol>
+  <!-- Refresh icon -->
+  <symbol id="ico-refresh" viewBox="0 0 24 24">
+    <polyline points="23 4 23 10 17 10"/>
+    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+  </symbol>
+  <!-- BTC -->
+  <symbol id="ico-btc" viewBox="0 0 24 24">
+    <path d="M9 7h4.5a3 3 0 0 1 0 6H9V7z" stroke-width="1.5"/>
+    <path d="M9 13h5a3 3 0 0 1 0 6H9v-6z" stroke-width="1.5"/>
+    <line x1="10" y1="5" x2="10" y2="7" stroke-width="1.5"/>
+    <line x1="13" y1="5" x2="13" y2="7" stroke-width="1.5"/>
+    <line x1="10" y1="19" x2="10" y2="21" stroke-width="1.5"/>
+    <line x1="13" y1="19" x2="13" y2="21" stroke-width="1.5"/>
+  </symbol>
+  <!-- ETH -->
+  <symbol id="ico-eth" viewBox="0 0 24 24">
+    <polygon points="12 2 4 12 12 16 20 12 12 2" stroke-width="1.5"/>
+    <polygon points="4 12 12 22 20 12 12 16" stroke-width="1.5" opacity="0.6"/>
+  </symbol>
+  <!-- Dollar -->
+  <symbol id="ico-dollar" viewBox="0 0 24 24">
+    <line x1="12" y1="1" x2="12" y2="23" stroke-width="1.5"/>
+    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke-width="1.5"/>
+  </symbol>
+  <!-- Credit card -->
+  <symbol id="ico-card" viewBox="0 0 24 24">
+    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+    <line x1="1" y1="10" x2="23" y2="10"/>
+  </symbol>
+  <!-- Arrow right -->
+  <symbol id="ico-arrow" viewBox="0 0 24 24">
+    <line x1="5" y1="12" x2="19" y2="12"/>
+    <polyline points="12 5 19 12 12 19"/>
+  </symbol>
+  <!-- User plus -->
+  <symbol id="ico-userplus" viewBox="0 0 24 24">
+    <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+    <circle cx="8.5" cy="7" r="4"/>
+    <line x1="20" y1="8" x2="20" y2="14"/>
+    <line x1="23" y1="11" x2="17" y2="11"/>
+  </symbol>
+  <!-- Log in -->
+  <symbol id="ico-login" viewBox="0 0 24 24">
+    <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+    <polyline points="10 17 15 12 10 7"/>
+    <line x1="15" y1="12" x2="3" y2="12"/>
+  </symbol>
+  <!-- Mastercard circles -->
+  <symbol id="ico-mc" viewBox="0 0 40 24">
+    <circle cx="15" cy="12" r="8" fill="rgba(235,0,27,0.7)" stroke="none"/>
+    <circle cx="25" cy="12" r="8" fill="rgba(255,159,10,0.7)" stroke="none"/>
+  </symbol>
+  <!-- Visa text -->
+  <symbol id="ico-visa" viewBox="0 0 40 16">
+    <text x="4" y="13" font-family="Inter" font-weight="800" font-size="13" fill="rgba(255,255,255,0.7)">VISA</text>
+  </symbol>
+</svg>
+
+<!-- ============================================================
+     HELPER: generates a single phone screen
+     We'll write all screens inline for each design
+     ============================================================ -->
+
+<!-- =========================== DESIGN 1: CYBER GRID =========================== -->
+<div class="category d1">
+  <div class="category-header">
+    <div class="num">1</div>
+    <h2>Cyber Grid</h2>
+  </div>
+  <p class="category-desc">Tech HUD aesthetic with scan lines, grid overlays, corner brackets, and Orbitron typography. Futuristic command-center feel.</p>
+
+  <p class="screen-group-label">Splash &amp; Onboarding</p>
+  <div class="screens-row">
+    <!-- Splash -->
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="scan-line"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:22px">
+      <h3 style="margin-top:14px">CRYMAD CASH</h3>
+      <div class="sub-text" style="margin-top:4px;font-size:9px;letter-spacing:3px">INITIALIZING SYSTEM</div>
+      <div style="width:120px;height:2px;background:rgba(27,140,62,0.15);border-radius:1px;margin-top:12px;z-index:2">
+        <div style="width:70%;height:100%;background:linear-gradient(90deg,var(--green),var(--green-light));border-radius:1px"></div>
+      </div>
+    </div></div><div class="phone-label">Splash</div></div>
+
+    <!-- OB1 -->
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="icon-circle" style="width:100px;height:100px">
+          <svg width="52" height="52"><use href="#ico-wallet"/></svg>
+        </div>
+      </div>
+      <div style="padding:0 16px 0;text-align:center;z-index:2">
+        <h3>MANAGE YOUR MONEY</h3>
+        <div class="sub-text" style="margin-top:6px">Access your e-wallet, bank accounts, and crypto — all in one place.</div>
+        <div class="dots" style="margin-top:10px"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      </div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 1</div></div>
+
+    <!-- OB2 -->
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+        <div class="icon-circle" style="width:100px;height:100px">
+          <svg width="52" height="52"><use href="#ico-btc"/></svg>
+        </div>
+        <div class="float-coin bob" style="top:30%;left:12%;background:rgba(27,140,62,0.1);border:1px solid rgba(27,140,62,0.2)"><svg width="18" height="18" stroke="var(--green)" fill="none"><use href="#ico-eth"/></svg></div>
+        <div class="float-coin bob bob-d1" style="top:25%;right:12%;background:rgba(27,140,62,0.1);border:1px solid rgba(27,140,62,0.2)"><svg width="18" height="18" stroke="var(--green-light)" fill="none"><use href="#ico-dollar"/></svg></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2">
+        <h3>GO CRYPTO</h3>
+        <div class="sub-text" style="margin-top:6px">Convert, send, and store USDT and USDC seamlessly with TygaPay security.</div>
+        <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      </div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 2</div></div>
+
+    <!-- OB3 -->
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="icon-circle pulse" style="width:100px;height:100px">
+          <svg width="52" height="52" stroke="var(--gold)"><use href="#ico-shield"/></svg>
+        </div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2">
+        <h3>BANK-GRADE SECURITY</h3>
+        <div class="sub-text" style="margin-top:6px">2FA, biometric authentication, and encrypted transactions protect your funds.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+      </div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 3</div></div>
+
+    <!-- OB4 -->
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+        <div class="icon-circle" style="width:100px;height:100px">
+          <svg width="52" height="52"><use href="#ico-globe"/></svg>
+        </div>
+        <div class="float-coin bob" style="bottom:20%;left:10%;background:rgba(27,140,62,0.1);border:1px solid rgba(27,140,62,0.2)"><svg width="18" height="18" stroke="var(--green)" fill="none"><use href="#ico-dollar"/></svg></div>
+        <div class="float-coin bob bob-d2" style="top:20%;right:10%;background:rgba(27,140,62,0.1);border:1px solid rgba(27,140,62,0.2)"><svg width="18" height="18" stroke="var(--green-light)" fill="none"><use href="#ico-btc"/></svg></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2">
+        <h3>SEND GLOBALLY</h3>
+        <div class="sub-text" style="margin-top:6px">Cross-border payments and remittances with low fees. Fiat, crypto, and cards.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+      </div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 4</div></div>
+
+    <!-- OB5 -->
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="card-stack">
+          <div class="mini-card" style="background:linear-gradient(135deg,#1a2a1e,#2d3d32);transform:rotate(-5deg);top:0;left:0">
+            <div class="card-chip" style="background:rgba(212,165,60,0.3)"></div>
+            <div class="card-dots" style="color:rgba(255,255,255,0.4)">•••• •••• •••• 4829</div>
+            <div class="card-brand"><svg width="32" height="16"><use href="#ico-visa"/></svg></div>
+          </div>
+          <div class="mini-card" style="background:linear-gradient(135deg,var(--green),var(--green-light));transform:rotate(3deg);top:10px;left:14px">
+            <div class="card-chip" style="background:rgba(255,255,255,0.3)"></div>
+            <div class="card-dots" style="color:rgba(255,255,255,0.7)">•••• •••• •••• 3156</div>
+            <div class="card-brand"><svg width="36" height="22"><use href="#ico-mc"/></svg></div>
+          </div>
+        </div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2">
+        <h3>YOUR CARDS, YOUR WAY</h3>
+        <div class="sub-text" style="margin-top:6px">Physical and virtual Mastercard debit cards. Spend anywhere, withdraw from ATMs.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div>
+      </div>
+      <div class="cta-btn solid">GET STARTED</div>
+    </div></div><div class="phone-label">Onboarding 5</div></div>
+  </div>
+
+  <p class="screen-group-label">Auth &amp; System Screens</p>
+  <div class="screens-row">
+    <!-- Login/Signup Choice -->
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:12px">
+      <div class="notch"></div><div class="grid-overlay"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
+      <h3 style="margin-top:8px">ACCESS TERMINAL</h3>
+      <div class="sub-text" style="font-size:10px">Choose your entry mode</div>
+      <div class="cta-btn solid" style="width:180px;margin:8px auto 4px">
+        <svg width="14" height="14" stroke="#fff" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-login"/></svg>LOGIN
+      </div>
+      <div class="cta-btn" style="width:180px;margin:0 auto">
+        <svg width="14" height="14" stroke="var(--green)" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-userplus"/></svg>REGISTER
+      </div>
+    </div></div><div class="phone-label">Login / Signup</div></div>
+
+    <!-- Biometric -->
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="icon-circle pulse" style="width:90px;height:90px">
+        <svg width="44" height="44"><use href="#ico-fingerprint"/></svg>
+      </div>
+      <h3 style="margin-top:16px">BIOMETRIC SCAN</h3>
+      <div class="sub-text" style="margin-top:4px">Place your finger to authenticate</div>
+    </div></div><div class="phone-label">Biometric</div></div>
+
+    <!-- PIN -->
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:60px">
+      <div class="notch"></div><div class="grid-overlay"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <h3>ENTER ACCESS CODE</h3>
+      <div class="sub-text" style="margin:4px 0 18px;font-size:10px">6-digit security PIN</div>
+      <div class="pin-dots" style="margin-bottom:24px">
+        <div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot filled"></div>
+        <div class="pdot"></div><div class="pdot"></div><div class="pdot"></div>
+      </div>
+      <div class="keypad" style="padding:0 24px">
+        <div class="key">1</div><div class="key">2</div><div class="key">3</div>
+        <div class="key">4</div><div class="key">5</div><div class="key">6</div>
+        <div class="key">7</div><div class="key">8</div><div class="key">9</div>
+        <div class="key"></div><div class="key">0</div><div class="key" style="font-size:14px">&#x232B;</div>
+      </div>
+    </div></div><div class="phone-label">PIN Setup</div></div>
+
+    <!-- Offline -->
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="icon-circle" style="width:80px;height:80px">
+        <svg width="40" height="40" stroke="#ef4444"><use href="#ico-wifioff"/></svg>
+      </div>
+      <h3 style="margin-top:16px;color:#ef4444">CONNECTION LOST</h3>
+      <div class="sub-text" style="margin-top:6px">Unable to reach server. Check your network.</div>
+      <div class="cta-btn" style="width:140px;margin-top:16px;border-color:rgba(239,68,68,0.3);color:#ef4444">
+        <svg width="12" height="12" stroke="#ef4444" fill="none" style="vertical-align:middle;margin-right:4px"><use href="#ico-refresh"/></svg>RETRY
+      </div>
+    </div></div><div class="phone-label">Offline</div></div>
+
+    <!-- Force Update -->
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="icon-circle" style="width:80px;height:80px">
+        <svg width="40" height="40"><use href="#ico-download"/></svg>
+      </div>
+      <h3 style="margin-top:16px">UPGRADE REQUIRED</h3>
+      <div class="sub-text" style="margin-top:6px">A new version is available. Update to continue.</div>
+      <div class="cta-btn solid" style="width:160px;margin-top:16px">UPDATE NOW</div>
+    </div></div><div class="phone-label">Force Update</div></div>
+  </div>
+</div>
+
+<!-- =========================== DESIGN 2: GLASS CARDS =========================== -->
+<div class="category d2">
+  <div class="category-header"><div class="num">2</div><h2>Glass Cards</h2></div>
+  <p class="category-desc">Frosted glass containers, soft blurred backgrounds, floating glass cards for each screen. Elegant, modern, premium feel.</p>
+
+  <p class="screen-group-label">Splash &amp; Onboarding</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:linear-gradient(160deg,#071510,#0a2118,#050f0a)">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:24px">
+      <h3 style="margin-top:14px">Crymad Cash</h3>
+      <div class="sub-text" style="margin-top:4px;font-size:10px;letter-spacing:2px">Smart Money Moves</div>
+    </div></div><div class="phone-label">Splash</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:linear-gradient(160deg,#071510,#0a2118,#050f0a);padding-top:36px">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="glass ob-card"><div class="icon-circle" style="width:80px;height:80px;margin:0 auto 12px"><svg width="42" height="42"><use href="#ico-wallet"/></svg></div>
+        <h3>Manage Your Money</h3><div class="sub-text" style="margin-top:6px">Access your e-wallet, bank accounts, and crypto — all in one place.</div>
+      </div>
+      <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <div class="cta-btn">Continue</div>
+    </div></div><div class="phone-label">Onboarding 1</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:linear-gradient(160deg,#071510,#0a2118,#050f0a);padding-top:36px">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="glass ob-card" style="position:relative">
+        <div class="icon-circle" style="width:80px;height:80px;margin:0 auto 12px"><svg width="42" height="42"><use href="#ico-btc"/></svg></div>
+        <h3>Go Crypto</h3><div class="sub-text" style="margin-top:6px">Convert, send, and store USDT and USDC with TygaPay security.</div>
+      </div>
+      <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <div class="cta-btn">Continue</div>
+    </div></div><div class="phone-label">Onboarding 2</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:linear-gradient(160deg,#071510,#0a2118,#050f0a);padding-top:36px">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="glass ob-card"><div class="icon-circle" style="width:80px;height:80px;margin:0 auto 12px"><svg width="42" height="42" stroke="var(--gold)"><use href="#ico-shield"/></svg></div>
+        <h3>Bank-Grade Security</h3><div class="sub-text" style="margin-top:6px">2FA, biometric auth, and encrypted transactions protect your funds.</div>
+      </div>
+      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+      <div class="cta-btn">Continue</div>
+    </div></div><div class="phone-label">Onboarding 3</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:linear-gradient(160deg,#071510,#0a2118,#050f0a);padding-top:36px">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="glass ob-card"><div class="icon-circle" style="width:80px;height:80px;margin:0 auto 12px"><svg width="42" height="42"><use href="#ico-globe"/></svg></div>
+        <h3>Send Money Globally</h3><div class="sub-text" style="margin-top:6px">Cross-border payments with low fees. Fiat, crypto, and cards supported.</div>
+      </div>
+      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+      <div class="cta-btn">Continue</div>
+    </div></div><div class="phone-label">Onboarding 4</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:linear-gradient(160deg,#071510,#0a2118,#050f0a);padding-top:36px">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="glass ob-card">
+        <div class="card-stack" style="margin:0 auto 12px">
+          <div class="mini-card" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.08);transform:rotate(-5deg);top:0;left:0"><div class="card-chip" style="background:rgba(212,165,60,0.2)"></div><div class="card-dots" style="color:rgba(255,255,255,0.3)">•••• 4829</div><div class="card-brand"><svg width="32" height="16"><use href="#ico-visa"/></svg></div></div>
+          <div class="mini-card" style="background:linear-gradient(135deg,var(--green),var(--green-light));transform:rotate(3deg);top:10px;left:14px"><div class="card-chip" style="background:rgba(255,255,255,0.3)"></div><div class="card-dots" style="color:rgba(255,255,255,0.7)">•••• 3156</div><div class="card-brand"><svg width="36" height="22"><use href="#ico-mc"/></svg></div></div>
+        </div>
+        <h3>Your Cards, Your Way</h3><div class="sub-text" style="margin-top:6px">Physical and virtual debit cards. Spend anywhere.</div>
+      </div>
+      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div>
+      <div class="cta-btn">Get Started</div>
+    </div></div><div class="phone-label">Onboarding 5</div></div>
+  </div>
+
+  <p class="screen-group-label">Auth &amp; System Screens</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:12px;background:linear-gradient(160deg,#071510,#0a2118,#050f0a)">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:20px">
+      <h3>Welcome</h3><div class="sub-text" style="font-size:10px">Choose how to continue</div>
+      <div class="cta-btn" style="width:180px;margin:6px auto 4px">Log In</div>
+      <div class="cta-btn outline" style="width:180px;margin:0 auto">Create Account</div>
+    </div></div><div class="phone-label">Login / Signup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:linear-gradient(160deg,#071510,#0a2118,#050f0a)">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="icon-circle glass pulse" style="width:90px;height:90px;border-radius:26px"><svg width="44" height="44"><use href="#ico-fingerprint"/></svg></div>
+      <h3 style="margin-top:16px">Biometric Login</h3><div class="sub-text" style="margin-top:4px">Use your fingerprint to unlock</div>
+    </div></div><div class="phone-label">Biometric</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:60px;background:linear-gradient(160deg,#071510,#0a2118,#050f0a)">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <h3>Enter Your PIN</h3><div class="sub-text" style="margin:4px 0 18px;font-size:10px">6-digit security code</div>
+      <div class="pin-dots" style="margin-bottom:24px"><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+      <div class="keypad" style="padding:0 22px"><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key"></div><div class="key">0</div><div class="key" style="font-size:14px">&#x232B;</div></div>
+    </div></div><div class="phone-label">PIN Setup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:linear-gradient(160deg,#071510,#0a2118,#050f0a)">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="icon-circle glass" style="width:80px;height:80px"><svg width="40" height="40" stroke="#ef4444"><use href="#ico-wifioff"/></svg></div>
+      <h3 style="margin-top:16px;color:#ef4444">No Connection</h3><div class="sub-text" style="margin-top:6px">Check your internet and try again.</div>
+      <div class="cta-btn outline" style="width:140px;margin-top:14px;border-color:rgba(239,68,68,0.2);color:#ef4444">Retry</div>
+    </div></div><div class="phone-label">Offline</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:linear-gradient(160deg,#071510,#0a2118,#050f0a)">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="icon-circle glass" style="width:80px;height:80px"><svg width="40" height="40"><use href="#ico-download"/></svg></div>
+      <h3 style="margin-top:16px">Update Available</h3><div class="sub-text" style="margin-top:6px">Please update to continue.</div>
+      <div class="cta-btn" style="width:160px;margin-top:14px">Update Now</div>
+    </div></div><div class="phone-label">Force Update</div></div>
+  </div>
+</div>
+
+<!-- =========================== DESIGN 3: GAMIFIED RPG =========================== -->
+<div class="category d3">
+  <div class="category-header"><div class="num">3</div><h2>Gamified RPG</h2></div>
+  <p class="category-desc">XP progress bars, achievement badges, level indicators, particle backgrounds. RPG-inspired gamified progression through onboarding.</p>
+
+  <p class="screen-group-label">Splash &amp; Onboarding</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="xp-bar"><div class="fill" style="width:100%"></div></div><div class="xp-label">MAX LVL</div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo pulse" width="100" height="100">
+      <h3 style="margin-top:12px;font-size:20px">CRYMAD CASH</h3>
+      <div class="level-badge" style="margin-top:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--green-accent)" stroke="none"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg><span>LEVEL 1 — NEW PLAYER</span></div>
+    </div></div><div class="phone-label">Splash</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="xp-bar"><div class="fill" style="width:20%"></div></div><div class="xp-label">20% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="achievement-ring"><svg width="48" height="48"><use href="#ico-wallet"/></svg><span class="badge-label">UNLOCKED</span></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Manage Your Money</h3><div class="sub-text" style="margin-top:4px">E-wallet, bank accounts, and crypto — all in one place. Earn XP!</div>
+        <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 1</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="xp-bar"><div class="fill" style="width:40%"></div></div><div class="xp-label">40% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+        <div class="achievement-ring"><svg width="48" height="48"><use href="#ico-btc"/></svg><span class="badge-label">CRYPTO</span></div>
+        <div class="float-coin bob" style="top:25%;left:10%;background:rgba(27,140,62,0.08);border:1px solid rgba(27,140,62,0.15)"><svg width="16" height="16" stroke="var(--green)" fill="none"><use href="#ico-eth"/></svg></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Go Crypto</h3><div class="sub-text" style="margin-top:4px">Trade USDT, USDC, BTC and more with TygaPay integration.</div>
+        <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 2</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="xp-bar"><div class="fill" style="width:60%"></div></div><div class="xp-label">60% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="achievement-ring"><svg width="48" height="48" stroke="var(--gold)"><use href="#ico-shield"/></svg><span class="badge-label">SECURED</span></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Bank-Grade Security</h3><div class="sub-text" style="margin-top:4px">2FA, biometric auth, and encrypted transactions.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 3</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="xp-bar"><div class="fill" style="width:80%"></div></div><div class="xp-label">80% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+        <div class="achievement-ring"><svg width="48" height="48"><use href="#ico-globe"/></svg><span class="badge-label">GLOBAL</span></div>
+        <div class="float-coin bob" style="bottom:18%;right:10%;background:rgba(27,140,62,0.08);border:1px solid rgba(27,140,62,0.15)"><svg width="16" height="16" stroke="var(--green)" fill="none"><use href="#ico-dollar"/></svg></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Send Money Globally</h3><div class="sub-text" style="margin-top:4px">Cross-border payments, remittances, low fees.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 4</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="xp-bar"><div class="fill" style="width:100%"></div></div><div class="xp-label">100% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="card-stack">
+          <div class="mini-card" style="background:linear-gradient(135deg,#0a1f12,#152e1a);border:1px solid rgba(27,140,62,0.15);transform:rotate(-5deg);top:0;left:0"><div class="card-chip" style="background:rgba(212,165,60,0.2)"></div><div class="card-dots" style="color:rgba(255,255,255,0.3)">•••• 4829</div><div class="card-brand"><svg width="32" height="16"><use href="#ico-visa"/></svg></div></div>
+          <div class="mini-card" style="background:linear-gradient(135deg,var(--green),var(--green-light));transform:rotate(3deg);top:10px;left:14px"><div class="card-chip" style="background:rgba(255,255,255,0.3)"></div><div class="card-dots" style="color:rgba(255,255,255,0.7)">•••• 3156</div><div class="card-brand"><svg width="36" height="22"><use href="#ico-mc"/></svg></div></div>
+        </div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2">
+        <div class="level-badge" style="margin-bottom:8px"><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--green-accent)" stroke="none"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg><span>QUEST COMPLETE!</span></div>
+        <h3>Your Cards, Your Way</h3><div class="sub-text" style="margin-top:4px">Physical and virtual debit cards. Spend anywhere.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div></div>
+      <div class="cta-btn">START PLAYING</div>
+    </div></div><div class="phone-label">Onboarding 5</div></div>
+  </div>
+
+  <p class="screen-group-label">Auth &amp; System Screens</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:10px;background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
+      <div class="notch"></div><div class="particles"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70">
+      <h3>SELECT MODE</h3>
+      <div class="cta-btn" style="width:180px;margin:6px auto 4px"><svg width="14" height="14" stroke="#fff" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-login"/></svg>LOGIN</div>
+      <div class="cta-btn outline" style="width:180px;margin:0 auto"><svg width="14" height="14" stroke="var(--green)" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-userplus"/></svg>NEW ACCOUNT</div>
+    </div></div><div class="phone-label">Login / Signup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="icon-circle pulse" style="width:90px;height:90px"><svg width="44" height="44"><use href="#ico-fingerprint"/></svg></div>
+      <h3 style="margin-top:16px">Verify Identity</h3><div class="sub-text" style="margin-top:4px">Scan fingerprint to proceed</div>
+    </div></div><div class="phone-label">Biometric</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:60px;background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
+      <div class="notch"></div><div class="particles"></div>
+      <h3>Secret Code</h3><div class="sub-text" style="margin:4px 0 18px;font-size:10px">Enter your 6-digit PIN</div>
+      <div class="pin-dots" style="margin-bottom:24px"><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+      <div class="keypad" style="padding:0 22px"><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key"></div><div class="key">0</div><div class="key" style="font-size:14px">&#x232B;</div></div>
+    </div></div><div class="phone-label">PIN Setup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40" stroke="#ef4444"><use href="#ico-wifioff"/></svg></div>
+      <h3 style="margin-top:16px;color:#ef4444">Disconnected</h3><div class="sub-text" style="margin-top:6px">No network detected. Reconnect to resume.</div>
+      <div class="cta-btn outline" style="width:140px;margin-top:14px;border-color:rgba(239,68,68,0.2);color:#ef4444">RETRY</div>
+    </div></div><div class="phone-label">Offline</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:linear-gradient(180deg,#021a0f,#041f13,#010d08)">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40"><use href="#ico-download"/></svg></div>
+      <h3 style="margin-top:16px">New Version</h3><div class="sub-text" style="margin-top:6px">Update required to unlock new features.</div>
+      <div class="cta-btn" style="width:160px;margin-top:14px">UPDATE</div>
+    </div></div><div class="phone-label">Force Update</div></div>
+  </div>
+</div>
+
+<!-- =========================== DESIGN 4: BOLD WAVES =========================== -->
+<div class="category d4">
+  <div class="category-header"><div class="num">4</div><h2>Bold Waves</h2></div>
+  <p class="category-desc">Organic wave shapes, large bold typography, soft gradient fills, prominent CTAs. Energetic, modern, high-impact visuals.</p>
+
+  <p class="screen-group-label">Splash &amp; Onboarding</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:#060d09">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo pulse" width="90" height="90" style="border-radius:24px">
+      <h3 style="margin-top:14px;font-size:22px">Crymad Cash</h3>
+      <div class="sub-text" style="margin-top:2px;font-size:11px">Your Money, Amplified</div>
+    </div></div><div class="phone-label">Splash</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:#060d09">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:110px;height:110px"><svg width="56" height="56"><use href="#ico-wallet"/></svg></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Manage Your Money</h3><div class="sub-text" style="margin-top:6px">E-wallet, bank accounts, and crypto — all in one place.</div>
+        <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">Next</div>
+    </div></div><div class="phone-label">Onboarding 1</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:#060d09">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+        <div class="icon-circle" style="width:110px;height:110px"><svg width="56" height="56"><use href="#ico-btc"/></svg></div>
+        <div class="float-coin bob" style="top:22%;left:8%;background:rgba(27,140,62,0.08)"><svg width="18" height="18" stroke="var(--green)" fill="none"><use href="#ico-eth"/></svg></div>
+        <div class="float-coin bob bob-d1" style="top:18%;right:10%;background:rgba(27,140,62,0.08)"><svg width="18" height="18" stroke="var(--green-light)" fill="none"><use href="#ico-dollar"/></svg></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Go Crypto</h3><div class="sub-text" style="margin-top:6px">Trade USDT, USDC, BTC with TygaPay security.</div>
+        <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">Next</div>
+    </div></div><div class="phone-label">Onboarding 2</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:#060d09">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:110px;height:110px"><svg width="56" height="56" stroke="var(--gold)"><use href="#ico-shield"/></svg></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Bank-Grade Security</h3><div class="sub-text" style="margin-top:6px">2FA, biometric auth, encrypted transactions.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">Next</div>
+    </div></div><div class="phone-label">Onboarding 3</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:#060d09">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+        <div class="icon-circle" style="width:110px;height:110px"><svg width="56" height="56"><use href="#ico-globe"/></svg></div>
+        <div class="float-coin bob bob-d2" style="bottom:18%;left:8%;background:rgba(27,140,62,0.08)"><svg width="18" height="18" stroke="var(--green)" fill="none"><use href="#ico-dollar"/></svg></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Send Globally</h3><div class="sub-text" style="margin-top:6px">Cross-border payments with low fees.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">Next</div>
+    </div></div><div class="phone-label">Onboarding 4</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:#060d09">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="card-stack">
+          <div class="mini-card" style="background:linear-gradient(135deg,#0d1a10,#1a2e1d);transform:rotate(-5deg);top:0;left:0"><div class="card-chip" style="background:rgba(212,165,60,0.2)"></div><div class="card-dots" style="color:rgba(255,255,255,0.3)">•••• 4829</div><div class="card-brand"><svg width="32" height="16"><use href="#ico-visa"/></svg></div></div>
+          <div class="mini-card" style="background:linear-gradient(135deg,var(--green),var(--green-light));transform:rotate(3deg);top:10px;left:14px"><div class="card-chip" style="background:rgba(255,255,255,0.3)"></div><div class="card-dots" style="color:rgba(255,255,255,0.7)">•••• 3156</div><div class="card-brand"><svg width="36" height="22"><use href="#ico-mc"/></svg></div></div>
+        </div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Your Cards, Your Way</h3><div class="sub-text" style="margin-top:6px">Physical & virtual cards. Spend anywhere.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div></div>
+      <div class="cta-btn">Get Started</div>
+    </div></div><div class="phone-label">Onboarding 5</div></div>
+  </div>
+
+  <p class="screen-group-label">Auth &amp; System Screens</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:12px;background:#060d09">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:20px">
+      <h3>Get Started</h3>
+      <div class="cta-btn" style="width:180px;margin:6px auto 4px">Log In</div>
+      <div class="cta-btn outline" style="width:180px;margin:0 auto">Sign Up</div>
+    </div></div><div class="phone-label">Login / Signup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:#060d09">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div class="icon-circle pulse" style="width:90px;height:90px"><svg width="44" height="44"><use href="#ico-fingerprint"/></svg></div>
+      <h3 style="margin-top:16px">Touch to Unlock</h3><div class="sub-text" style="margin-top:4px">Use biometrics for quick access</div>
+    </div></div><div class="phone-label">Biometric</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:60px;background:#060d09">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <h3>Enter PIN</h3><div class="sub-text" style="margin:4px 0 18px;font-size:10px">Your 6-digit security code</div>
+      <div class="pin-dots" style="margin-bottom:24px"><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+      <div class="keypad" style="padding:0 22px"><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key"></div><div class="key">0</div><div class="key" style="font-size:14px">&#x232B;</div></div>
+    </div></div><div class="phone-label">PIN Setup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:#060d09">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40" stroke="#ef4444"><use href="#ico-wifioff"/></svg></div>
+      <h3 style="margin-top:16px;color:#ef4444">You're Offline</h3><div class="sub-text" style="margin-top:6px">Check your Wi-Fi or mobile data.</div>
+      <div class="cta-btn outline" style="width:140px;margin-top:14px;border-color:rgba(239,68,68,0.2);color:#ef4444">Retry</div>
+    </div></div><div class="phone-label">Offline</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:#060d09">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40"><use href="#ico-download"/></svg></div>
+      <h3 style="margin-top:16px">Update Needed</h3><div class="sub-text" style="margin-top:6px">Download the latest version to continue.</div>
+      <div class="cta-btn" style="width:160px;margin-top:14px">Update Now</div>
+    </div></div><div class="phone-label">Force Update</div></div>
+  </div>
+</div>
+
+<!-- =========================== DESIGN 5: LUXE MINIMAL =========================== -->
+<div class="category d5">
+  <div class="category-header"><div class="num">5</div><h2>Luxe Minimal</h2></div>
+  <p class="category-desc">Ultra-clean, spacious layouts, thin lines, subtle glows, restrained typography. Private-banking feel with maximum elegance.</p>
+
+  <p class="screen-group-label">Splash &amp; Onboarding</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:#060908">
+      <div class="notch"></div><div class="subtle-glow"></div>
+      <div class="line-h" style="top:38px"></div><div class="line-v" style="left:16px"></div><div class="line-v" style="right:16px"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:22px">
+      <h3 style="margin-top:16px;letter-spacing:6px">CRYMAD CASH</h3>
+      <div class="sub-text" style="margin-top:2px;font-size:9px;letter-spacing:4px">PRIVATE FINANCE</div>
+    </div></div><div class="phone-label">Splash</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:#060908">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:100px;height:100px"><svg width="48" height="48"><use href="#ico-wallet"/></svg></div></div>
+      <div style="padding:0 20px;text-align:center;z-index:2"><h3>Manage Your Money</h3><div class="sub-text" style="margin-top:6px">E-wallet, bank accounts, and crypto — unified.</div>
+        <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE</div>
+    </div></div><div class="phone-label">Onboarding 1</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:#060908">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:100px;height:100px"><svg width="48" height="48"><use href="#ico-btc"/></svg></div></div>
+      <div style="padding:0 20px;text-align:center;z-index:2"><h3>Digital Assets</h3><div class="sub-text" style="margin-top:6px">Trade USDT, USDC, BTC with institutional security.</div>
+        <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE</div>
+    </div></div><div class="phone-label">Onboarding 2</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:#060908">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:100px;height:100px"><svg width="48" height="48" stroke="var(--gold)"><use href="#ico-shield"/></svg></div></div>
+      <div style="padding:0 20px;text-align:center;z-index:2"><h3>Security First</h3><div class="sub-text" style="margin-top:6px">2FA, biometric auth, encrypted transactions.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE</div>
+    </div></div><div class="phone-label">Onboarding 3</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:#060908">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:100px;height:100px"><svg width="48" height="48"><use href="#ico-globe"/></svg></div></div>
+      <div style="padding:0 20px;text-align:center;z-index:2"><h3>Global Transfers</h3><div class="sub-text" style="margin-top:6px">Cross-border payments with low fees.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE</div>
+    </div></div><div class="phone-label">Onboarding 4</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="background:#060908">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="card-stack">
+          <div class="mini-card" style="background:#0a0f0b;border:1px solid rgba(27,140,62,0.1);transform:rotate(-5deg);top:0;left:0"><div class="card-chip" style="background:rgba(212,165,60,0.15)"></div><div class="card-dots" style="color:rgba(255,255,255,0.2)">•••• 4829</div><div class="card-brand"><svg width="32" height="16"><use href="#ico-visa"/></svg></div></div>
+          <div class="mini-card" style="background:linear-gradient(135deg,var(--green),var(--green-light));transform:rotate(3deg);top:10px;left:14px"><div class="card-chip" style="background:rgba(255,255,255,0.3)"></div><div class="card-dots" style="color:rgba(255,255,255,0.7)">•••• 3156</div><div class="card-brand"><svg width="36" height="22"><use href="#ico-mc"/></svg></div></div>
+        </div>
+      </div>
+      <div style="padding:0 20px;text-align:center;z-index:2"><h3>Your Cards</h3><div class="sub-text" style="margin-top:6px">Physical and virtual debit cards.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div></div>
+      <div class="cta-btn solid">GET STARTED</div>
+    </div></div><div class="phone-label">Onboarding 5</div></div>
+  </div>
+
+  <p class="screen-group-label">Auth &amp; System Screens</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:14px;background:#060908">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
+      <h3>CRYMAD CASH</h3>
+      <div class="cta-btn solid" style="width:180px;margin:4px auto">SIGN IN</div>
+      <div class="cta-btn" style="width:180px;margin:0 auto">REGISTER</div>
+    </div></div><div class="phone-label">Login / Signup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:#060908">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div class="icon-circle pulse" style="width:90px;height:90px"><svg width="44" height="44"><use href="#ico-fingerprint"/></svg></div>
+      <h3 style="margin-top:18px">AUTHENTICATE</h3><div class="sub-text" style="margin-top:4px">Touch sensor to proceed</div>
+    </div></div><div class="phone-label">Biometric</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:60px;background:#060908">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <h3>ACCESS CODE</h3><div class="sub-text" style="margin:4px 0 18px;font-size:10px">Enter your 6-digit PIN</div>
+      <div class="pin-dots" style="margin-bottom:24px"><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+      <div class="keypad" style="padding:0 22px"><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key"></div><div class="key">0</div><div class="key" style="font-size:14px">&#x232B;</div></div>
+    </div></div><div class="phone-label">PIN Setup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:#060908">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40" stroke="#ef4444"><use href="#ico-wifioff"/></svg></div>
+      <h3 style="margin-top:16px;color:#ef4444">NO CONNECTION</h3><div class="sub-text" style="margin-top:6px">Please check your network.</div>
+      <div class="cta-btn" style="width:140px;margin-top:16px;border-color:rgba(239,68,68,0.15);color:#ef4444">RETRY</div>
+    </div></div><div class="phone-label">Offline</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;background:#060908">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40"><use href="#ico-download"/></svg></div>
+      <h3 style="margin-top:16px">UPDATE REQUIRED</h3><div class="sub-text" style="margin-top:6px">A newer version is available.</div>
+      <div class="cta-btn solid" style="width:160px;margin-top:16px">UPDATE</div>
+    </div></div><div class="phone-label">Force Update</div></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     LIGHT MODE VERSIONS
+     ============================================================ -->
+<div class="light-section">
+  <div class="section-header">
+    <h2>Light Mode Versions</h2>
+    <p>Same 5 Themes &bull; Light Backgrounds</p>
+  </div>
+</div>
+
+<!-- =========================== DESIGN 1 LIGHT: CYBER GRID =========================== -->
+<div class="category d1l">
+  <div class="category-header"><div class="num">1</div><h2>Cyber Grid — Light</h2></div>
+  <p class="category-desc">Same HUD aesthetic with grid overlays and corner brackets, on a clean light background.</p>
+
+  <p class="screen-group-label">Splash &amp; Onboarding</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="scan-line"></div>
+      <div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:22px">
+      <h3 style="margin-top:14px">CRYMAD CASH</h3>
+      <div class="sub-text" style="margin-top:4px;font-size:9px;letter-spacing:3px">INITIALIZING SYSTEM</div>
+      <div style="width:120px;height:2px;background:rgba(27,140,62,0.1);border-radius:1px;margin-top:12px;z-index:2"><div style="width:70%;height:100%;background:linear-gradient(90deg,var(--green),var(--green-light));border-radius:1px"></div></div>
+    </div></div><div class="phone-label">Splash</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:100px;height:100px"><svg width="52" height="52"><use href="#ico-wallet"/></svg></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>MANAGE YOUR MONEY</h3><div class="sub-text" style="margin-top:6px">Access your e-wallet, bank accounts, and crypto — all in one place.</div>
+        <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 1</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+        <div class="icon-circle" style="width:100px;height:100px"><svg width="52" height="52"><use href="#ico-btc"/></svg></div>
+        <div class="float-coin bob" style="top:30%;left:12%;background:rgba(27,140,62,0.06);border:1px solid rgba(27,140,62,0.12)"><svg width="18" height="18" stroke="var(--green)" fill="none"><use href="#ico-eth"/></svg></div>
+        <div class="float-coin bob bob-d1" style="top:25%;right:12%;background:rgba(27,140,62,0.06);border:1px solid rgba(27,140,62,0.12)"><svg width="18" height="18" stroke="var(--green-light)" fill="none"><use href="#ico-dollar"/></svg></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>GO CRYPTO</h3><div class="sub-text" style="margin-top:6px">Convert, send, and store USDT and USDC seamlessly with TygaPay security.</div>
+        <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 2</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle pulse" style="width:100px;height:100px"><svg width="52" height="52" stroke="var(--gold)"><use href="#ico-shield"/></svg></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>BANK-GRADE SECURITY</h3><div class="sub-text" style="margin-top:6px">2FA, biometric authentication, and encrypted transactions protect your funds.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 3</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+        <div class="icon-circle" style="width:100px;height:100px"><svg width="52" height="52"><use href="#ico-globe"/></svg></div>
+        <div class="float-coin bob" style="bottom:20%;left:10%;background:rgba(27,140,62,0.06);border:1px solid rgba(27,140,62,0.12)"><svg width="18" height="18" stroke="var(--green)" fill="none"><use href="#ico-dollar"/></svg></div>
+        <div class="float-coin bob bob-d2" style="top:20%;right:10%;background:rgba(27,140,62,0.06);border:1px solid rgba(27,140,62,0.12)"><svg width="18" height="18" stroke="var(--green-light)" fill="none"><use href="#ico-btc"/></svg></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>SEND GLOBALLY</h3><div class="sub-text" style="margin-top:6px">Cross-border payments and remittances with low fees. Fiat, crypto, and cards.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">NEXT &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 4</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="card-stack">
+          <div class="mini-card" style="background:linear-gradient(135deg,#e8f0ea,#d4e6d8);transform:rotate(-5deg);top:0;left:0"><div class="card-chip" style="background:rgba(212,165,60,0.3)"></div><div class="card-dots" style="color:rgba(0,0,0,0.3)">•••• •••• •••• 4829</div><div class="card-brand"><svg width="32" height="16"><use href="#ico-visa"/></svg></div></div>
+          <div class="mini-card" style="background:linear-gradient(135deg,var(--green),var(--green-light));transform:rotate(3deg);top:10px;left:14px"><div class="card-chip" style="background:rgba(255,255,255,0.3)"></div><div class="card-dots" style="color:rgba(255,255,255,0.7)">•••• •••• •••• 3156</div><div class="card-brand"><svg width="36" height="22"><use href="#ico-mc"/></svg></div></div>
+        </div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>YOUR CARDS, YOUR WAY</h3><div class="sub-text" style="margin-top:6px">Physical and virtual Mastercard debit cards. Spend anywhere, withdraw from ATMs.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div></div>
+      <div class="cta-btn solid">GET STARTED</div>
+    </div></div><div class="phone-label">Onboarding 5</div></div>
+  </div>
+
+  <p class="screen-group-label">Auth &amp; System Screens</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:12px">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
+      <h3 style="margin-top:8px">ACCESS TERMINAL</h3><div class="sub-text" style="font-size:10px">Choose your entry mode</div>
+      <div class="cta-btn solid" style="width:180px;margin:8px auto 4px"><svg width="14" height="14" stroke="#fff" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-login"/></svg>LOGIN</div>
+      <div class="cta-btn" style="width:180px;margin:0 auto"><svg width="14" height="14" stroke="var(--green)" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-userplus"/></svg>REGISTER</div>
+    </div></div><div class="phone-label">Login / Signup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="icon-circle pulse" style="width:90px;height:90px"><svg width="44" height="44"><use href="#ico-fingerprint"/></svg></div>
+      <h3 style="margin-top:16px">BIOMETRIC SCAN</h3><div class="sub-text" style="margin-top:4px">Place your finger to authenticate</div>
+    </div></div><div class="phone-label">Biometric</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:60px">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <h3>ENTER ACCESS CODE</h3><div class="sub-text" style="margin:4px 0 18px;font-size:10px">6-digit security PIN</div>
+      <div class="pin-dots" style="margin-bottom:24px"><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+      <div class="keypad" style="padding:0 24px"><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key"></div><div class="key">0</div><div class="key" style="font-size:14px">&#x232B;</div></div>
+    </div></div><div class="phone-label">PIN Setup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40" stroke="#ef4444"><use href="#ico-wifioff"/></svg></div>
+      <h3 style="margin-top:16px;color:#ef4444">CONNECTION LOST</h3><div class="sub-text" style="margin-top:6px">Unable to reach server. Check your network.</div>
+      <div class="cta-btn" style="width:140px;margin-top:16px;border-color:rgba(239,68,68,0.2);color:#ef4444"><svg width="12" height="12" stroke="#ef4444" fill="none" style="vertical-align:middle;margin-right:4px"><use href="#ico-refresh"/></svg>RETRY</div>
+    </div></div><div class="phone-label">Offline</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="grid-overlay"></div><div class="hud-corner-tl"></div><div class="hud-corner-br"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40"><use href="#ico-download"/></svg></div>
+      <h3 style="margin-top:16px">UPGRADE REQUIRED</h3><div class="sub-text" style="margin-top:6px">A new version is available. Update to continue.</div>
+      <div class="cta-btn solid" style="width:160px;margin-top:16px">UPDATE NOW</div>
+    </div></div><div class="phone-label">Force Update</div></div>
+  </div>
+</div>
+
+<!-- =========================== DESIGN 2 LIGHT: GLASS CARDS =========================== -->
+<div class="category d2l">
+  <div class="category-header"><div class="num">2</div><h2>Glass Cards — Light</h2></div>
+  <p class="category-desc">Same frosted glass containers on soft green-tinted light backgrounds.</p>
+
+  <p class="screen-group-label">Splash &amp; Onboarding</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:24px">
+      <h3 style="margin-top:14px">Crymad Cash</h3><div class="sub-text" style="margin-top:4px;font-size:10px;letter-spacing:2px">Smart Money Moves</div>
+    </div></div><div class="phone-label">Splash</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:36px">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="glass ob-card"><div class="icon-circle" style="width:80px;height:80px;margin:0 auto 12px"><svg width="42" height="42"><use href="#ico-wallet"/></svg></div><h3>Manage Your Money</h3><div class="sub-text" style="margin-top:6px">Access your e-wallet, bank accounts, and crypto — all in one place.</div></div>
+      <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <div class="cta-btn">Continue</div>
+    </div></div><div class="phone-label">Onboarding 1</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:36px">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="glass ob-card"><div class="icon-circle" style="width:80px;height:80px;margin:0 auto 12px"><svg width="42" height="42"><use href="#ico-btc"/></svg></div><h3>Go Crypto</h3><div class="sub-text" style="margin-top:6px">Convert, send, and store USDT and USDC with TygaPay security.</div></div>
+      <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+      <div class="cta-btn">Continue</div>
+    </div></div><div class="phone-label">Onboarding 2</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:36px">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="glass ob-card"><div class="icon-circle" style="width:80px;height:80px;margin:0 auto 12px"><svg width="42" height="42" stroke="var(--gold)"><use href="#ico-shield"/></svg></div><h3>Bank-Grade Security</h3><div class="sub-text" style="margin-top:6px">2FA, biometric auth, and encrypted transactions protect your funds.</div></div>
+      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div>
+      <div class="cta-btn">Continue</div>
+    </div></div><div class="phone-label">Onboarding 3</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:36px">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="glass ob-card"><div class="icon-circle" style="width:80px;height:80px;margin:0 auto 12px"><svg width="42" height="42"><use href="#ico-globe"/></svg></div><h3>Send Money Globally</h3><div class="sub-text" style="margin-top:6px">Cross-border payments with low fees. Fiat, crypto, and cards supported.</div></div>
+      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div>
+      <div class="cta-btn">Continue</div>
+    </div></div><div class="phone-label">Onboarding 4</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:36px">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="glass ob-card">
+        <div class="card-stack" style="margin:0 auto 12px">
+          <div class="mini-card" style="background:rgba(27,140,62,0.06);border:1px solid rgba(27,140,62,0.1);transform:rotate(-5deg);top:0;left:0"><div class="card-chip" style="background:rgba(212,165,60,0.2)"></div><div class="card-dots" style="color:rgba(0,0,0,0.3)">•••• 4829</div><div class="card-brand"><svg width="32" height="16"><use href="#ico-visa"/></svg></div></div>
+          <div class="mini-card" style="background:linear-gradient(135deg,var(--green),var(--green-light));transform:rotate(3deg);top:10px;left:14px"><div class="card-chip" style="background:rgba(255,255,255,0.3)"></div><div class="card-dots" style="color:rgba(255,255,255,0.7)">•••• 3156</div><div class="card-brand"><svg width="36" height="22"><use href="#ico-mc"/></svg></div></div>
+        </div>
+        <h3>Your Cards, Your Way</h3><div class="sub-text" style="margin-top:6px">Physical and virtual debit cards. Spend anywhere.</div>
+      </div>
+      <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div>
+      <div class="cta-btn">Get Started</div>
+    </div></div><div class="phone-label">Onboarding 5</div></div>
+  </div>
+
+  <p class="screen-group-label">Auth &amp; System Screens</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:12px">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:20px">
+      <h3>Welcome</h3><div class="sub-text" style="font-size:10px">Choose how to continue</div>
+      <div class="cta-btn" style="width:180px;margin:6px auto 4px">Log In</div>
+      <div class="cta-btn outline" style="width:180px;margin:0 auto">Create Account</div>
+    </div></div><div class="phone-label">Login / Signup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="icon-circle pulse" style="width:90px;height:90px;border-radius:26px"><svg width="44" height="44"><use href="#ico-fingerprint"/></svg></div>
+      <h3 style="margin-top:16px">Biometric Login</h3><div class="sub-text" style="margin-top:4px">Use your fingerprint to unlock</div>
+    </div></div><div class="phone-label">Biometric</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:60px">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <h3>Enter Your PIN</h3><div class="sub-text" style="margin:4px 0 18px;font-size:10px">6-digit security code</div>
+      <div class="pin-dots" style="margin-bottom:24px"><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+      <div class="keypad" style="padding:0 22px"><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key"></div><div class="key">0</div><div class="key" style="font-size:14px">&#x232B;</div></div>
+    </div></div><div class="phone-label">PIN Setup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40" stroke="#ef4444"><use href="#ico-wifioff"/></svg></div>
+      <h3 style="margin-top:16px;color:#ef4444">No Connection</h3><div class="sub-text" style="margin-top:6px">Check your internet and try again.</div>
+      <div class="cta-btn outline" style="width:140px;margin-top:14px;border-color:rgba(239,68,68,0.15);color:#ef4444">Retry</div>
+    </div></div><div class="phone-label">Offline</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="blob1"></div><div class="blob2"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40"><use href="#ico-download"/></svg></div>
+      <h3 style="margin-top:16px">Update Available</h3><div class="sub-text" style="margin-top:6px">Please update to continue.</div>
+      <div class="cta-btn" style="width:160px;margin-top:14px">Update Now</div>
+    </div></div><div class="phone-label">Force Update</div></div>
+  </div>
+</div>
+
+<!-- =========================== DESIGN 3 LIGHT: GAMIFIED RPG =========================== -->
+<div class="category d3l">
+  <div class="category-header"><div class="num">3</div><h2>Gamified RPG — Light</h2></div>
+  <p class="category-desc">Same XP bars, achievement badges, and level indicators on light green backgrounds.</p>
+
+  <p class="screen-group-label">Splash &amp; Onboarding</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="xp-bar"><div class="fill" style="width:100%"></div></div><div class="xp-label">MAX LVL</div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo pulse" width="100" height="100">
+      <h3 style="margin-top:12px;font-size:20px">CRYMAD CASH</h3>
+      <div class="level-badge" style="margin-top:6px"><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--green)" stroke="none"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg><span style="color:var(--green)">LEVEL 1 — NEW PLAYER</span></div>
+    </div></div><div class="phone-label">Splash</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="xp-bar"><div class="fill" style="width:20%"></div></div><div class="xp-label">20% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="achievement-ring"><svg width="48" height="48"><use href="#ico-wallet"/></svg><span class="badge-label" style="color:var(--green)">UNLOCKED</span></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Manage Your Money</h3><div class="sub-text" style="margin-top:4px">E-wallet, bank accounts, and crypto — all in one place. Earn XP!</div>
+        <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 1</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="xp-bar"><div class="fill" style="width:40%"></div></div><div class="xp-label">40% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative"><div class="achievement-ring"><svg width="48" height="48"><use href="#ico-btc"/></svg><span class="badge-label" style="color:var(--green)">CRYPTO</span></div>
+        <div class="float-coin bob" style="top:25%;left:10%;background:rgba(27,140,62,0.05);border:1px solid rgba(27,140,62,0.1)"><svg width="16" height="16" stroke="var(--green)" fill="none"><use href="#ico-eth"/></svg></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Go Crypto</h3><div class="sub-text" style="margin-top:4px">Trade USDT, USDC, BTC and more with TygaPay integration.</div>
+        <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 2</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="xp-bar"><div class="fill" style="width:60%"></div></div><div class="xp-label">60% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="achievement-ring"><svg width="48" height="48" stroke="var(--gold)"><use href="#ico-shield"/></svg><span class="badge-label" style="color:var(--gold)">SECURED</span></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Bank-Grade Security</h3><div class="sub-text" style="margin-top:4px">2FA, biometric auth, and encrypted transactions.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 3</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="xp-bar"><div class="fill" style="width:80%"></div></div><div class="xp-label">80% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative"><div class="achievement-ring"><svg width="48" height="48"><use href="#ico-globe"/></svg><span class="badge-label" style="color:var(--green)">GLOBAL</span></div>
+        <div class="float-coin bob" style="bottom:18%;right:10%;background:rgba(27,140,62,0.05);border:1px solid rgba(27,140,62,0.1)"><svg width="16" height="16" stroke="var(--green)" fill="none"><use href="#ico-dollar"/></svg></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Send Money Globally</h3><div class="sub-text" style="margin-top:4px">Cross-border payments, remittances, low fees.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE &rarr;</div>
+    </div></div><div class="phone-label">Onboarding 4</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="xp-bar"><div class="fill" style="width:100%"></div></div><div class="xp-label">100% XP</div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="card-stack">
+          <div class="mini-card" style="background:rgba(27,140,62,0.04);border:1px solid rgba(27,140,62,0.1);transform:rotate(-5deg);top:0;left:0"><div class="card-chip" style="background:rgba(212,165,60,0.2)"></div><div class="card-dots" style="color:rgba(0,0,0,0.3)">•••• 4829</div><div class="card-brand"><svg width="32" height="16"><use href="#ico-visa"/></svg></div></div>
+          <div class="mini-card" style="background:linear-gradient(135deg,var(--green),var(--green-light));transform:rotate(3deg);top:10px;left:14px"><div class="card-chip" style="background:rgba(255,255,255,0.3)"></div><div class="card-dots" style="color:rgba(255,255,255,0.7)">•••• 3156</div><div class="card-brand"><svg width="36" height="22"><use href="#ico-mc"/></svg></div></div>
+        </div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2">
+        <div class="level-badge" style="margin-bottom:8px"><svg width="10" height="10" viewBox="0 0 24 24" fill="var(--green)" stroke="none"><polygon points="12 2 15 9 22 9 16 14 18 21 12 17 6 21 8 14 2 9 9 9"/></svg><span style="color:var(--green)">QUEST COMPLETE!</span></div>
+        <h3>Your Cards, Your Way</h3><div class="sub-text" style="margin-top:4px">Physical and virtual debit cards. Spend anywhere.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div></div>
+      <div class="cta-btn">START PLAYING</div>
+    </div></div><div class="phone-label">Onboarding 5</div></div>
+  </div>
+
+  <p class="screen-group-label">Auth &amp; System Screens</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:10px">
+      <div class="notch"></div><div class="particles"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70">
+      <h3>SELECT MODE</h3>
+      <div class="cta-btn" style="width:180px;margin:6px auto 4px"><svg width="14" height="14" stroke="#fff" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-login"/></svg>LOGIN</div>
+      <div class="cta-btn outline" style="width:180px;margin:0 auto"><svg width="14" height="14" stroke="var(--green)" fill="none" style="vertical-align:middle;margin-right:6px"><use href="#ico-userplus"/></svg>NEW ACCOUNT</div>
+    </div></div><div class="phone-label">Login / Signup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="icon-circle pulse" style="width:90px;height:90px"><svg width="44" height="44"><use href="#ico-fingerprint"/></svg></div>
+      <h3 style="margin-top:16px">Verify Identity</h3><div class="sub-text" style="margin-top:4px">Scan fingerprint to proceed</div>
+    </div></div><div class="phone-label">Biometric</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:60px">
+      <div class="notch"></div><div class="particles"></div>
+      <h3>Secret Code</h3><div class="sub-text" style="margin:4px 0 18px;font-size:10px">Enter your 6-digit PIN</div>
+      <div class="pin-dots" style="margin-bottom:24px"><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+      <div class="keypad" style="padding:0 22px"><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key"></div><div class="key">0</div><div class="key" style="font-size:14px">&#x232B;</div></div>
+    </div></div><div class="phone-label">PIN Setup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40" stroke="#ef4444"><use href="#ico-wifioff"/></svg></div>
+      <h3 style="margin-top:16px;color:#ef4444">Disconnected</h3><div class="sub-text" style="margin-top:6px">No network detected. Reconnect to resume.</div>
+      <div class="cta-btn outline" style="width:140px;margin-top:14px;border-color:rgba(239,68,68,0.15);color:#ef4444">RETRY</div>
+    </div></div><div class="phone-label">Offline</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="particles"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40"><use href="#ico-download"/></svg></div>
+      <h3 style="margin-top:16px">New Version</h3><div class="sub-text" style="margin-top:6px">Update required to unlock new features.</div>
+      <div class="cta-btn" style="width:160px;margin-top:14px">UPDATE</div>
+    </div></div><div class="phone-label">Force Update</div></div>
+  </div>
+</div>
+
+<!-- =========================== DESIGN 4 LIGHT: BOLD WAVES =========================== -->
+<div class="category d4l">
+  <div class="category-header"><div class="num">4</div><h2>Bold Waves — Light</h2></div>
+  <p class="category-desc">Same organic wave shapes and bold typography on clean light backgrounds.</p>
+
+  <p class="screen-group-label">Splash &amp; Onboarding</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo pulse" width="90" height="90" style="border-radius:24px">
+      <h3 style="margin-top:14px;font-size:22px">Crymad Cash</h3><div class="sub-text" style="margin-top:2px;font-size:11px">Your Money, Amplified</div>
+    </div></div><div class="phone-label">Splash</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:110px;height:110px"><svg width="56" height="56"><use href="#ico-wallet"/></svg></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Manage Your Money</h3><div class="sub-text" style="margin-top:6px">E-wallet, bank accounts, and crypto — all in one place.</div>
+        <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">Next</div>
+    </div></div><div class="phone-label">Onboarding 1</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+        <div class="icon-circle" style="width:110px;height:110px"><svg width="56" height="56"><use href="#ico-btc"/></svg></div>
+        <div class="float-coin bob" style="top:22%;left:8%;background:rgba(27,140,62,0.05)"><svg width="18" height="18" stroke="var(--green)" fill="none"><use href="#ico-eth"/></svg></div>
+        <div class="float-coin bob bob-d1" style="top:18%;right:10%;background:rgba(27,140,62,0.05)"><svg width="18" height="18" stroke="var(--green-light)" fill="none"><use href="#ico-dollar"/></svg></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Go Crypto</h3><div class="sub-text" style="margin-top:6px">Trade USDT, USDC, BTC with TygaPay security.</div>
+        <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">Next</div>
+    </div></div><div class="phone-label">Onboarding 2</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:110px;height:110px"><svg width="56" height="56" stroke="var(--gold)"><use href="#ico-shield"/></svg></div></div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Bank-Grade Security</h3><div class="sub-text" style="margin-top:6px">2FA, biometric auth, encrypted transactions.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">Next</div>
+    </div></div><div class="phone-label">Onboarding 3</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative">
+        <div class="icon-circle" style="width:110px;height:110px"><svg width="56" height="56"><use href="#ico-globe"/></svg></div>
+        <div class="float-coin bob bob-d2" style="bottom:18%;left:8%;background:rgba(27,140,62,0.05)"><svg width="18" height="18" stroke="var(--green)" fill="none"><use href="#ico-dollar"/></svg></div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Send Globally</h3><div class="sub-text" style="margin-top:6px">Cross-border payments with low fees.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">Next</div>
+    </div></div><div class="phone-label">Onboarding 4</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="card-stack">
+          <div class="mini-card" style="background:linear-gradient(135deg,#e8f0ea,#d4e6d8);transform:rotate(-5deg);top:0;left:0"><div class="card-chip" style="background:rgba(212,165,60,0.25)"></div><div class="card-dots" style="color:rgba(0,0,0,0.3)">•••• 4829</div><div class="card-brand"><svg width="32" height="16"><use href="#ico-visa"/></svg></div></div>
+          <div class="mini-card" style="background:linear-gradient(135deg,var(--green),var(--green-light));transform:rotate(3deg);top:10px;left:14px"><div class="card-chip" style="background:rgba(255,255,255,0.3)"></div><div class="card-dots" style="color:rgba(255,255,255,0.7)">•••• 3156</div><div class="card-brand"><svg width="36" height="22"><use href="#ico-mc"/></svg></div></div>
+        </div>
+      </div>
+      <div style="padding:0 16px;text-align:center;z-index:2"><h3>Your Cards, Your Way</h3><div class="sub-text" style="margin-top:6px">Physical & virtual cards. Spend anywhere.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div></div>
+      <div class="cta-btn">Get Started</div>
+    </div></div><div class="phone-label">Onboarding 5</div></div>
+  </div>
+
+  <p class="screen-group-label">Auth &amp; System Screens</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:12px">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:20px">
+      <h3>Get Started</h3>
+      <div class="cta-btn" style="width:180px;margin:6px auto 4px">Log In</div>
+      <div class="cta-btn outline" style="width:180px;margin:0 auto">Sign Up</div>
+    </div></div><div class="phone-label">Login / Signup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div class="icon-circle pulse" style="width:90px;height:90px"><svg width="44" height="44"><use href="#ico-fingerprint"/></svg></div>
+      <h3 style="margin-top:16px">Touch to Unlock</h3><div class="sub-text" style="margin-top:4px">Use biometrics for quick access</div>
+    </div></div><div class="phone-label">Biometric</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:60px">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <h3>Enter PIN</h3><div class="sub-text" style="margin:4px 0 18px;font-size:10px">Your 6-digit security code</div>
+      <div class="pin-dots" style="margin-bottom:24px"><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+      <div class="keypad" style="padding:0 22px"><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key"></div><div class="key">0</div><div class="key" style="font-size:14px">&#x232B;</div></div>
+    </div></div><div class="phone-label">PIN Setup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40" stroke="#ef4444"><use href="#ico-wifioff"/></svg></div>
+      <h3 style="margin-top:16px;color:#ef4444">You're Offline</h3><div class="sub-text" style="margin-top:6px">Check your Wi-Fi or mobile data.</div>
+      <div class="cta-btn outline" style="width:140px;margin-top:14px;border-color:rgba(239,68,68,0.15);color:#ef4444">Retry</div>
+    </div></div><div class="phone-label">Offline</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="wave-top"></div><div class="wave-bottom"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40"><use href="#ico-download"/></svg></div>
+      <h3 style="margin-top:16px">Update Needed</h3><div class="sub-text" style="margin-top:6px">Download the latest version to continue.</div>
+      <div class="cta-btn" style="width:160px;margin-top:14px">Update Now</div>
+    </div></div><div class="phone-label">Force Update</div></div>
+  </div>
+</div>
+
+<!-- =========================== DESIGN 5 LIGHT: LUXE MINIMAL =========================== -->
+<div class="category d5l">
+  <div class="category-header"><div class="num">5</div><h2>Luxe Minimal — Light</h2></div>
+  <p class="category-desc">Same ultra-clean spacious layouts with thin lines and subtle accents on pristine white backgrounds.</p>
+
+  <p class="screen-group-label">Splash &amp; Onboarding</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="subtle-glow"></div>
+      <div class="line-h" style="top:38px"></div><div class="line-v" style="left:16px"></div><div class="line-v" style="right:16px"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="90" height="90" style="border-radius:22px">
+      <h3 style="margin-top:16px;letter-spacing:6px">CRYMAD CASH</h3><div class="sub-text" style="margin-top:2px;font-size:9px;letter-spacing:4px">PRIVATE FINANCE</div>
+    </div></div><div class="phone-label">Splash</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:100px;height:100px"><svg width="48" height="48"><use href="#ico-wallet"/></svg></div></div>
+      <div style="padding:0 20px;text-align:center;z-index:2"><h3>Manage Your Money</h3><div class="sub-text" style="margin-top:6px">E-wallet, bank accounts, and crypto — unified.</div>
+        <div class="dots"><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE</div>
+    </div></div><div class="phone-label">Onboarding 1</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:100px;height:100px"><svg width="48" height="48"><use href="#ico-btc"/></svg></div></div>
+      <div style="padding:0 20px;text-align:center;z-index:2"><h3>Digital Assets</h3><div class="sub-text" style="margin-top:6px">Trade USDT, USDC, BTC with institutional security.</div>
+        <div class="dots"><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE</div>
+    </div></div><div class="phone-label">Onboarding 2</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:100px;height:100px"><svg width="48" height="48" stroke="var(--gold)"><use href="#ico-shield"/></svg></div></div>
+      <div style="padding:0 20px;text-align:center;z-index:2"><h3>Security First</h3><div class="sub-text" style="margin-top:6px">2FA, biometric auth, encrypted transactions.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE</div>
+    </div></div><div class="phone-label">Onboarding 3</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center"><div class="icon-circle" style="width:100px;height:100px"><svg width="48" height="48"><use href="#ico-globe"/></svg></div></div>
+      <div style="padding:0 20px;text-align:center;z-index:2"><h3>Global Transfers</h3><div class="sub-text" style="margin-top:6px">Cross-border payments with low fees.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div></div></div>
+      <div class="cta-btn">CONTINUE</div>
+    </div></div><div class="phone-label">Onboarding 4</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div style="flex:1;display:flex;align-items:center;justify-content:center">
+        <div class="card-stack">
+          <div class="mini-card" style="background:#f0f4f1;border:1px solid rgba(27,140,62,0.08);transform:rotate(-5deg);top:0;left:0"><div class="card-chip" style="background:rgba(212,165,60,0.15)"></div><div class="card-dots" style="color:rgba(0,0,0,0.2)">•••• 4829</div><div class="card-brand"><svg width="32" height="16"><use href="#ico-visa"/></svg></div></div>
+          <div class="mini-card" style="background:linear-gradient(135deg,var(--green),var(--green-light));transform:rotate(3deg);top:10px;left:14px"><div class="card-chip" style="background:rgba(255,255,255,0.3)"></div><div class="card-dots" style="color:rgba(255,255,255,0.7)">•••• 3156</div><div class="card-brand"><svg width="36" height="22"><use href="#ico-mc"/></svg></div></div>
+        </div>
+      </div>
+      <div style="padding:0 20px;text-align:center;z-index:2"><h3>Your Cards</h3><div class="sub-text" style="margin-top:6px">Physical and virtual debit cards.</div>
+        <div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot active"></div></div></div>
+      <div class="cta-btn solid">GET STARTED</div>
+    </div></div><div class="phone-label">Onboarding 5</div></div>
+  </div>
+
+  <p class="screen-group-label">Auth &amp; System Screens</p>
+  <div class="screens-row">
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center;gap:14px">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <img src="../../IconKitchen-Output/android/play_store_512.png" class="app-logo" width="70" height="70" style="border-radius:18px">
+      <h3>CRYMAD CASH</h3>
+      <div class="cta-btn solid" style="width:180px;margin:4px auto">SIGN IN</div>
+      <div class="cta-btn" style="width:180px;margin:0 auto">REGISTER</div>
+    </div></div><div class="phone-label">Login / Signup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div class="icon-circle pulse" style="width:90px;height:90px"><svg width="44" height="44"><use href="#ico-fingerprint"/></svg></div>
+      <h3 style="margin-top:18px">AUTHENTICATE</h3><div class="sub-text" style="margin-top:4px">Touch sensor to proceed</div>
+    </div></div><div class="phone-label">Biometric</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="padding-top:60px">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <h3>ACCESS CODE</h3><div class="sub-text" style="margin:4px 0 18px;font-size:10px">Enter your 6-digit PIN</div>
+      <div class="pin-dots" style="margin-bottom:24px"><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot filled"></div><div class="pdot"></div><div class="pdot"></div><div class="pdot"></div></div>
+      <div class="keypad" style="padding:0 22px"><div class="key">1</div><div class="key">2</div><div class="key">3</div><div class="key">4</div><div class="key">5</div><div class="key">6</div><div class="key">7</div><div class="key">8</div><div class="key">9</div><div class="key"></div><div class="key">0</div><div class="key" style="font-size:14px">&#x232B;</div></div>
+    </div></div><div class="phone-label">PIN Setup</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40" stroke="#ef4444"><use href="#ico-wifioff"/></svg></div>
+      <h3 style="margin-top:16px;color:#ef4444">NO CONNECTION</h3><div class="sub-text" style="margin-top:6px">Please check your network.</div>
+      <div class="cta-btn" style="width:140px;margin-top:16px;border-color:rgba(239,68,68,0.1);color:#ef4444">RETRY</div>
+    </div></div><div class="phone-label">Offline</div></div>
+
+    <div><div class="phone"><div class="phone-inner screen-base" style="justify-content:center">
+      <div class="notch"></div><div class="subtle-glow"></div><div class="line-h" style="top:38px"></div>
+      <div class="icon-circle" style="width:80px;height:80px"><svg width="40" height="40"><use href="#ico-download"/></svg></div>
+      <h3 style="margin-top:16px">UPDATE REQUIRED</h3><div class="sub-text" style="margin-top:6px">A newer version is available.</div>
+      <div class="cta-btn solid" style="width:160px;margin-top:16px">UPDATE</div>
+    </div></div><div class="phone-label">Force Update</div></div>
+  </div>
+</div>
+
+</body>
+</html>
