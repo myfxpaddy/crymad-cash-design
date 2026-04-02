@@ -3,1865 +3,349 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CrymadX — Mobile App Design Options</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<title>CrymadX — Mobile App Design Options (5 Themes, 60 Screens)</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ========== CSS VARIABLES ========== */
-:root {
-  --green: #1B8C3E;
-  --green-light: #00C853;
-  --green-accent: #69f0ae;
-  --gold: #C9A84C;
-  --dark-1: #0a1f12;
-  --dark-2: #0d2818;
-  --dark-3: #0f1a0f;
-  --text-primary: #e6edf3;
-  --text-secondary: #8b949e;
-  --page-bg: #08080f;
-  --cat-bg: #0c0c18;
-  --cat-border: #1a1a2e;
-  --phone-bezel: #1a1a2e;
-}
+:root{--g:#1B8C3E;--gl:#00C853;--ga:#69f0ae;--gd:#C9A84C;--bg:#0a1f12;--bg2:#0d2818;--bg3:#0f1a0f;--red:#ef4444;--t1:#e6edf3;--t2:#8b949e}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#08080f;font-family:'Inter',sans-serif;color:#e0e0e0;padding:20px}
+.ph{text-align:center;padding:30px;margin-bottom:40px;border-bottom:1px solid #1a1a2e}
+.ph h1{font-size:36px;font-weight:900;background:linear-gradient(135deg,var(--g),var(--gl),var(--ga));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:6px}
+.ph p{color:#666;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.ph .sub{color:#444;font-size:12px;margin-top:8px;letter-spacing:0;text-transform:none}
+.cat{margin-bottom:60px;padding:24px;border-radius:20px;background:#0c0c18;border:1px solid #1a1a2e}
+.cat-h{display:flex;align-items:center;gap:12px;margin-bottom:6px}
+.cat-h .n{width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:900;color:#fff;background:linear-gradient(135deg,var(--g),var(--gl))}
+.cat-h h2{font-size:22px;font-weight:800;color:#fff}
+.cat-d{color:#555;font-size:12px;margin-bottom:16px;padding-left:52px}
+.rl{color:var(--g);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:14px 0 6px 2px}
+.sr{display:flex;gap:12px;overflow-x:auto;padding:6px 0 14px}
+.ph-f{width:220px;min-width:220px;flex-shrink:0}
+.ph-b{height:460px;border-radius:30px;padding:5px;background:#1a1a2e;box-shadow:0 6px 24px rgba(0,0,0,.25)}
+.ph-i{width:100%;height:100%;border-radius:25px;overflow:hidden;position:relative;display:flex;flex-direction:column}
+.ph-l{text-align:center;margin-top:5px;font-size:9px;font-weight:600;color:#666;letter-spacing:.5px}
+.nt{position:absolute;top:0;left:50%;transform:translateX(-50%);width:80px;height:18px;background:#000;border-radius:0 0 12px 12px;z-index:10}
+/* Screen content helpers */
+.sc{flex:1;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.sc-c{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2;padding:8px}
+.sc-t{flex:1;display:flex;flex-direction:column;z-index:2;padding:28px 10px 6px}
+.ic{display:flex;align-items:center;justify-content:center;border-radius:50%}
+.ic svg{stroke-linecap:round;stroke-linejoin:round;fill:none}
+.dots{display:flex;gap:4px;justify-content:center;margin:6px 0}
+.dots .d{width:6px;height:6px;border-radius:3px}.dots .d.a{width:16px}
+.btn{margin:4px 8px;padding:8px;border-radius:8px;text-align:center;font-size:9px;font-weight:700;letter-spacing:1px;z-index:2}
+.inp{margin:3px 8px;padding:6px 8px;border-radius:6px;font-size:8px;z-index:2}
+.bar{height:3px;border-radius:2px;overflow:hidden;z-index:2}.bar .fl{height:100%;border-radius:2px}
+.tabs{display:flex;gap:3px;margin:4px 8px;z-index:2}.tabs .tb{padding:4px 6px;border-radius:4px;font-size:7px;font-weight:600}
+.lst{margin:2px 8px;z-index:2}.lst .li{display:flex;align-items:center;gap:6px;padding:5px 6px;border-radius:6px;margin-bottom:2px}
+.lst .li .li-ic{width:22px;height:22px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.lst .li .li-t{font-size:8px;font-weight:600;flex:1}.lst .li .li-v{font-size:7px;text-align:right}
+.kp{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:0 20px;z-index:2}
+.kp .k{width:36px;height:36px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:13px;margin:0 auto}
+.pd{display:flex;gap:8px;justify-content:center;z-index:2}.pd .p{width:10px;height:10px;border-radius:5px}
+.qb{display:flex;gap:4px;justify-content:center;z-index:2;margin:4px 0}.qb .q{display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 6px;border-radius:6px}
+.qb .q svg{width:14px;height:14px}.qb .q span{font-size:6px}
+.btab{position:absolute;bottom:0;left:0;right:0;display:flex;justify-content:space-around;padding:6px 0 8px;z-index:20;border-top:1px solid rgba(27,140,62,.1)}
+.btab .bt{display:flex;flex-direction:column;align-items:center;gap:1px}.btab .bt svg{width:16px;height:16px}.btab .bt span{font-size:6px}
+.card{margin:3px 8px;padding:8px;border-radius:8px;z-index:2}
+.badge{display:inline-flex;padding:2px 6px;border-radius:8px;font-size:6px;font-weight:700;letter-spacing:.5px}
+.chart-placeholder{margin:3px 8px;height:50px;border-radius:6px;z-index:2;position:relative;overflow:hidden}
+.chart-placeholder::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(180deg,transparent,rgba(27,140,62,.08))}
+.stat-row{display:flex;gap:3px;margin:3px 8px;z-index:2}.stat-row .st{flex:1;padding:5px;border-radius:6px;text-align:center}
+.stat-row .st .sv{font-size:10px;font-weight:700}.stat-row .st .sl{font-size:6px;margin-top:1px}
+/* Grid overlay for d1 */
+.gov{position:absolute;inset:0;background-image:linear-gradient(rgba(27,140,62,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(27,140,62,.03) 1px,transparent 1px);background-size:20px 20px;pointer-events:none}
+/* Particles for d3 */
+.ptc{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 15% 25%,rgba(27,140,62,.3),transparent),radial-gradient(1px 1px at 65% 15%,rgba(0,200,83,.2),transparent),radial-gradient(1px 1px at 35% 65%,rgba(27,140,62,.2),transparent),radial-gradient(1px 1px at 85% 55%,rgba(105,240,174,.15),transparent),radial-gradient(1px 1px at 10% 75%,rgba(27,140,62,.25),transparent)}
+/* Blobs for d2 */
+.bl1{position:absolute;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(27,140,62,.15),transparent 70%);top:-40px;right:-40px;pointer-events:none}
+.bl2{position:absolute;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(0,200,83,.1),transparent 70%);bottom:30px;left:-30px;pointer-events:none}
+/* Waves for d4 */
+.wt{position:absolute;top:0;left:0;right:0;height:160px;background:linear-gradient(180deg,rgba(27,140,62,.07),transparent);clip-path:ellipse(120% 100% at 50% 0%);pointer-events:none}
+.wb{position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(0deg,rgba(27,140,62,.04),transparent);clip-path:ellipse(120% 100% at 50% 100%);pointer-events:none}
+/* Glow for d5 */
+.sgw{position:absolute;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(27,140,62,.04),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none}
+.lnh{position:absolute;left:10px;right:10px;height:1px;background:linear-gradient(90deg,transparent,rgba(27,140,62,.08),transparent);pointer-events:none}
+/* HUD corners for d1 */
+.hc-tl{position:absolute;top:28px;left:8px;width:14px;height:14px;border-top:1px solid rgba(27,140,62,.15);border-left:1px solid rgba(27,140,62,.15);z-index:4;pointer-events:none}
+.hc-br{position:absolute;bottom:8px;right:8px;width:14px;height:14px;border-bottom:1px solid rgba(27,140,62,.15);border-right:1px solid rgba(27,140,62,.15);z-index:4;pointer-events:none}
+/* XP bar for d3 */
+.xpb{position:absolute;top:24px;left:10px;right:10px;z-index:5;pointer-events:none}
+.xpb .xpt{height:2px;border-radius:1px;background:rgba(27,140,62,.1);overflow:hidden}.xpb .xpf{height:100%;background:linear-gradient(90deg,var(--g),var(--gl));border-radius:1px}
+.xpb .xpl{font-size:5px;color:rgba(27,140,62,.4);text-align:right;margin-top:1px;letter-spacing:.5px}
+/* Achievement ring for d3 */
+.ar{width:70px;height:70px;border-radius:35px;border:2px solid rgba(27,140,62,.2);background:rgba(27,140,62,.03);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:2}
+.ar svg{width:28px;height:28px;stroke:var(--g);stroke-width:1.5;fill:none}
+.ar .arl{font-size:5px;color:var(--ga);letter-spacing:1px;text-transform:uppercase;margin-top:2px}
+/* Level badge for d3 */
+.lvl{display:inline-flex;align-items:center;gap:3px;padding:2px 8px;border-radius:8px;background:rgba(27,140,62,.06);border:1px solid rgba(27,140,62,.15);z-index:2}
+.lvl span{font-size:6px;color:var(--ga);letter-spacing:.5px}
+/* Theme-specific screen bg & fonts */
+.d1 .sc{background:var(--bg)}.d1 h3{font-family:'Orbitron',sans-serif;font-size:9px;color:var(--gl);letter-spacing:.8px;z-index:2}.d1 .stx{font-size:7px;color:#3a5a42;text-align:center;z-index:2;line-height:1.4;padding:0 8px}
+.d1 .ic{border:1px solid rgba(27,140,62,.25);background:rgba(27,140,62,.05)}.d1 .ic svg{stroke:var(--g);stroke-width:1.5}
+.d1 .dots .d{background:rgba(27,140,62,.12)}.d1 .dots .d.a{background:var(--g)}
+.d1 .btn{border:1px solid rgba(27,140,62,.25);background:rgba(27,140,62,.05);color:var(--g);font-family:'Orbitron',sans-serif}
+.d1 .btn.s{background:linear-gradient(135deg,var(--g),var(--gl));color:#fff;border:none}
+.d1 .inp{border:1px solid rgba(27,140,62,.15);background:rgba(27,140,62,.03);color:var(--t2)}
+.d1 .tabs .tb{background:rgba(27,140,62,.05);color:var(--t2);border:1px solid rgba(27,140,62,.1)}.d1 .tabs .tb.a{background:var(--g);color:#fff}
+.d1 .lst .li{background:rgba(27,140,62,.03);border:1px solid rgba(27,140,62,.06)}.d1 .lst .li .li-ic{background:rgba(27,140,62,.08)}
+.d1 .lst .li .li-t{color:var(--t1)}.d1 .lst .li .li-v{color:var(--ga)}
+.d1 .kp .k{border:1px solid rgba(27,140,62,.12);color:var(--g);font-family:'Orbitron',sans-serif;font-size:11px}
+.d1 .pd .p{border:1px solid rgba(27,140,62,.25)}.d1 .pd .p.f{background:var(--g);border-color:var(--g)}
+.d1 .card{background:rgba(27,140,62,.04);border:1px solid rgba(27,140,62,.1)}.d1 .stat-row .st{background:rgba(27,140,62,.04);border:1px solid rgba(27,140,62,.08)}
+.d1 .stat-row .st .sv{color:var(--gl)}.d1 .stat-row .st .sl{color:var(--t2)}
+.d1 .chart-placeholder{background:rgba(27,140,62,.03);border:1px solid rgba(27,140,62,.06)}
+.d1 .qb .q{background:rgba(27,140,62,.05);border:1px solid rgba(27,140,62,.1)}.d1 .qb .q svg{stroke:var(--g)}.d1 .qb .q span{color:var(--t2)}
+.d1 .btab{background:rgba(10,31,18,.95);border-color:rgba(27,140,62,.1)}.d1 .btab .bt svg{stroke:var(--t2)}.d1 .btab .bt span{color:var(--t2)}.d1 .btab .bt.a svg{stroke:var(--gl)}.d1 .btab .bt.a span{color:var(--gl)}
+.d1 .badge{background:rgba(27,140,62,.1);color:var(--ga)}
+.d1 .bar{background:rgba(27,140,62,.08)}.d1 .bar .fl{background:linear-gradient(90deg,var(--g),var(--gl))}
 
-/* ========== RESET & BASE ========== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--page-bg);
-  color: var(--text-primary);
-  font-family: 'Inter', sans-serif;
-  line-height: 1.5;
-  padding: 40px 30px;
-}
+.d2 .sc{background:linear-gradient(160deg,#071510,#0a2118,#050f0a)}.d2 h3{font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;color:#fff;z-index:2}.d2 .stx{font-size:7px;color:rgba(255,255,255,.4);text-align:center;z-index:2;line-height:1.4;padding:0 8px}
+.d2 .ic{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:16px}.d2 .ic svg{stroke:var(--gl);stroke-width:1.5}
+.d2 .dots .d{background:rgba(255,255,255,.08)}.d2 .dots .d.a{background:var(--gl)}
+.d2 .btn{background:linear-gradient(135deg,var(--g),var(--gl));color:#fff;font-family:'Space Grotesk',sans-serif;border:none}
+.d2 .btn.o{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--gl)}
+.d2 .inp{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);color:var(--t1)}
+.d2 .tabs .tb{background:rgba(255,255,255,.04);color:var(--t2);border:1px solid rgba(255,255,255,.06)}.d2 .tabs .tb.a{background:var(--g);color:#fff}
+.d2 .lst .li{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05)}.d2 .lst .li .li-ic{background:rgba(255,255,255,.06)}
+.d2 .lst .li .li-t{color:var(--t1)}.d2 .lst .li .li-v{color:var(--ga)}
+.d2 .kp .k{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);color:#fff;font-size:12px;border-radius:10px}
+.d2 .pd .p{border:1px solid rgba(27,140,62,.2)}.d2 .pd .p.f{background:var(--gl);border-color:var(--gl)}
+.d2 .card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px}
+.d2 .stat-row .st{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:8px}
+.d2 .stat-row .st .sv{color:#fff}.d2 .stat-row .st .sl{color:var(--t2)}
+.d2 .chart-placeholder{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05)}
+.d2 .qb .q{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px}.d2 .qb .q svg{stroke:var(--gl)}.d2 .qb .q span{color:var(--t2)}
+.d2 .btab{background:rgba(7,21,16,.95);border-color:rgba(255,255,255,.06)}.d2 .btab .bt svg{stroke:var(--t2)}.d2 .btab .bt span{color:var(--t2)}.d2 .btab .bt.a svg{stroke:var(--gl)}.d2 .btab .bt.a span{color:var(--gl)}
+.d2 .badge{background:rgba(255,255,255,.06);color:var(--ga)}.d2 .bar{background:rgba(255,255,255,.06)}.d2 .bar .fl{background:var(--gl)}
 
-/* ========== PAGE HEADER ========== */
-.page-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-.page-header h1 {
-  font-size: 38px;
-  font-weight: 700;
-  color: var(--green-light);
-  margin-bottom: 8px;
-  letter-spacing: 1px;
-}
-.page-header p {
-  font-size: 16px;
-  color: var(--text-secondary);
-  letter-spacing: 2px;
-  text-transform: uppercase;
-}
+.d3 .sc{background:linear-gradient(180deg,#021a0f,#041f13,#010d08)}.d3 h3{font-family:'Rajdhani',sans-serif;font-size:11px;font-weight:700;color:#fff;z-index:2}.d3 .stx{font-size:7px;color:rgba(255,255,255,.3);text-align:center;z-index:2;line-height:1.4;padding:0 8px}
+.d3 .ic{border:2px solid rgba(27,140,62,.2);background:rgba(27,140,62,.03)}.d3 .ic svg{stroke:var(--g);stroke-width:1.5}
+.d3 .dots .d{background:rgba(27,140,62,.12)}.d3 .dots .d.a{background:var(--g)}
+.d3 .btn{background:linear-gradient(135deg,var(--g),#059669);color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:1px;border:none}
+.d3 .btn.o{background:rgba(27,140,62,.05);border:1px solid rgba(27,140,62,.2);color:var(--g)}
+.d3 .inp{background:rgba(27,140,62,.03);border:1px solid rgba(27,140,62,.1);color:var(--t1)}
+.d3 .tabs .tb{background:rgba(27,140,62,.04);color:var(--t2);border:1px solid rgba(27,140,62,.08)}.d3 .tabs .tb.a{background:var(--g);color:#fff}
+.d3 .lst .li{background:rgba(27,140,62,.03);border:1px solid rgba(27,140,62,.06)}.d3 .lst .li .li-ic{background:rgba(27,140,62,.06)}
+.d3 .lst .li .li-t{color:var(--t1)}.d3 .lst .li .li-v{color:var(--ga)}
+.d3 .kp .k{background:rgba(27,140,62,.04);border:1px solid rgba(27,140,62,.08);color:#fff;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;border-radius:8px}
+.d3 .pd .p{border:2px solid rgba(27,140,62,.2)}.d3 .pd .p.f{background:var(--g);border-color:var(--g)}
+.d3 .card{background:rgba(27,140,62,.03);border:1px solid rgba(27,140,62,.08)}.d3 .stat-row .st{background:rgba(27,140,62,.03);border:1px solid rgba(27,140,62,.08)}
+.d3 .stat-row .st .sv{color:var(--gl)}.d3 .stat-row .st .sl{color:var(--t2)}
+.d3 .chart-placeholder{background:rgba(27,140,62,.02);border:1px solid rgba(27,140,62,.06)}
+.d3 .qb .q{background:rgba(27,140,62,.04);border:1px solid rgba(27,140,62,.08)}.d3 .qb .q svg{stroke:var(--g)}.d3 .qb .q span{color:var(--t2)}
+.d3 .btab{background:rgba(2,26,15,.95);border-color:rgba(27,140,62,.08)}.d3 .btab .bt svg{stroke:var(--t2)}.d3 .btab .bt span{color:var(--t2)}.d3 .btab .bt.a svg{stroke:var(--gl)}.d3 .btab .bt.a span{color:var(--gl)}
+.d3 .badge{background:rgba(27,140,62,.08);color:var(--ga)}.d3 .bar{background:rgba(27,140,62,.08)}.d3 .bar .fl{background:linear-gradient(90deg,var(--g),var(--gl))}
 
-/* ========== CATEGORY ========== */
-.category {
-  background: var(--cat-bg);
-  border: 1px solid var(--cat-border);
-  border-radius: 20px;
-  padding: 36px 30px 30px;
-  margin-bottom: 50px;
-}
-.cat-head {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  margin-bottom: 8px;
-}
-.cat-num {
-  width: 40px; height: 40px;
-  border-radius: 50%;
-  background: var(--green);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  font-size: 18px;
-  flex-shrink: 0;
-}
-.cat-head h2 {
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-.cat-desc {
-  color: var(--text-secondary);
-  font-size: 14px;
-  margin-bottom: 24px;
-  padding-left: 56px;
-}
-.row-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 14px;
-  margin-top: 24px;
-  padding-left: 4px;
-}
-.phone-row {
-  display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
-  margin-bottom: 18px;
-}
+.d4 .sc{background:#060d09}.d4 h3{font-family:'Outfit',sans-serif;font-size:11px;font-weight:800;color:#fff;z-index:2}.d4 .stx{font-size:7px;color:rgba(255,255,255,.35);text-align:center;z-index:2;line-height:1.4;padding:0 8px}
+.d4 .ic{background:linear-gradient(135deg,rgba(27,140,62,.1),rgba(0,200,83,.06));border:none}.d4 .ic svg{stroke:var(--gl);stroke-width:1.8}
+.d4 .dots .d{background:rgba(27,140,62,.1)}.d4 .dots .d.a{background:linear-gradient(90deg,var(--g),var(--gl))}
+.d4 .btn{background:linear-gradient(135deg,var(--g),var(--gl));color:#fff;font-family:'Outfit',sans-serif;font-weight:800;border:none;box-shadow:0 3px 12px rgba(27,140,62,.25)}
+.d4 .btn.o{background:transparent;border:1px solid rgba(27,140,62,.25);color:var(--gl);box-shadow:none}
+.d4 .inp{background:rgba(27,140,62,.04);border:1px solid rgba(27,140,62,.1);color:var(--t1)}
+.d4 .tabs .tb{background:rgba(27,140,62,.05);color:var(--t2)}.d4 .tabs .tb.a{background:var(--g);color:#fff}
+.d4 .lst .li{background:rgba(27,140,62,.03)}.d4 .lst .li .li-ic{background:rgba(27,140,62,.06)}
+.d4 .lst .li .li-t{color:var(--t1)}.d4 .lst .li .li-v{color:var(--ga)}
+.d4 .kp .k{background:rgba(27,140,62,.05);color:#fff;font-family:'Outfit',sans-serif;font-size:13px;font-weight:600;border:none}
+.d4 .pd .p{border:2px solid rgba(27,140,62,.15)}.d4 .pd .p.f{background:linear-gradient(135deg,var(--g),var(--gl));border-color:var(--g)}
+.d4 .card{background:rgba(27,140,62,.03);border:1px solid rgba(27,140,62,.06)}.d4 .stat-row .st{background:rgba(27,140,62,.04)}
+.d4 .stat-row .st .sv{color:#fff}.d4 .stat-row .st .sl{color:var(--t2)}
+.d4 .chart-placeholder{background:rgba(27,140,62,.03)}
+.d4 .qb .q{background:rgba(27,140,62,.05)}.d4 .qb .q svg{stroke:var(--gl)}.d4 .qb .q span{color:var(--t2)}
+.d4 .btab{background:rgba(6,13,9,.95);border-color:rgba(27,140,62,.06)}.d4 .btab .bt svg{stroke:var(--t2)}.d4 .btab .bt span{color:var(--t2)}.d4 .btab .bt.a svg{stroke:var(--gl)}.d4 .btab .bt.a span{color:var(--gl)}
+.d4 .badge{background:rgba(27,140,62,.08);color:var(--ga)}.d4 .bar{background:rgba(27,140,62,.06)}.d4 .bar .fl{background:linear-gradient(135deg,var(--g),var(--gl))}
 
-/* ========== PHONE MOCKUP ========== */
-.phone {
-  width: 260px;
-  height: 540px;
-  border-radius: 36px;
-  background: var(--phone-bezel);
-  padding: 10px;
-  position: relative;
-  flex-shrink: 0;
-}
-.notch {
-  width: 90px;
-  height: 22px;
-  background: var(--phone-bezel);
-  border-radius: 0 0 16px 16px;
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
-.phone-inner {
-  width: 100%;
-  height: 100%;
-  border-radius: 28px;
-  overflow: hidden;
-  position: relative;
-}
-
-/* ========== SCREEN BASE ========== */
-.screen-base {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 40px 20px 24px;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-}
-.screen-label {
-  display: block;
-  text-align: center;
-  font-size: 11px;
-  color: var(--text-secondary);
-  margin-top: 6px;
-  letter-spacing: 0.5px;
-}
-
-/* ========== SHARED COMPONENTS ========== */
-/* Icon wrapper */
-.ico { width: 56px; height: 56px; margin-bottom: 14px; }
-.ico svg { width: 100%; height: 100%; }
-.ico-sm { width: 28px; height: 28px; }
-.ico-sm svg { width: 100%; height: 100%; }
-.ico-tab { width: 22px; height: 22px; }
-.ico-tab svg { width: 100%; height: 100%; }
-
-/* Dots */
-.dots {
-  display: flex;
-  gap: 6px;
-  justify-content: center;
-  margin-top: auto;
-  margin-bottom: 8px;
-}
-.dots span {
-  display: block;
-  width: 8px; height: 8px;
-  border-radius: 4px;
-  background: rgba(255,255,255,0.25);
-}
-.dots span.active {
-  width: 24px;
-  background: var(--green-light);
-}
-
-/* CTA Button */
-.cta-btn {
-  display: inline-block;
-  padding: 10px 36px;
-  border-radius: 24px;
-  font-size: 13px;
-  font-weight: 600;
-  text-align: center;
-  letter-spacing: 1px;
-  margin-top: 8px;
-  color: #fff;
-  background: var(--green);
-  border: none;
-  cursor: pointer;
-}
-
-/* PIN dots */
-.pin-dots {
-  display: flex;
-  gap: 14px;
-  justify-content: center;
-  margin-bottom: 18px;
-}
-.pin-dots span {
-  width: 16px; height: 16px;
-  border-radius: 50%;
-  border: 2px solid var(--green-light);
-}
-.pin-dots span.filled {
-  background: var(--green-light);
-}
-
-/* Keypad */
-.keypad {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  width: 80%;
-  max-width: 180px;
-}
-.keypad span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 34px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-primary);
-  background: rgba(255,255,255,0.06);
-}
-
-/* Bottom Tab Bar */
-.tab-bar {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 58px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background: rgba(10,10,20,0.95);
-  border-top: 1px solid rgba(255,255,255,0.08);
-  padding: 0 4px;
-}
-.tab-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2px;
-  font-size: 9px;
-  color: var(--text-secondary);
-}
-.tab-item.active { color: var(--green-light); }
-.tab-item .ico-tab { margin-bottom: 1px; }
-
-/* Loading bar */
-.loading-bar {
-  width: 60%;
-  height: 4px;
-  border-radius: 2px;
-  background: rgba(255,255,255,0.1);
-  margin-top: 18px;
-  overflow: hidden;
-  position: relative;
-}
-.loading-bar::after {
-  content: '';
-  position: absolute;
-  left: 0; top: 0;
-  width: 40%;
-  height: 100%;
-  background: var(--green-light);
-  border-radius: 2px;
-  animation: loadbar 2s ease-in-out infinite;
-}
-@keyframes loadbar {
-  0% { left: -40%; }
-  100% { left: 100%; }
-}
-
-/* Logo */
-.logo-main { width: 72px; height: 72px; margin-bottom: 12px; }
-.logo-main svg { width: 100%; height: 100%; }
-.logo-sm { width: 48px; height: 48px; margin-bottom: 10px; }
-.logo-sm svg { width: 100%; height: 100%; }
-
-/* Auth buttons row */
-.auth-btns {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  width: 80%;
-  margin-top: 12px;
-}
-.auth-btns .btn-primary {
-  padding: 10px;
-  border-radius: 22px;
-  font-size: 12px;
-  font-weight: 700;
-  text-align: center;
-  letter-spacing: 1.5px;
-  color: #fff;
-  background: var(--green);
-}
-.auth-btns .btn-outline {
-  padding: 10px;
-  border-radius: 22px;
-  font-size: 12px;
-  font-weight: 700;
-  text-align: center;
-  letter-spacing: 1.5px;
-  color: var(--green-light);
-  border: 1.5px solid var(--green-light);
-  background: transparent;
-}
-
-/* Quick actions */
-.quick-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-.qa-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  font-size: 9px;
-  color: var(--text-secondary);
-}
-.qa-circle {
-  width: 36px; height: 36px;
-  border-radius: 50%;
-  background: rgba(27,140,62,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.qa-circle svg { width: 18px; height: 18px; }
-
-/* ========== ANIMATIONS ========== */
-@keyframes scanmove {
-  0% { top: 0; }
-  100% { top: 100%; }
-}
-@keyframes pulse-glow {
-  0%, 100% { filter: drop-shadow(0 0 6px var(--green-light)); opacity: 0.8; }
-  50% { filter: drop-shadow(0 0 20px var(--green-light)); opacity: 1; }
-}
-@keyframes float-bob {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-/* ========== THEME 1: CYBER GRID ========== */
-.d1 .screen-base {
-  background: var(--dark-1);
-  font-family: 'Orbitron', monospace;
-  background-image:
-    linear-gradient(rgba(27,140,62,0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(27,140,62,0.07) 1px, transparent 1px);
-  background-size: 20px 20px;
-}
-.d1 .screen-base::before {
-  content: '';
-  position: absolute;
-  left: 0; right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--green-light), transparent);
-  opacity: 0.3;
-  animation: scanmove 4s linear infinite;
-  z-index: 1;
-}
-.d1 h3 {
-  font-family: 'Orbitron', monospace;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--green-light);
-  margin-bottom: 6px;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-}
-.d1 p {
-  font-family: 'Orbitron', monospace;
-  font-size: 9px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-.d1 .cta-btn {
-  font-family: 'Orbitron', monospace;
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  background: linear-gradient(135deg, var(--green), var(--green-light));
-  border-radius: 4px;
-  border: 1px solid var(--green-light);
-  color: #fff;
-  padding: 10px 30px;
-}
-.d1 .hud-bracket {
-  position: absolute;
-  width: 20px; height: 20px;
-  border-color: var(--green-light);
-  opacity: 0.4;
-}
-.d1 .hud-tl { top: 36px; left: 14px; border-top: 2px solid; border-left: 2px solid; }
-.d1 .hud-tr { top: 36px; right: 14px; border-top: 2px solid; border-right: 2px solid; }
-.d1 .hud-bl { bottom: 14px; left: 14px; border-bottom: 2px solid; border-left: 2px solid; }
-.d1 .hud-br { bottom: 14px; right: 14px; border-bottom: 2px solid; border-right: 2px solid; }
-.d1 .keypad span {
-  font-family: 'Orbitron', monospace;
-  font-size: 14px;
-  border-radius: 4px;
-  border: 1px solid rgba(0,200,83,0.15);
-  background: rgba(27,140,62,0.08);
-  color: var(--green-light);
-}
-.d1 .pin-dots span { border-color: var(--green-light); }
-.d1 .pin-dots span.filled { background: var(--green-light); }
-.d1 .auth-btns .btn-primary {
-  font-family: 'Orbitron', monospace;
-  font-size: 10px;
-  letter-spacing: 2px;
-  border-radius: 4px;
-  border: 1px solid var(--green-light);
-  background: linear-gradient(135deg, var(--green), var(--green-light));
-}
-.d1 .auth-btns .btn-outline {
-  font-family: 'Orbitron', monospace;
-  font-size: 10px;
-  letter-spacing: 2px;
-  border-radius: 4px;
-  border: 1.5px solid var(--green-light);
-  color: var(--green-light);
-  background: transparent;
-}
-.d1 .tab-bar { background: rgba(10,31,18,0.95); border-top: 1px solid rgba(0,200,83,0.15); }
-.d1 .tab-item { font-family: 'Orbitron', monospace; font-size: 7px; letter-spacing: 0.5px; }
-
-/* ========== THEME 2: GLASS MORPHISM ========== */
-.d2 .screen-base {
-  background: linear-gradient(160deg, #0a1f12 0%, #0d2818 50%, #0a1a10 100%);
-  font-family: 'Space Grotesk', sans-serif;
-}
-.d2 .screen-base::before {
-  content: '';
-  position: absolute;
-  width: 140px; height: 140px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0,200,83,0.25), transparent 70%);
-  top: 20%; left: -20%;
-  filter: blur(30px);
-}
-.d2 .screen-base::after {
-  content: '';
-  position: absolute;
-  width: 100px; height: 100px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,168,76,0.15), transparent 70%);
-  bottom: 10%; right: -10%;
-  filter: blur(25px);
-}
-.d2 .glass-card {
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 18px;
-  padding: 20px 16px;
-  width: 85%;
-  text-align: center;
-  position: relative;
-  z-index: 2;
-}
-.d2 h3 {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 6px;
-}
-.d2 p {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 10px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-}
-.d2 .cta-btn {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  background: rgba(27,140,62,0.6);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(0,200,83,0.3);
-  border-radius: 24px;
-  color: #fff;
-  padding: 10px 32px;
-}
-.d2 .keypad span {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 16px;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.06);
-  backdrop-filter: blur(6px);
-  border: 1px solid rgba(255,255,255,0.08);
-  color: var(--text-primary);
-}
-.d2 .auth-btns .btn-primary {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 12px;
-  letter-spacing: 1px;
-  border-radius: 22px;
-  background: rgba(27,140,62,0.6);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(0,200,83,0.3);
-}
-.d2 .auth-btns .btn-outline {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 12px;
-  letter-spacing: 1px;
-  border-radius: 22px;
-  border: 1.5px solid rgba(0,200,83,0.4);
-  color: var(--green-light);
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(6px);
-}
-.d2 .tab-bar { background: rgba(13,40,24,0.85); backdrop-filter: blur(12px); border-top: 1px solid rgba(255,255,255,0.08); }
-.d2 .tab-item { font-family: 'Space Grotesk', sans-serif; font-size: 9px; }
-
-/* ========== THEME 3: GAMIFIED RPG ========== */
-.d3 .screen-base {
-  background: linear-gradient(180deg, #0a1f12 0%, #0d2818 100%);
-  font-family: 'Rajdhani', sans-serif;
-}
-.d3 .xp-bar {
-  width: 70%;
-  height: 6px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 3px;
-  margin-top: 10px;
-  overflow: hidden;
-  position: relative;
-}
-.d3 .xp-bar::after {
-  content: '';
-  position: absolute;
-  left: 0; top: 0;
-  width: 65%;
-  height: 100%;
-  background: linear-gradient(90deg, var(--green), var(--green-light));
-  border-radius: 3px;
-}
-.d3 .xp-label {
-  font-size: 8px;
-  color: var(--gold);
-  letter-spacing: 1px;
-  margin-top: 4px;
-  font-weight: 600;
-}
-.d3 .achievement-ring {
-  width: 72px; height: 72px;
-  border-radius: 50%;
-  border: 3px solid var(--green);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 12px;
-  position: relative;
-  box-shadow: 0 0 15px rgba(27,140,62,0.3), inset 0 0 10px rgba(27,140,62,0.1);
-}
-.d3 .level-badge {
-  position: absolute;
-  top: -6px; right: -6px;
-  background: var(--gold);
-  color: #0a1f12;
-  font-size: 8px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 8px;
-  letter-spacing: 0.5px;
-}
-.d3 .particle {
-  position: absolute;
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--green-accent);
-  opacity: 0.4;
-  animation: float-bob 3s ease-in-out infinite;
-}
-.d3 h3 {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  color: var(--green-light);
-  margin-bottom: 4px;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-.d3 p {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 11px;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-.d3 .cta-btn {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  background: linear-gradient(135deg, var(--green), var(--green-light));
-  border-radius: 20px;
-  border: none;
-  color: #fff;
-  padding: 10px 34px;
-  text-transform: uppercase;
-  box-shadow: 0 4px 15px rgba(0,200,83,0.3);
-}
-.d3 .keypad span {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 17px;
-  font-weight: 600;
-  border-radius: 12px;
-  background: rgba(27,140,62,0.1);
-  border: 1px solid rgba(0,200,83,0.1);
-  color: var(--text-primary);
-}
-.d3 .auth-btns .btn-primary {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, var(--green), var(--green-light));
-  box-shadow: 0 4px 15px rgba(0,200,83,0.3);
-  text-transform: uppercase;
-}
-.d3 .auth-btns .btn-outline {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  border-radius: 20px;
-  border: 2px solid var(--green-light);
-  color: var(--green-light);
-  background: transparent;
-  text-transform: uppercase;
-}
-.d3 .tab-bar { background: rgba(10,31,18,0.95); border-top: 2px solid rgba(0,200,83,0.15); }
-.d3 .tab-item { font-family: 'Rajdhani', sans-serif; font-size: 9px; font-weight: 600; }
-
-/* ========== THEME 4: BOLD WAVES ========== */
-.d4 .screen-base {
-  background: var(--dark-1);
-  font-family: 'Outfit', sans-serif;
-}
-.d4 .screen-base::before {
-  content: '';
-  position: absolute;
-  bottom: -30%;
-  left: -20%;
-  width: 160%;
-  height: 70%;
-  background: linear-gradient(135deg, rgba(27,140,62,0.2), rgba(0,200,83,0.1));
-  border-radius: 50%;
-  z-index: 0;
-}
-.d4 .screen-base::after {
-  content: '';
-  position: absolute;
-  top: -40%;
-  right: -30%;
-  width: 120%;
-  height: 60%;
-  background: radial-gradient(ellipse, rgba(201,168,76,0.08), transparent 70%);
-  border-radius: 50%;
-  z-index: 0;
-}
-.d4 h3 {
-  font-family: 'Outfit', sans-serif;
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--text-primary);
-  margin-bottom: 6px;
-  position: relative;
-  z-index: 2;
-}
-.d4 p {
-  font-family: 'Outfit', sans-serif;
-  font-size: 11px;
-  color: var(--text-secondary);
-  line-height: 1.5;
-  position: relative;
-  z-index: 2;
-}
-.d4 .cta-btn {
-  font-family: 'Outfit', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  background: linear-gradient(135deg, var(--green), var(--green-light));
-  border-radius: 28px;
-  border: none;
-  color: #fff;
-  padding: 12px 38px;
-  box-shadow: 0 6px 24px rgba(0,200,83,0.35);
-  position: relative;
-  z-index: 2;
-}
-.d4 .ico, .d4 .achievement-ring { position: relative; z-index: 2; }
-.d4 .keypad span {
-  font-family: 'Outfit', sans-serif;
-  font-size: 17px;
-  font-weight: 600;
-  border-radius: 16px;
-  background: rgba(27,140,62,0.12);
-  color: var(--text-primary);
-  position: relative;
-  z-index: 2;
-}
-.d4 .auth-btns .btn-primary {
-  font-family: 'Outfit', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  border-radius: 28px;
-  background: linear-gradient(135deg, var(--green), var(--green-light));
-  box-shadow: 0 6px 24px rgba(0,200,83,0.35);
-}
-.d4 .auth-btns .btn-outline {
-  font-family: 'Outfit', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  border-radius: 28px;
-  border: 2px solid var(--green-light);
-  color: var(--green-light);
-  background: transparent;
-}
-.d4 .tab-bar { background: rgba(10,31,18,0.92); border-top: 1px solid rgba(0,200,83,0.12); }
-.d4 .tab-item { font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 500; }
-
-/* ========== THEME 5: LUXE MINIMAL ========== */
-.d5 .screen-base {
-  background: var(--dark-3);
-  font-family: 'Inter', sans-serif;
-}
-.d5 .screen-base::before {
-  content: '';
-  position: absolute;
-  width: 200px; height: 200px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(27,140,62,0.08), transparent 70%);
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-}
-.d5 .line-h {
-  position: absolute;
-  left: 20px; right: 20px;
-  height: 1px;
-  background: rgba(255,255,255,0.04);
-}
-.d5 .line-v {
-  position: absolute;
-  top: 40px; bottom: 20px;
-  width: 1px;
-  background: rgba(255,255,255,0.04);
-}
-.d5 h3 {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
-  color: var(--text-primary);
-  margin-bottom: 8px;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-}
-.d5 p {
-  font-family: 'Inter', sans-serif;
-  font-size: 10px;
-  font-weight: 300;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  letter-spacing: 1px;
-}
-.d5 .cta-btn {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  font-weight: 300;
-  letter-spacing: 4px;
-  background: transparent;
-  border: 1px solid var(--green);
-  border-radius: 0;
-  color: var(--green-light);
-  padding: 10px 32px;
-  text-transform: uppercase;
-}
-.d5 .keypad span {
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 300;
-  border-radius: 0;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.06);
-  color: var(--text-primary);
-  letter-spacing: 1px;
-}
-.d5 .pin-dots span { border-radius: 0; border-width: 1px; }
-.d5 .pin-dots span.filled { border-radius: 0; }
-.d5 .auth-btns .btn-primary {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  font-weight: 300;
-  letter-spacing: 4px;
-  border-radius: 0;
-  background: var(--green);
-  border: 1px solid var(--green-light);
-  text-transform: uppercase;
-}
-.d5 .auth-btns .btn-outline {
-  font-family: 'Inter', sans-serif;
-  font-size: 11px;
-  font-weight: 300;
-  letter-spacing: 4px;
-  border-radius: 0;
-  border: 1px solid rgba(0,200,83,0.3);
-  color: var(--green-light);
-  background: transparent;
-  text-transform: uppercase;
-}
-.d5 .dots span { border-radius: 0; width: 8px; height: 2px; }
-.d5 .dots span.active { width: 24px; border-radius: 0; }
-.d5 .tab-bar { background: rgba(15,26,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); }
-.d5 .tab-item { font-family: 'Inter', sans-serif; font-size: 8px; font-weight: 300; letter-spacing: 1px; }
-
-/* Fingerprint pulse */
-.fp-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
-/* Floating particles for d3 */
-.d3 .particle:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
-.d3 .particle:nth-child(2) { top: 30%; right: 15%; animation-delay: 0.5s; width: 3px; height: 3px; }
-.d3 .particle:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 1s; width: 5px; height: 5px; }
-.d3 .particle:nth-child(4) { top: 60%; right: 10%; animation-delay: 1.5s; }
-
-/* ========== Z-INDEX HELPERS ========== */
-.z2 { position: relative; z-index: 2; }
+.d5 .sc{background:#060908}.d5 h3{font-family:'Inter',sans-serif;font-size:9px;font-weight:300;color:var(--g);letter-spacing:2px;text-transform:uppercase;z-index:2}.d5 .stx{font-size:7px;color:rgba(255,255,255,.25);text-align:center;z-index:2;line-height:1.5;padding:0 10px}
+.d5 .ic{border:1px solid rgba(27,140,62,.15);background:rgba(27,140,62,.02)}.d5 .ic svg{stroke:var(--g);stroke-width:1.2}
+.d5 .dots .d{background:rgba(27,140,62,.08)}.d5 .dots .d.a{background:var(--g)}
+.d5 .btn{border:1px solid rgba(27,140,62,.15);background:rgba(27,140,62,.02);color:var(--g);font-family:'Inter',sans-serif;font-weight:400;letter-spacing:2px;text-transform:uppercase;font-size:8px}
+.d5 .btn.s{background:rgba(27,140,62,.06);border-color:rgba(27,140,62,.2)}
+.d5 .inp{border:1px solid rgba(27,140,62,.1);background:rgba(27,140,62,.01);color:var(--t2)}
+.d5 .tabs .tb{color:var(--t2);border:1px solid rgba(27,140,62,.06)}.d5 .tabs .tb.a{background:rgba(27,140,62,.06);color:var(--g);border-color:rgba(27,140,62,.15)}
+.d5 .lst .li{border-bottom:1px solid rgba(27,140,62,.04)}.d5 .lst .li .li-ic{border:1px solid rgba(27,140,62,.1)}
+.d5 .lst .li .li-t{color:var(--t1);font-weight:400}.d5 .lst .li .li-v{color:var(--g)}
+.d5 .kp .k{border:1px solid rgba(27,140,62,.06);color:var(--g);font-family:'Inter',sans-serif;font-size:12px;font-weight:300}
+.d5 .pd .p{border:1px solid rgba(27,140,62,.15)}.d5 .pd .p.f{background:var(--g);border-color:var(--g)}
+.d5 .card{border:1px solid rgba(27,140,62,.06)}.d5 .stat-row .st{border:1px solid rgba(27,140,62,.06)}
+.d5 .stat-row .st .sv{color:var(--g);font-weight:300}.d5 .stat-row .st .sl{color:rgba(255,255,255,.3)}
+.d5 .chart-placeholder{border:1px solid rgba(27,140,62,.04)}
+.d5 .qb .q{border:1px solid rgba(27,140,62,.08)}.d5 .qb .q svg{stroke:var(--g)}.d5 .qb .q span{color:rgba(255,255,255,.3)}
+.d5 .btab{background:rgba(6,9,8,.95);border-color:rgba(27,140,62,.04)}.d5 .btab .bt svg{stroke:rgba(255,255,255,.3)}.d5 .btab .bt span{color:rgba(255,255,255,.3)}.d5 .btab .bt.a svg{stroke:var(--g)}.d5 .btab .bt.a span{color:var(--g)}
+.d5 .badge{border:1px solid rgba(27,140,62,.1);color:var(--g)}.d5 .bar{background:rgba(27,140,62,.06)}.d5 .bar .fl{background:var(--g)}
+@keyframes scan{0%{top:0}100%{top:100%}}
+.scanl{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(27,140,62,.12),transparent);animation:scan 4s infinite linear;z-index:3;pointer-events:none}
 </style>
 </head>
 <body>
+<div class="ph">
+  <h1>CrymadX — Mobile App Design Options</h1>
+  <p>5 Design Themes &bull; 60 Screens Each &bull; Same Brand Colors</p>
+  <p class="sub">Full crypto exchange: Auth, Dashboard, Wallet, Markets, Trading, P2P, Staking, Analytics, NFT, Rewards, Security</p>
+</div>
 
-<!-- ========== HIDDEN SVG SYMBOL DEFS ========== -->
+<!-- SVG Symbols -->
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-  <!-- CrymadX Shield Logo -->
-  <symbol id="logo-crymadx" viewBox="0 0 80 80">
-    <path d="M40 4 L70 18 V46 C70 60 56 72 40 78 C24 72 10 60 10 46 V18 Z" fill="none" stroke="#1B8C3E" stroke-width="3"/>
-    <path d="M40 10 L64 22 V44 C64 56 52 66 40 72 C28 66 16 56 16 44 V22 Z" fill="#0a1f12" stroke="none"/>
-    <path d="M40 10 L64 22 V44 C64 56 52 66 40 72 C28 66 16 56 16 44 V22 Z" fill="url(#logoGrad)" opacity="0.3"/>
-    <path d="M30 36 L40 26 L50 36" fill="none" stroke="#00C853" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M40 26 V54" fill="none" stroke="#00C853" stroke-width="2.5" stroke-linecap="round"/>
-    <path d="M28 46 L40 58 L52 46" fill="none" stroke="#69f0ae" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
-    <defs>
-      <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-        <stop offset="0%" stop-color="#1B8C3E"/>
-        <stop offset="100%" stop-color="#00C853"/>
-      </linearGradient>
-    </defs>
-  </symbol>
-
-  <!-- Wallet -->
-  <symbol id="ico-wallet" viewBox="0 0 24 24">
-    <rect x="2" y="6" width="20" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <path d="M2 10h20" stroke="currentColor" stroke-width="1.8"/>
-    <circle cx="17" cy="14" r="1.5" fill="currentColor"/>
-    <path d="M6 6V5a2 2 0 012-2h8a2 2 0 012 2v1" stroke="currentColor" stroke-width="1.8" fill="none"/>
-  </symbol>
-
-  <!-- Shield -->
-  <symbol id="ico-shield" viewBox="0 0 24 24">
-    <path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-
-  <!-- Globe -->
-  <symbol id="ico-globe" viewBox="0 0 24 24">
-    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <ellipse cx="12" cy="12" rx="4" ry="10" fill="none" stroke="currentColor" stroke-width="1.2"/>
-    <path d="M2 12h20M4 7h16M4 17h16" stroke="currentColor" stroke-width="1" fill="none"/>
-  </symbol>
-
-  <!-- Fingerprint -->
-  <symbol id="ico-fingerprint" viewBox="0 0 24 24">
-    <path d="M12 2C9.24 2 7 4.24 7 7v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M17 7v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M12 6c1.66 0 3 1.34 3 3v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M9 9v4c0 2.21 1.79 4 3 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M12 12v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M7 14c0 3 2 5 5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M15 14c0 2-1 4-3 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M5 10c0 5 3 9 7 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-    <path d="M19 10c0 5-3 9-7 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-  </symbol>
-
-  <!-- Lock -->
-  <symbol id="ico-lock" viewBox="0 0 24 24">
-    <rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <path d="M8 11V7a4 4 0 018 0v4" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
-  </symbol>
-
-  <!-- Wifi Off -->
-  <symbol id="ico-wifi-off" viewBox="0 0 24 24">
-    <path d="M1 1l22 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M5 12.5C7.5 10 9.5 9 12 9c1 0 2 .2 3 .5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M1.5 8.5C5 5.5 8.5 4 12 4c2 0 4 .5 6 1.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M8.5 16.5c1-.8 2.2-1.5 3.5-1.5s2.5.7 3.5 1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <circle cx="12" cy="20" r="1.5" fill="currentColor"/>
-  </symbol>
-
-  <!-- Download -->
-  <symbol id="ico-download" viewBox="0 0 24 24">
-    <path d="M12 4v12m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M4 18v2h16v-2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-
-  <!-- Refresh -->
-  <symbol id="ico-refresh" viewBox="0 0 24 24">
-    <path d="M4 12a8 8 0 0114-5.3L21 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M21 4v6h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M20 12a8 8 0 01-14 5.3L3 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M3 20v-6h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-
-  <!-- Chart / Trending -->
-  <symbol id="ico-chart" viewBox="0 0 24 24">
-    <polyline points="22,6 14,14 10,10 2,18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-    <polyline points="16,6 22,6 22,12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-
-  <!-- Coin Stack -->
-  <symbol id="ico-coinstack" viewBox="0 0 24 24">
-    <ellipse cx="12" cy="6" rx="8" ry="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <path d="M4 6v4c0 1.66 3.58 3 8 3s8-1.34 8-3V6" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <path d="M4 10v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <path d="M4 14v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4" fill="none" stroke="currentColor" stroke-width="1.8"/>
-  </symbol>
-
-  <!-- Tools / Wrench -->
-  <symbol id="ico-tools" viewBox="0 0 24 24">
-    <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-
-  <!-- Arrow Right -->
-  <symbol id="ico-arrow-right" viewBox="0 0 24 24">
-    <path d="M5 12h14m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-
-  <!-- Login -->
-  <symbol id="ico-login" viewBox="0 0 24 24">
-    <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-    <path d="M10 17l5-5-5-5M15 12H3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-
-  <!-- User Plus -->
-  <symbol id="ico-user-plus" viewBox="0 0 24 24">
-    <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <circle cx="8.5" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <path d="M20 8v6m3-3h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </symbol>
-
-  <!-- Home -->
-  <symbol id="ico-home" viewBox="0 0 24 24">
-    <path d="M3 12l2-2m0 0l7-7 7 7m-14 0v9a1 1 0 001 1h3m10-10l2 2m-2-2v9a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-
-  <!-- Bar Chart -->
-  <symbol id="ico-barchart" viewBox="0 0 24 24">
-    <rect x="4" y="12" width="4" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <rect x="10" y="6" width="4" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <rect x="16" y="9" width="4" height="11" rx="1" fill="none" stroke="currentColor" stroke-width="1.8"/>
-  </symbol>
-
-  <!-- Swap Arrows -->
-  <symbol id="ico-swap" viewBox="0 0 24 24">
-    <path d="M7 16V4m0 12l-4-4m4 4l4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M17 8v12m0-12l4 4m-4-4l-4 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
-
-  <!-- Credit Card -->
-  <symbol id="ico-card" viewBox="0 0 24 24">
-    <rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <path d="M2 10h20" stroke="currentColor" stroke-width="1.8"/>
-    <path d="M6 15h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-  </symbol>
-
-  <!-- Grid / Menu -->
-  <symbol id="ico-grid" viewBox="0 0 24 24">
-    <rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <rect x="14" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <rect x="3" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-    <rect x="14" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
-  </symbol>
-
-  <!-- Deposit (arrow down into tray) -->
-  <symbol id="ico-deposit" viewBox="0 0 24 24">
-    <path d="M12 3v12m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M5 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </symbol>
-
-  <!-- Withdraw (arrow up from tray) -->
-  <symbol id="ico-withdraw" viewBox="0 0 24 24">
-    <path d="M12 15V3m0 0l-4 4m4-4l4 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M5 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-  </symbol>
-
-  <!-- Convert (circular arrows) -->
-  <symbol id="ico-convert" viewBox="0 0 24 24">
-    <path d="M4 12a8 8 0 0114-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M20 12a8 8 0 01-14 5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-    <path d="M18 7l-1-4 4-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <path d="M6 17l1 4-4 1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></symbol>
+<symbol id="i-wallet" viewBox="0 0 24 24"><path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"/><path d="M3 5v14a2 2 0 0 0 2 2h16v-5"/><path d="M18 12a2 2 0 0 0 0 4h4v-4h-4z"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></symbol>
+<symbol id="i-fp" viewBox="0 0 24 24"><path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 4"/><path d="M5 19.5C5.5 18 6 15 6 12c0-3.5 2.5-6 6-6"/><path d="M12 10c-1.1 0-2 .9-2 2 0 2 1 4 1 6"/><path d="M15 13.5c0-1.5-1-3.5-3-3.5"/><path d="M17.5 12c0-3-2.5-6-5.5-6"/><path d="M22 16c-1 3-3 5.5-6 7"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+<symbol id="i-wifioff" viewBox="0 0 24 24"><line x1="1" y1="1" x2="23" y2="23"/><path d="M16.72 11.06A10.94 10.94 0 0 1 19 12.55"/><path d="M5 12.55a10.94 10.94 0 0 1 5.17-2.39"/><path d="M10.71 5.05A16 16 0 0 1 22.56 9"/><path d="M1.42 9a15.91 15.91 0 0 1 4.7-2.88"/><line x1="12" y1="20" x2="12.01" y2="20"/></symbol>
+<symbol id="i-dl" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></symbol>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></symbol>
+<symbol id="i-bar" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></symbol>
+<symbol id="i-swap" viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22 6 12 13 2 6"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><polygon points="12 2 15 9 22 9 17 14 18 21 12 17 6 21 8 14 2 9 9 9"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
+<symbol id="i-key" viewBox="0 0 24 24"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+<symbol id="i-eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></symbol>
+<symbol id="i-arrow" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+<symbol id="i-layers" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></symbol>
+<symbol id="i-zap" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+<symbol id="i-dollar" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></symbol>
+<symbol id="i-login" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></symbol>
+<symbol id="i-userp" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></symbol>
+<symbol id="i-qr" viewBox="0 0 24 24"><rect x="2" y="2" width="8" height="8" rx="1"/><rect x="14" y="2" width="8" height="8" rx="1"/><rect x="2" y="14" width="8" height="8" rx="1"/><rect x="14" y="14" width="4" height="4" rx="1"/><rect x="20" y="20" width="2" height="2"/><rect x="14" y="20" width="2" height="2"/><rect x="20" y="14" width="2" height="2"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></symbol>
+<symbol id="i-settings" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
 </svg>
 
-<!-- ========== PAGE HEADER ========== -->
-<div class="page-header">
-  <h1>CrymadX — Mobile App Design Options</h1>
-  <p>5 Design Themes &bull; Same Brand Colors &bull; All Screens</p>
-</div>
-
-<!-- ============================================================ -->
-<!-- THEME 1: CYBER GRID                                          -->
-<!-- ============================================================ -->
-<div class="category d1">
-  <div class="cat-head">
-    <div class="cat-num">1</div>
-    <h2>Cyber Grid</h2>
-  </div>
-  <div class="cat-desc">Grid overlay background, scan line animation, HUD corner brackets, Orbitron font. Tech command-center feel.</div>
-
-  <div class="row-label">Splash &amp; Onboarding</div>
-  <div class="phone-row">
-
-    <!-- 1. Splash -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
-      <div class="logo-main z2"><svg><use href="#logo-crymadx"/></svg></div>
-      <h3 class="z2">CrymadX</h3>
-      <p class="z2" style="font-size:8px;letter-spacing:3px;color:var(--gold)">EXCHANGE</p>
-      <div class="loading-bar z2"></div>
-    </div></div></div><span class="screen-label">Splash</span></div>
-
-    <!-- 2. Onboarding 1 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
-      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-chart"/></svg></div>
-      <h3 class="z2">Trade the Future<br>of Finance</h3>
-      <p class="z2">Your complete crypto exchange with spot trading, analytics and more.</p>
-      <div class="dots z2"><span class="active"></span><span></span><span></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 1</span></div>
-
-    <!-- 3. Onboarding 2 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
-      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-barchart"/></svg></div>
-      <h3 class="z2">63+ Markets,<br>Real-Time</h3>
-      <p class="z2">Live data, trending coins, and deep market analytics at your fingertips.</p>
-      <div class="dots z2"><span></span><span class="active"></span><span></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 2</span></div>
-
-    <!-- 4. Onboarding 3 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
-      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-coinstack"/></svg></div>
-      <h3 class="z2">Earn While<br>You Hold</h3>
-      <p class="z2">Stake your assets, earn rewards, and watch your portfolio grow.</p>
-      <div class="dots z2"><span></span><span></span><span class="active"></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 3</span></div>
-
-    <!-- 5. Onboarding 4 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
-      <div class="ico z2" style="color:var(--gold)"><svg><use href="#ico-shield"/></svg></div>
-      <h3 class="z2" style="color:var(--gold)">Bank-Grade<br>Security</h3>
-      <p class="z2">Advanced encryption, biometric auth, and 2FA protect every transaction.</p>
-      <div class="dots z2"><span></span><span></span><span></span><span class="active"></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 4</span></div>
-
-    <!-- 6. Onboarding 5 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
-      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-tools"/></svg></div>
-      <h3 class="z2">Your Complete<br>Crypto Toolkit</h3>
-      <p class="z2">Trade, swap, P2P, NFTs, staking, virtual card — all in one app.</p>
-      <div class="dots z2"><span></span><span></span><span></span><span></span><span class="active"></span></div>
-      <div class="cta-btn z2">Get Started</div>
-    </div></div></div><span class="screen-label">Onboarding 5</span></div>
-
-  </div>
-
-  <div class="row-label">Auth &amp; System Screens</div>
-  <div class="phone-row">
-
-    <!-- 7. Login/Signup -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
-      <div class="logo-sm z2"><svg><use href="#logo-crymadx"/></svg></div>
-      <h3 class="z2" style="font-size:11px;letter-spacing:3px;margin-bottom:2px">ACCESS TERMINAL</h3>
-      <p class="z2" style="margin-bottom:16px;color:var(--text-secondary)">Authenticate to proceed</p>
-      <div class="auth-btns z2">
-        <div class="btn-primary">LOGIN</div>
-        <div class="btn-outline">REGISTER</div>
-      </div>
-    </div></div></div><span class="screen-label">Login / Signup</span></div>
-
-    <!-- 8. Biometric -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
-      <div class="ico z2 fp-glow" style="color:var(--green-light);width:72px;height:72px"><svg><use href="#ico-fingerprint"/></svg></div>
-      <h3 class="z2" style="margin-top:14px">Biometric Scan</h3>
-      <p class="z2">Place your finger on the sensor to authenticate.</p>
-    </div></div></div><span class="screen-label">Biometric</span></div>
-
-    <!-- 9. PIN Setup -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:60px">
-      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
-      <div class="ico z2" style="color:var(--green-light);width:36px;height:36px"><svg><use href="#ico-lock"/></svg></div>
-      <h3 class="z2" style="font-size:11px;margin-top:8px;margin-bottom:16px">SET YOUR PIN</h3>
-      <div class="pin-dots z2"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span><span></span></div>
-      <div class="keypad z2">
-        <span>1</span><span>2</span><span>3</span>
-        <span>4</span><span>5</span><span>6</span>
-        <span>7</span><span>8</span><span>9</span>
-        <span></span><span>0</span><span style="font-size:12px">&larr;</span>
-      </div>
-    </div></div></div><span class="screen-label">PIN Setup</span></div>
-
-    <!-- 10. Tab Bar Preview -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:50px;padding-bottom:60px">
-      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
-      <p class="z2" style="font-size:8px;color:var(--text-secondary);letter-spacing:2px;margin-bottom:4px">PORTFOLIO VALUE</p>
-      <h3 class="z2" style="font-size:22px;color:var(--green-light);margin-bottom:2px">$39.09</h3>
-      <p class="z2" style="font-size:8px;color:var(--green-accent)">+2.4% today</p>
-      <div class="quick-actions z2" style="margin-top:18px">
-        <div class="qa-item"><div class="qa-circle"><svg style="color:var(--green-light)"><use href="#ico-deposit"/></svg></div><span style="font-family:'Orbitron';font-size:7px">Deposit</span></div>
-        <div class="qa-item"><div class="qa-circle"><svg style="color:var(--green-light)"><use href="#ico-withdraw"/></svg></div><span style="font-family:'Orbitron';font-size:7px">Withdraw</span></div>
-        <div class="qa-item"><div class="qa-circle"><svg style="color:var(--green-light)"><use href="#ico-convert"/></svg></div><span style="font-family:'Orbitron';font-size:7px">Convert</span></div>
-      </div>
-      <!-- Tab bar -->
-      <div class="tab-bar">
-        <div class="tab-item active"><div class="ico-tab"><svg style="color:var(--green-light)"><use href="#ico-home"/></svg></div>Home</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-chart"/></svg></div>Markets</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-swap"/></svg></div>Trade</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-wallet"/></svg></div>Wallet</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-grid"/></svg></div>More</div>
-      </div>
-    </div></div></div><span class="screen-label">Tab Bar Preview</span></div>
-
-    <!-- 11. Offline -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
-      <div class="ico z2" style="color:var(--text-secondary);width:64px;height:64px"><svg><use href="#ico-wifi-off"/></svg></div>
-      <h3 class="z2" style="margin-top:12px">Connection Lost</h3>
-      <p class="z2">Unable to reach CrymadX servers. Check your connection.</p>
-      <div class="cta-btn z2" style="margin-top:16px">Retry</div>
-    </div></div></div><span class="screen-label">Offline</span></div>
-
-    <!-- 12. Force Update -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
-      <div class="ico z2" style="color:var(--green-light);width:64px;height:64px"><svg><use href="#ico-download"/></svg></div>
-      <h3 class="z2" style="margin-top:12px;font-size:11px">UPDATE REQUIRED</h3>
-      <p class="z2">A new version of CrymadX is available with critical improvements.</p>
-      <div class="cta-btn z2" style="margin-top:16px">Update Now</div>
-    </div></div></div><span class="screen-label">Force Update</span></div>
-
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- THEME 2: GLASS MORPHISM                                      -->
-<!-- ============================================================ -->
-<div class="category d2">
-  <div class="cat-head">
-    <div class="cat-num">2</div>
-    <h2>Glass Morphism</h2>
-  </div>
-  <div class="cat-desc">Frosted glass card containers, soft blurred gradient blobs, Space Grotesk font. Premium elegant feel.</div>
-
-  <div class="row-label">Splash &amp; Onboarding</div>
-  <div class="phone-row">
-
-    <!-- 1. Splash -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="logo-main z2"><svg><use href="#logo-crymadx"/></svg></div>
-      <h3 class="z2">CrymadX</h3>
-      <p class="z2" style="font-size:9px;letter-spacing:2px;color:var(--gold)">EXCHANGE</p>
-      <div class="loading-bar z2"></div>
-    </div></div></div><span class="screen-label">Splash</span></div>
-
-    <!-- 2. Onboarding 1 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="glass-card">
-        <div class="ico" style="color:var(--green-light);margin:0 auto 10px"><svg><use href="#ico-chart"/></svg></div>
-        <h3>Trade the Future of Finance</h3>
-        <p>Your complete crypto exchange with spot trading, analytics and more.</p>
-      </div>
-      <div class="dots z2"><span class="active"></span><span></span><span></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 1</span></div>
-
-    <!-- 3. Onboarding 2 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="glass-card">
-        <div class="ico" style="color:var(--green-light);margin:0 auto 10px"><svg><use href="#ico-barchart"/></svg></div>
-        <h3>63+ Markets, Real-Time</h3>
-        <p>Live data, trending coins, and deep market analytics at your fingertips.</p>
-      </div>
-      <div class="dots z2"><span></span><span class="active"></span><span></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 2</span></div>
-
-    <!-- 4. Onboarding 3 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="glass-card">
-        <div class="ico" style="color:var(--green-light);margin:0 auto 10px"><svg><use href="#ico-coinstack"/></svg></div>
-        <h3>Earn While You Hold</h3>
-        <p>Stake your assets, earn rewards, and watch your portfolio grow.</p>
-      </div>
-      <div class="dots z2"><span></span><span></span><span class="active"></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 3</span></div>
-
-    <!-- 5. Onboarding 4 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="glass-card">
-        <div class="ico" style="color:var(--gold);margin:0 auto 10px"><svg><use href="#ico-shield"/></svg></div>
-        <h3 style="color:var(--gold)">Bank-Grade Security</h3>
-        <p>Advanced encryption, biometric auth, and 2FA protect every transaction.</p>
-      </div>
-      <div class="dots z2"><span></span><span></span><span></span><span class="active"></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 4</span></div>
-
-    <!-- 6. Onboarding 5 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="glass-card">
-        <div class="ico" style="color:var(--green-light);margin:0 auto 10px"><svg><use href="#ico-tools"/></svg></div>
-        <h3>Your Complete Crypto Toolkit</h3>
-        <p>Trade, swap, P2P, NFTs, staking, virtual card — all in one app.</p>
-      </div>
-      <div class="dots z2"><span></span><span></span><span></span><span></span><span class="active"></span></div>
-      <div class="cta-btn z2">Get Started</div>
-    </div></div></div><span class="screen-label">Onboarding 5</span></div>
-
-  </div>
-
-  <div class="row-label">Auth &amp; System Screens</div>
-  <div class="phone-row">
-
-    <!-- 7. Login/Signup -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="glass-card">
-        <div class="logo-sm" style="margin:0 auto 8px"><svg><use href="#logo-crymadx"/></svg></div>
-        <h3 style="font-size:13px">Welcome to CrymadX</h3>
-        <p style="margin-bottom:14px">Sign in to access your exchange</p>
-        <div class="auth-btns" style="width:100%">
-          <div class="btn-primary">LOGIN</div>
-          <div class="btn-outline">REGISTER</div>
-        </div>
-      </div>
-    </div></div></div><span class="screen-label">Login / Signup</span></div>
-
-    <!-- 8. Biometric -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="glass-card">
-        <div class="ico fp-glow" style="color:var(--green-light);width:72px;height:72px;margin:0 auto 12px"><svg><use href="#ico-fingerprint"/></svg></div>
-        <h3>Biometric Login</h3>
-        <p>Touch the sensor to authenticate securely.</p>
-      </div>
-    </div></div></div><span class="screen-label">Biometric</span></div>
-
-    <!-- 9. PIN Setup -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:55px">
-      <div class="ico z2" style="color:var(--green-light);width:32px;height:32px"><svg><use href="#ico-lock"/></svg></div>
-      <h3 class="z2" style="margin-top:8px;margin-bottom:16px;font-size:13px">Set Your PIN</h3>
-      <div class="pin-dots z2"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span><span></span></div>
-      <div class="keypad z2">
-        <span>1</span><span>2</span><span>3</span>
-        <span>4</span><span>5</span><span>6</span>
-        <span>7</span><span>8</span><span>9</span>
-        <span></span><span>0</span><span>&larr;</span>
-      </div>
-    </div></div></div><span class="screen-label">PIN Setup</span></div>
-
-    <!-- 10. Tab Bar Preview -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:50px;padding-bottom:60px">
-      <p class="z2" style="font-size:9px;color:var(--text-secondary);letter-spacing:1px;margin-bottom:4px">Portfolio Value</p>
-      <h3 class="z2" style="font-size:24px;color:var(--text-primary);margin-bottom:2px">$39.09</h3>
-      <p class="z2" style="font-size:9px;color:var(--green-accent)">+2.4% today</p>
-      <div class="quick-actions z2" style="margin-top:18px">
-        <div class="qa-item"><div class="qa-circle" style="background:rgba(27,140,62,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08)"><svg style="color:var(--green-light)"><use href="#ico-deposit"/></svg></div><span>Deposit</span></div>
-        <div class="qa-item"><div class="qa-circle" style="background:rgba(27,140,62,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08)"><svg style="color:var(--green-light)"><use href="#ico-withdraw"/></svg></div><span>Withdraw</span></div>
-        <div class="qa-item"><div class="qa-circle" style="background:rgba(27,140,62,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08)"><svg style="color:var(--green-light)"><use href="#ico-convert"/></svg></div><span>Convert</span></div>
-      </div>
-      <div class="tab-bar">
-        <div class="tab-item active"><div class="ico-tab"><svg style="color:var(--green-light)"><use href="#ico-home"/></svg></div>Home</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-chart"/></svg></div>Markets</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-swap"/></svg></div>Trade</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-wallet"/></svg></div>Wallet</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-grid"/></svg></div>More</div>
-      </div>
-    </div></div></div><span class="screen-label">Tab Bar Preview</span></div>
-
-    <!-- 11. Offline -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="glass-card">
-        <div class="ico" style="color:var(--text-secondary);width:64px;height:64px;margin:0 auto 10px"><svg><use href="#ico-wifi-off"/></svg></div>
-        <h3>Connection Lost</h3>
-        <p>Unable to reach CrymadX servers. Check your connection.</p>
-        <div class="cta-btn" style="margin-top:14px">Retry</div>
-      </div>
-    </div></div></div><span class="screen-label">Offline</span></div>
-
-    <!-- 12. Force Update -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="glass-card">
-        <div class="ico" style="color:var(--green-light);width:64px;height:64px;margin:0 auto 10px"><svg><use href="#ico-download"/></svg></div>
-        <h3>Update Required</h3>
-        <p>A new version of CrymadX is available with critical improvements.</p>
-        <div class="cta-btn" style="margin-top:14px">Update Now</div>
-      </div>
-    </div></div></div><span class="screen-label">Force Update</span></div>
-
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- THEME 3: GAMIFIED RPG                                        -->
-<!-- ============================================================ -->
-<div class="category d3">
-  <div class="cat-head">
-    <div class="cat-num">3</div>
-    <h2>Gamified RPG</h2>
-  </div>
-  <div class="cat-desc">XP progress bars, achievement ring containers for icons, level badges, floating particle dots, Rajdhani font. Gamified trading progression.</div>
-
-  <div class="row-label">Splash &amp; Onboarding</div>
-  <div class="phone-row">
-
-    <!-- 1. Splash -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="achievement-ring z2"><div class="logo-sm" style="margin:0;width:40px;height:40px"><svg><use href="#logo-crymadx"/></svg></div></div>
-      <h3 class="z2">CrymadX</h3>
-      <p class="z2" style="font-size:9px;letter-spacing:2px;color:var(--gold)">EXCHANGE</p>
-      <div class="loading-bar z2"></div>
-      <div class="xp-label z2">LOADING ARENA...</div>
-    </div></div></div><span class="screen-label">Splash</span></div>
-
-    <!-- 2. Onboarding 1 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="achievement-ring z2">
-        <div class="level-badge">LV1</div>
-        <div class="ico" style="color:var(--green-light);margin:0;width:36px;height:36px"><svg><use href="#ico-chart"/></svg></div>
-      </div>
-      <h3 class="z2">Trade the Future of Finance</h3>
-      <p class="z2">Your complete crypto exchange with spot trading, analytics and more.</p>
-      <div class="xp-bar z2"></div>
-      <div class="xp-label z2">QUEST 1/5</div>
-      <div class="dots z2"><span class="active"></span><span></span><span></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next Quest</div>
-    </div></div></div><span class="screen-label">Onboarding 1</span></div>
-
-    <!-- 3. Onboarding 2 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="achievement-ring z2">
-        <div class="level-badge">LV2</div>
-        <div class="ico" style="color:var(--green-light);margin:0;width:36px;height:36px"><svg><use href="#ico-barchart"/></svg></div>
-      </div>
-      <h3 class="z2">63+ Markets, Real-Time</h3>
-      <p class="z2">Live data, trending coins, and deep market analytics at your fingertips.</p>
-      <div class="xp-bar z2"></div>
-      <div class="xp-label z2">QUEST 2/5</div>
-      <div class="dots z2"><span></span><span class="active"></span><span></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next Quest</div>
-    </div></div></div><span class="screen-label">Onboarding 2</span></div>
-
-    <!-- 4. Onboarding 3 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="achievement-ring z2">
-        <div class="level-badge">LV3</div>
-        <div class="ico" style="color:var(--green-light);margin:0;width:36px;height:36px"><svg><use href="#ico-coinstack"/></svg></div>
-      </div>
-      <h3 class="z2">Earn While You Hold</h3>
-      <p class="z2">Stake your assets, earn rewards, and watch your portfolio grow.</p>
-      <div class="xp-bar z2"></div>
-      <div class="xp-label z2">QUEST 3/5</div>
-      <div class="dots z2"><span></span><span></span><span class="active"></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next Quest</div>
-    </div></div></div><span class="screen-label">Onboarding 3</span></div>
-
-    <!-- 5. Onboarding 4 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="achievement-ring z2" style="border-color:var(--gold);box-shadow:0 0 15px rgba(201,168,76,0.3),inset 0 0 10px rgba(201,168,76,0.1)">
-        <div class="level-badge">LV4</div>
-        <div class="ico" style="color:var(--gold);margin:0;width:36px;height:36px"><svg><use href="#ico-shield"/></svg></div>
-      </div>
-      <h3 class="z2" style="color:var(--gold)">Bank-Grade Security</h3>
-      <p class="z2">Advanced encryption, biometric auth, and 2FA protect every transaction.</p>
-      <div class="xp-bar z2"></div>
-      <div class="xp-label z2">QUEST 4/5</div>
-      <div class="dots z2"><span></span><span></span><span></span><span class="active"></span><span></span></div>
-      <div class="cta-btn z2">Next Quest</div>
-    </div></div></div><span class="screen-label">Onboarding 4</span></div>
-
-    <!-- 6. Onboarding 5 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="achievement-ring z2">
-        <div class="level-badge">LV5</div>
-        <div class="ico" style="color:var(--green-light);margin:0;width:36px;height:36px"><svg><use href="#ico-tools"/></svg></div>
-      </div>
-      <h3 class="z2">Your Complete Crypto Toolkit</h3>
-      <p class="z2">Trade, swap, P2P, NFTs, staking, virtual card — all in one app.</p>
-      <div class="xp-bar z2"></div>
-      <div class="xp-label z2">QUEST 5/5 COMPLETE!</div>
-      <div class="dots z2"><span></span><span></span><span></span><span></span><span class="active"></span></div>
-      <div class="cta-btn z2">Enter Arena</div>
-    </div></div></div><span class="screen-label">Onboarding 5</span></div>
-
-  </div>
-
-  <div class="row-label">Auth &amp; System Screens</div>
-  <div class="phone-row">
-
-    <!-- 7. Login/Signup -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="achievement-ring z2">
-        <div class="logo-sm" style="margin:0;width:40px;height:40px"><svg><use href="#logo-crymadx"/></svg></div>
-      </div>
-      <h3 class="z2" style="font-size:14px;margin-top:8px">Enter the Arena</h3>
-      <p class="z2" style="margin-bottom:14px">Choose your path, trader.</p>
-      <div class="auth-btns z2">
-        <div class="btn-primary">LOGIN</div>
-        <div class="btn-outline">REGISTER</div>
-      </div>
-    </div></div></div><span class="screen-label">Login / Signup</span></div>
-
-    <!-- 8. Biometric -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="achievement-ring z2" style="width:84px;height:84px">
-        <div class="ico fp-glow" style="color:var(--green-light);margin:0;width:48px;height:48px"><svg><use href="#ico-fingerprint"/></svg></div>
-      </div>
-      <h3 class="z2" style="margin-top:14px">Biometric Scan</h3>
-      <p class="z2">Verify your identity to proceed.</p>
-      <div class="xp-bar z2"></div>
-      <div class="xp-label z2">AUTHENTICATING...</div>
-    </div></div></div><span class="screen-label">Biometric</span></div>
-
-    <!-- 9. PIN Setup -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:55px">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="ico z2" style="color:var(--green-light);width:32px;height:32px"><svg><use href="#ico-lock"/></svg></div>
-      <h3 class="z2" style="margin-top:8px;margin-bottom:4px;font-size:14px">Set Your PIN</h3>
-      <div class="xp-label z2" style="margin-bottom:12px">SECURITY QUEST</div>
-      <div class="pin-dots z2"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span><span></span></div>
-      <div class="keypad z2">
-        <span>1</span><span>2</span><span>3</span>
-        <span>4</span><span>5</span><span>6</span>
-        <span>7</span><span>8</span><span>9</span>
-        <span></span><span>0</span><span>&larr;</span>
-      </div>
-    </div></div></div><span class="screen-label">PIN Setup</span></div>
-
-    <!-- 10. Tab Bar Preview -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:50px;padding-bottom:60px">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <p class="z2" style="font-size:9px;color:var(--gold);letter-spacing:1px;margin-bottom:2px">PORTFOLIO XP</p>
-      <h3 class="z2" style="font-size:24px;margin-bottom:2px">$39.09</h3>
-      <p class="z2" style="font-size:9px;color:var(--green-accent)">+2.4% today</p>
-      <div class="xp-bar z2" style="margin-top:8px"></div>
-      <div class="xp-label z2">LEVEL 7 TRADER</div>
-      <div class="quick-actions z2" style="margin-top:14px">
-        <div class="qa-item"><div class="qa-circle" style="border:2px solid var(--green);box-shadow:0 0 8px rgba(27,140,62,0.3)"><svg style="color:var(--green-light)"><use href="#ico-deposit"/></svg></div><span style="font-family:'Rajdhani';font-size:9px;font-weight:600">Deposit</span></div>
-        <div class="qa-item"><div class="qa-circle" style="border:2px solid var(--green);box-shadow:0 0 8px rgba(27,140,62,0.3)"><svg style="color:var(--green-light)"><use href="#ico-withdraw"/></svg></div><span style="font-family:'Rajdhani';font-size:9px;font-weight:600">Withdraw</span></div>
-        <div class="qa-item"><div class="qa-circle" style="border:2px solid var(--green);box-shadow:0 0 8px rgba(27,140,62,0.3)"><svg style="color:var(--green-light)"><use href="#ico-convert"/></svg></div><span style="font-family:'Rajdhani';font-size:9px;font-weight:600">Convert</span></div>
-      </div>
-      <div class="tab-bar">
-        <div class="tab-item active"><div class="ico-tab"><svg style="color:var(--green-light)"><use href="#ico-home"/></svg></div>Home</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-chart"/></svg></div>Markets</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-swap"/></svg></div>Trade</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-wallet"/></svg></div>Wallet</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-grid"/></svg></div>More</div>
-      </div>
-    </div></div></div><span class="screen-label">Tab Bar Preview</span></div>
-
-    <!-- 11. Offline -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="achievement-ring z2" style="border-color:var(--text-secondary);box-shadow:none">
-        <div class="ico" style="color:var(--text-secondary);margin:0;width:36px;height:36px"><svg><use href="#ico-wifi-off"/></svg></div>
-      </div>
-      <h3 class="z2" style="margin-top:12px">Connection Lost</h3>
-      <p class="z2">Unable to reach CrymadX servers. Check your connection.</p>
-      <div class="cta-btn z2" style="margin-top:16px">Retry</div>
-    </div></div></div><span class="screen-label">Offline</span></div>
-
-    <!-- 12. Force Update -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
-      <div class="achievement-ring z2">
-        <div class="level-badge" style="background:var(--green-light);color:#0a1f12">NEW</div>
-        <div class="ico" style="color:var(--green-light);margin:0;width:36px;height:36px"><svg><use href="#ico-download"/></svg></div>
-      </div>
-      <h3 class="z2" style="margin-top:12px">Update Required</h3>
-      <p class="z2">A new version with critical improvements is available.</p>
-      <div class="cta-btn z2" style="margin-top:16px">Update Now</div>
-    </div></div></div><span class="screen-label">Force Update</span></div>
-
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- THEME 4: BOLD WAVES                                          -->
-<!-- ============================================================ -->
-<div class="category d4">
-  <div class="cat-head">
-    <div class="cat-num">4</div>
-    <h2>Bold Waves</h2>
-  </div>
-  <div class="cat-desc">Organic wave shape backgrounds (clip-path ellipse), large bold typography, gradient-filled CTAs with shadows, Outfit font. High-energy fintech.</div>
-
-  <div class="row-label">Splash &amp; Onboarding</div>
-  <div class="phone-row">
-
-    <!-- 1. Splash -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="logo-main z2"><svg><use href="#logo-crymadx"/></svg></div>
-      <h3 class="z2" style="font-size:22px">CrymadX</h3>
-      <p class="z2" style="font-size:10px;letter-spacing:3px;color:var(--gold);font-weight:500">EXCHANGE</p>
-      <div class="loading-bar z2"></div>
-    </div></div></div><span class="screen-label">Splash</span></div>
-
-    <!-- 2. Onboarding 1 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="ico z2" style="color:var(--green-light);width:64px;height:64px"><svg><use href="#ico-chart"/></svg></div>
-      <h3 class="z2">Trade the Future of Finance</h3>
-      <p class="z2">Your complete crypto exchange with spot trading, analytics and more.</p>
-      <div class="dots z2"><span class="active"></span><span></span><span></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 1</span></div>
-
-    <!-- 3. Onboarding 2 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="ico z2" style="color:var(--green-light);width:64px;height:64px"><svg><use href="#ico-barchart"/></svg></div>
-      <h3 class="z2">63+ Markets, Real-Time</h3>
-      <p class="z2">Live data, trending coins, and deep market analytics at your fingertips.</p>
-      <div class="dots z2"><span></span><span class="active"></span><span></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 2</span></div>
-
-    <!-- 4. Onboarding 3 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="ico z2" style="color:var(--green-light);width:64px;height:64px"><svg><use href="#ico-coinstack"/></svg></div>
-      <h3 class="z2">Earn While You Hold</h3>
-      <p class="z2">Stake your assets, earn rewards, and watch your portfolio grow.</p>
-      <div class="dots z2"><span></span><span></span><span class="active"></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 3</span></div>
-
-    <!-- 5. Onboarding 4 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="ico z2" style="color:var(--gold);width:64px;height:64px"><svg><use href="#ico-shield"/></svg></div>
-      <h3 class="z2" style="color:var(--gold)">Bank-Grade Security</h3>
-      <p class="z2">Advanced encryption, biometric auth, and 2FA protect every transaction.</p>
-      <div class="dots z2"><span></span><span></span><span></span><span class="active"></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 4</span></div>
-
-    <!-- 6. Onboarding 5 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="ico z2" style="color:var(--green-light);width:64px;height:64px"><svg><use href="#ico-tools"/></svg></div>
-      <h3 class="z2">Your Complete Crypto Toolkit</h3>
-      <p class="z2">Trade, swap, P2P, NFTs, staking, virtual card — all in one app.</p>
-      <div class="dots z2"><span></span><span></span><span></span><span></span><span class="active"></span></div>
-      <div class="cta-btn z2">Get Started</div>
-    </div></div></div><span class="screen-label">Onboarding 5</span></div>
-
-  </div>
-
-  <div class="row-label">Auth &amp; System Screens</div>
-  <div class="phone-row">
-
-    <!-- 7. Login/Signup -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="logo-sm z2"><svg><use href="#logo-crymadx"/></svg></div>
-      <h3 class="z2" style="font-size:20px;margin-bottom:2px">Welcome</h3>
-      <p class="z2" style="margin-bottom:18px">Start trading with CrymadX</p>
-      <div class="auth-btns z2">
-        <div class="btn-primary">LOGIN</div>
-        <div class="btn-outline">REGISTER</div>
-      </div>
-    </div></div></div><span class="screen-label">Login / Signup</span></div>
-
-    <!-- 8. Biometric -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="ico z2 fp-glow" style="color:var(--green-light);width:80px;height:80px"><svg><use href="#ico-fingerprint"/></svg></div>
-      <h3 class="z2" style="margin-top:16px;font-size:20px">Biometric Login</h3>
-      <p class="z2">Touch the sensor to verify your identity.</p>
-    </div></div></div><span class="screen-label">Biometric</span></div>
-
-    <!-- 9. PIN Setup -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:55px">
-      <div class="ico z2" style="color:var(--green-light);width:32px;height:32px"><svg><use href="#ico-lock"/></svg></div>
-      <h3 class="z2" style="margin-top:8px;margin-bottom:16px;font-size:18px">Set Your PIN</h3>
-      <div class="pin-dots z2"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span><span></span></div>
-      <div class="keypad z2">
-        <span>1</span><span>2</span><span>3</span>
-        <span>4</span><span>5</span><span>6</span>
-        <span>7</span><span>8</span><span>9</span>
-        <span></span><span>0</span><span>&larr;</span>
-      </div>
-    </div></div></div><span class="screen-label">PIN Setup</span></div>
-
-    <!-- 10. Tab Bar Preview -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:50px;padding-bottom:60px">
-      <p class="z2" style="font-size:10px;color:var(--text-secondary);margin-bottom:4px">Portfolio Value</p>
-      <h3 class="z2" style="font-size:28px;margin-bottom:2px">$39.09</h3>
-      <p class="z2" style="font-size:10px;color:var(--green-accent);font-weight:600">+2.4% today</p>
-      <div class="quick-actions z2" style="margin-top:18px">
-        <div class="qa-item"><div class="qa-circle" style="background:linear-gradient(135deg,rgba(27,140,62,0.3),rgba(0,200,83,0.15));box-shadow:0 4px 12px rgba(0,200,83,0.2)"><svg style="color:var(--green-light)"><use href="#ico-deposit"/></svg></div><span style="font-family:'Outfit';font-weight:600;font-size:9px">Deposit</span></div>
-        <div class="qa-item"><div class="qa-circle" style="background:linear-gradient(135deg,rgba(27,140,62,0.3),rgba(0,200,83,0.15));box-shadow:0 4px 12px rgba(0,200,83,0.2)"><svg style="color:var(--green-light)"><use href="#ico-withdraw"/></svg></div><span style="font-family:'Outfit';font-weight:600;font-size:9px">Withdraw</span></div>
-        <div class="qa-item"><div class="qa-circle" style="background:linear-gradient(135deg,rgba(27,140,62,0.3),rgba(0,200,83,0.15));box-shadow:0 4px 12px rgba(0,200,83,0.2)"><svg style="color:var(--green-light)"><use href="#ico-convert"/></svg></div><span style="font-family:'Outfit';font-weight:600;font-size:9px">Convert</span></div>
-      </div>
-      <div class="tab-bar">
-        <div class="tab-item active"><div class="ico-tab"><svg style="color:var(--green-light)"><use href="#ico-home"/></svg></div>Home</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-chart"/></svg></div>Markets</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-swap"/></svg></div>Trade</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-wallet"/></svg></div>Wallet</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-grid"/></svg></div>More</div>
-      </div>
-    </div></div></div><span class="screen-label">Tab Bar Preview</span></div>
-
-    <!-- 11. Offline -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="ico z2" style="color:var(--text-secondary);width:72px;height:72px"><svg><use href="#ico-wifi-off"/></svg></div>
-      <h3 class="z2" style="margin-top:14px;font-size:20px">Connection Lost</h3>
-      <p class="z2">Unable to reach CrymadX servers. Check your connection.</p>
-      <div class="cta-btn z2" style="margin-top:16px">Retry</div>
-    </div></div></div><span class="screen-label">Offline</span></div>
-
-    <!-- 12. Force Update -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="ico z2" style="color:var(--green-light);width:72px;height:72px"><svg><use href="#ico-download"/></svg></div>
-      <h3 class="z2" style="margin-top:14px;font-size:18px">Update Required</h3>
-      <p class="z2">A new version of CrymadX is available with critical improvements.</p>
-      <div class="cta-btn z2" style="margin-top:16px">Update Now</div>
-    </div></div></div><span class="screen-label">Force Update</span></div>
-
-  </div>
-</div>
-
-<!-- ============================================================ -->
-<!-- THEME 5: LUXE MINIMAL                                        -->
-<!-- ============================================================ -->
-<div class="category d5">
-  <div class="cat-head">
-    <div class="cat-num">5</div>
-    <h2>Luxe Minimal</h2>
-  </div>
-  <div class="cat-desc">Thin decorative lines (horizontal + vertical), subtle center glow, maximum whitespace, thin Inter font with wide letter-spacing. Institutional / private-banking feel.</div>
-
-  <div class="row-label">Splash &amp; Onboarding</div>
-  <div class="phone-row">
-
-    <!-- 1. Splash -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="line-h" style="top:35%"></div>
-      <div class="line-h" style="bottom:35%"></div>
-      <div class="line-v" style="left:20px"></div>
-      <div class="line-v" style="right:20px"></div>
-      <div class="logo-main z2"><svg><use href="#logo-crymadx"/></svg></div>
-      <h3 class="z2" style="font-size:16px;letter-spacing:8px;font-weight:300">CRYMADX</h3>
-      <p class="z2" style="font-size:8px;letter-spacing:5px;color:var(--gold);margin-top:4px">EXCHANGE</p>
-      <div class="loading-bar z2"></div>
-    </div></div></div><span class="screen-label">Splash</span></div>
-
-    <!-- 2. Onboarding 1 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="line-h" style="top:30%"></div>
-      <div class="line-h" style="bottom:30%"></div>
-      <div class="line-v" style="left:20px"></div>
-      <div class="line-v" style="right:20px"></div>
-      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-chart"/></svg></div>
-      <h3 class="z2">Trade the Future of Finance</h3>
-      <p class="z2">Your complete crypto exchange with spot trading, analytics and more.</p>
-      <div class="dots z2"><span class="active"></span><span></span><span></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 1</span></div>
-
-    <!-- 3. Onboarding 2 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="line-h" style="top:30%"></div>
-      <div class="line-h" style="bottom:30%"></div>
-      <div class="line-v" style="left:20px"></div>
-      <div class="line-v" style="right:20px"></div>
-      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-barchart"/></svg></div>
-      <h3 class="z2">63+ Markets Real-Time</h3>
-      <p class="z2">Live data, trending coins, and deep market analytics at your fingertips.</p>
-      <div class="dots z2"><span></span><span class="active"></span><span></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 2</span></div>
-
-    <!-- 4. Onboarding 3 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="line-h" style="top:30%"></div>
-      <div class="line-h" style="bottom:30%"></div>
-      <div class="line-v" style="left:20px"></div>
-      <div class="line-v" style="right:20px"></div>
-      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-coinstack"/></svg></div>
-      <h3 class="z2">Earn While You Hold</h3>
-      <p class="z2">Stake your assets, earn rewards, and watch your portfolio grow.</p>
-      <div class="dots z2"><span></span><span></span><span class="active"></span><span></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 3</span></div>
-
-    <!-- 5. Onboarding 4 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="line-h" style="top:30%"></div>
-      <div class="line-h" style="bottom:30%"></div>
-      <div class="line-v" style="left:20px"></div>
-      <div class="line-v" style="right:20px"></div>
-      <div class="ico z2" style="color:var(--gold)"><svg><use href="#ico-shield"/></svg></div>
-      <h3 class="z2" style="color:var(--gold)">Bank-Grade Security</h3>
-      <p class="z2">Advanced encryption, biometric auth, and 2FA protect every transaction.</p>
-      <div class="dots z2"><span></span><span></span><span></span><span class="active"></span><span></span></div>
-      <div class="cta-btn z2">Next</div>
-    </div></div></div><span class="screen-label">Onboarding 4</span></div>
-
-    <!-- 6. Onboarding 5 -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="line-h" style="top:30%"></div>
-      <div class="line-h" style="bottom:30%"></div>
-      <div class="line-v" style="left:20px"></div>
-      <div class="line-v" style="right:20px"></div>
-      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-tools"/></svg></div>
-      <h3 class="z2">Your Complete Crypto Toolkit</h3>
-      <p class="z2">Trade, swap, P2P, NFTs, staking, virtual card — all in one app.</p>
-      <div class="dots z2"><span></span><span></span><span></span><span></span><span class="active"></span></div>
-      <div class="cta-btn z2">Get Started</div>
-    </div></div></div><span class="screen-label">Onboarding 5</span></div>
-
-  </div>
-
-  <div class="row-label">Auth &amp; System Screens</div>
-  <div class="phone-row">
-
-    <!-- 7. Login/Signup -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="line-h" style="top:30%"></div>
-      <div class="line-h" style="bottom:30%"></div>
-      <div class="line-v" style="left:20px"></div>
-      <div class="line-v" style="right:20px"></div>
-      <div class="logo-sm z2"><svg><use href="#logo-crymadx"/></svg></div>
-      <h3 class="z2" style="font-size:12px;letter-spacing:6px;margin-bottom:4px">CRYMADX</h3>
-      <p class="z2" style="margin-bottom:20px;letter-spacing:2px">Access your exchange</p>
-      <div class="auth-btns z2">
-        <div class="btn-primary">LOGIN</div>
-        <div class="btn-outline">REGISTER</div>
-      </div>
-    </div></div></div><span class="screen-label">Login / Signup</span></div>
-
-    <!-- 8. Biometric -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="line-h" style="top:30%"></div>
-      <div class="line-h" style="bottom:30%"></div>
-      <div class="line-v" style="left:20px"></div>
-      <div class="line-v" style="right:20px"></div>
-      <div class="ico z2 fp-glow" style="color:var(--green-light);width:72px;height:72px"><svg><use href="#ico-fingerprint"/></svg></div>
-      <h3 class="z2" style="margin-top:16px">Biometric</h3>
-      <p class="z2">Place your finger on the sensor.</p>
-    </div></div></div><span class="screen-label">Biometric</span></div>
-
-    <!-- 9. PIN Setup -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:55px">
-      <div class="line-h" style="top:30%"></div>
-      <div class="line-v" style="left:20px"></div>
-      <div class="line-v" style="right:20px"></div>
-      <div class="ico z2" style="color:var(--green-light);width:28px;height:28px"><svg><use href="#ico-lock"/></svg></div>
-      <h3 class="z2" style="margin-top:10px;margin-bottom:18px;font-size:12px;letter-spacing:6px">SET PIN</h3>
-      <div class="pin-dots z2"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span><span></span></div>
-      <div class="keypad z2">
-        <span>1</span><span>2</span><span>3</span>
-        <span>4</span><span>5</span><span>6</span>
-        <span>7</span><span>8</span><span>9</span>
-        <span></span><span>0</span><span>&larr;</span>
-      </div>
-    </div></div></div><span class="screen-label">PIN Setup</span></div>
-
-    <!-- 10. Tab Bar Preview -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:55px;padding-bottom:60px">
-      <div class="line-h" style="top:28%"></div>
-      <div class="line-v" style="left:20px"></div>
-      <div class="line-v" style="right:20px"></div>
-      <p class="z2" style="font-size:9px;color:var(--text-secondary);letter-spacing:3px;margin-bottom:6px">PORTFOLIO</p>
-      <h3 class="z2" style="font-size:26px;font-weight:300;letter-spacing:2px;margin-bottom:2px">$39.09</h3>
-      <p class="z2" style="font-size:9px;color:var(--green-accent);letter-spacing:1px">+2.4% today</p>
-      <div class="quick-actions z2" style="margin-top:20px">
-        <div class="qa-item"><div class="qa-circle" style="background:transparent;border:1px solid rgba(255,255,255,0.08);border-radius:0"><svg style="color:var(--green-light)"><use href="#ico-deposit"/></svg></div><span style="font-size:8px;letter-spacing:1px">Deposit</span></div>
-        <div class="qa-item"><div class="qa-circle" style="background:transparent;border:1px solid rgba(255,255,255,0.08);border-radius:0"><svg style="color:var(--green-light)"><use href="#ico-withdraw"/></svg></div><span style="font-size:8px;letter-spacing:1px">Withdraw</span></div>
-        <div class="qa-item"><div class="qa-circle" style="background:transparent;border:1px solid rgba(255,255,255,0.08);border-radius:0"><svg style="color:var(--green-light)"><use href="#ico-convert"/></svg></div><span style="font-size:8px;letter-spacing:1px">Convert</span></div>
-      </div>
-      <div class="tab-bar">
-        <div class="tab-item active"><div class="ico-tab"><svg style="color:var(--green-light)"><use href="#ico-home"/></svg></div>Home</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-chart"/></svg></div>Markets</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-swap"/></svg></div>Trade</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-wallet"/></svg></div>Wallet</div>
-        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-grid"/></svg></div>More</div>
-      </div>
-    </div></div></div><span class="screen-label">Tab Bar Preview</span></div>
-
-    <!-- 11. Offline -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="line-h" style="top:30%"></div>
-      <div class="line-h" style="bottom:30%"></div>
-      <div class="line-v" style="left:20px"></div>
-      <div class="line-v" style="right:20px"></div>
-      <div class="ico z2" style="color:var(--text-secondary);width:56px;height:56px"><svg><use href="#ico-wifi-off"/></svg></div>
-      <h3 class="z2" style="margin-top:14px">Connection Lost</h3>
-      <p class="z2">Unable to reach servers. Check your connection.</p>
-      <div class="cta-btn z2" style="margin-top:18px">Retry</div>
-    </div></div></div><span class="screen-label">Offline</span></div>
-
-    <!-- 12. Force Update -->
-    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
-      <div class="line-h" style="top:30%"></div>
-      <div class="line-h" style="bottom:30%"></div>
-      <div class="line-v" style="left:20px"></div>
-      <div class="line-v" style="right:20px"></div>
-      <div class="ico z2" style="color:var(--green-light);width:56px;height:56px"><svg><use href="#ico-download"/></svg></div>
-      <h3 class="z2" style="margin-top:14px">Update Required</h3>
-      <p class="z2">A critical update is available for CrymadX.</p>
-      <div class="cta-btn z2" style="margin-top:18px">Update Now</div>
-    </div></div></div><span class="screen-label">Force Update</span></div>
-
-  </div>
-</div>
-
+<script>
+// Screen data - define once, render for each theme
+const S = {
+rows: [
+{label:'SPLASH & ONBOARDING', screens:[
+{n:'Splash',t:'sc-c',h:`<div class="ic" style="width:60px;height:60px;border-radius:16px"><svg width="30" height="30"><use href="#i-shield"/></svg></div><h3 style="margin-top:8px">CRYMADX</h3><div class="stx" style="font-size:6px;letter-spacing:2px;margin-top:2px">TRADE THE FUTURE</div><div class="bar" style="width:40px;margin-top:10px"><div class="fl" style="width:65%"></div></div>`},
+{n:'OB1: Trade Smart',t:'sc-c',h:`<div class="ar"><svg width="28" height="28"><use href="#i-chart"/></svg><span class="arl">MARKETS</span></div><h3 style="margin-top:8px">TRADE SMART</h3><div class="stx">Access 63+ markets with real-time data and instant execution</div><div class="dots"><div class="d a"></div><div class="d"></div><div class="d"></div></div><div class="btn s" style="margin-top:2px">NEXT</div>`},
+{n:'OB2: Security',t:'sc-c',h:`<div class="ar"><svg width="28" height="28" stroke="var(--gd)"><use href="#i-shield"/></svg><span class="arl">SECURED</span></div><h3 style="margin-top:8px">BANK-GRADE SECURITY</h3><div class="stx">2FA, biometric auth, and encrypted transactions</div><div class="dots"><div class="d"></div><div class="d a"></div><div class="d"></div></div><div class="btn s">NEXT</div>`},
+{n:'OB3: Earn',t:'sc-c',h:`<div class="ar"><svg width="28" height="28"><use href="#i-trophy"/></svg><span class="arl">REWARDS</span></div><h3 style="margin-top:8px">EARN REWARDS</h3><div class="stx">Stake, save, and earn XP with every action</div><div class="dots"><div class="d"></div><div class="d"></div><div class="d a"></div></div><div class="btn s">GET STARTED</div>`},
+{n:'Login',t:'sc-c',h:`<div class="ic" style="width:44px;height:44px;border-radius:12px"><svg width="22" height="22"><use href="#i-shield"/></svg></div><h3 style="margin-top:6px">WELCOME BACK</h3><div class="inp">you@example.com</div><div class="inp">Password</div><div class="btn s">SIGN IN</div><div class="btn o" style="font-size:7px">Continue with Google</div><div class="stx" style="margin-top:4px;font-size:6px">Don't have an account? <span style="color:var(--gl)">Sign Up</span></div>`},
+{n:'Register',t:'sc-c',h:`<div class="ic" style="width:44px;height:44px;border-radius:12px"><svg width="22" height="22"><use href="#i-userp"/></svg></div><h3 style="margin-top:6px">CREATE ACCOUNT</h3><div class="inp">Full Name</div><div class="inp">Email</div><div class="inp">Password</div><div class="inp">Referral Code (optional)</div><div class="btn s">REGISTER</div><div class="stx" style="font-size:6px">Already have an account? <span style="color:var(--gl)">Sign In</span></div>`}
+]},
+{label:'AUTH FLOW', screens:[
+{n:'2FA Code',t:'sc-c',h:`<div class="ic" style="width:48px;height:48px"><svg width="24" height="24"><use href="#i-lock"/></svg></div><h3 style="margin-top:8px">TWO-FACTOR AUTH</h3><div class="stx">Enter the 6-digit code</div><div style="display:flex;gap:4px;justify-content:center;margin:8px 0;z-index:2">${[1,2,3,4,5,6].map((_,i)=>`<div style="width:24px;height:30px;border-radius:6px;border:1px solid rgba(27,140,62,.2);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--gl)">${i<3?'•':''}</div>`).join('')}</div><div class="btn s">VERIFY CODE</div><div class="stx" style="font-size:6px"><span style="color:var(--gl)">Back to Login</span></div>`},
+{n:'Forgot Password',t:'sc-c',h:`<div class="ic" style="width:48px;height:48px"><svg width="24" height="24"><use href="#i-mail"/></svg></div><h3 style="margin-top:8px">FORGOT PASSWORD</h3><div class="stx">Enter your email to reset</div><div class="inp">you@example.com</div><div class="btn s">SEND RESET LINK</div><div class="stx" style="font-size:6px"><span style="color:var(--gl)">Back to Login</span></div>`},
+{n:'Verify Email',t:'sc-c',h:`<div class="ic" style="width:48px;height:48px"><svg width="24" height="24"><use href="#i-mail"/></svg></div><h3 style="margin-top:8px">VERIFY EMAIL</h3><div class="stx">Enter the 6-digit code sent to your email</div><div style="display:flex;gap:4px;justify-content:center;margin:8px 0;z-index:2">${[1,2,3,4,5,6].map(()=>`<div style="width:24px;height:30px;border-radius:6px;border:1px solid rgba(27,140,62,.2)"></div>`).join('')}</div><div class="btn s">VERIFY</div><div class="stx" style="font-size:6px"><span style="color:var(--gl)">Resend Code</span> (60s)</div>`},
+{n:'Biometric',t:'sc-c',h:`<div class="ic" style="width:64px;height:64px"><svg width="32" height="32"><use href="#i-fp"/></svg></div><h3 style="margin-top:12px">BIOMETRIC SCAN</h3><div class="stx">Place your finger to authenticate</div>`},
+{n:'PIN Setup',t:'sc-c',h:`<h3>CREATE PIN</h3><div class="stx" style="margin:4px 0">Set a 6-digit security PIN</div><div class="pd" style="margin:8px 0">${'<div class="p"></div>'.repeat(6)}</div><div class="kp">${[1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(v=>`<div class="k">${v}</div>`).join('')}</div>`},
+{n:'PIN Unlock',t:'sc-c',h:`<h3>ENTER PIN</h3><div class="stx" style="margin:4px 0">6-digit security PIN</div><div class="pd" style="margin:8px 0">${'<div class="p f"></div>'.repeat(3)+'<div class="p"></div>'.repeat(3)}</div><div class="kp">${[1,2,3,4,5,6,7,8,9,'',0,'⌫'].map(v=>`<div class="k">${v}</div>`).join('')}</div>`}
+]},
+{label:'HOME & NAVIGATION', screens:[
+{n:'Home Dashboard',t:'sc-t',bt:1,h:`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><div><div style="font-size:7px;color:var(--t2)">Welcome back</div><div style="font-size:10px;font-weight:700;color:var(--t1)">Joseph</div></div><div class="ic" style="width:24px;height:24px"><svg width="12" height="12"><use href="#i-bell"/></svg></div></div><div class="card" style="padding:10px"><div style="font-size:6px;color:var(--t2)">Total Balance <svg width="8" height="8" style="vertical-align:middle"><use href="#i-eye"/></svg></div><div style="font-size:16px;font-weight:800;color:var(--gl)">$39.09</div><div style="font-size:6px;color:var(--ga)">+0.00% today</div></div><div class="qb"><div class="q"><svg><use href="#i-arrow" transform="rotate(180 12 12)"/></svg><span>Send</span></div><div class="q"><svg><use href="#i-dl"/></svg><span>Receive</span></div><div class="q"><svg><use href="#i-swap"/></svg><span>Convert</span></div><div class="q"><svg><use href="#i-chart"/></svg><span>Trade</span></div></div><div style="font-size:7px;font-weight:600;color:var(--t1);margin:4px 8px 2px">Top Assets</div><div class="lst"><div class="li"><div class="li-ic" style="background:rgba(247,147,26,.15)"><svg width="10" height="10" stroke="#F7931A"><use href="#i-dollar"/></svg></div><div class="li-t">BTC</div><div class="li-v" style="color:var(--gl)">$34.16</div></div><div class="li"><div class="li-ic" style="background:rgba(38,161,123,.15)"><svg width="10" height="10" stroke="#26A17B"><use href="#i-dollar"/></svg></div><div class="li-t">USDT</div><div class="li-v" style="color:var(--gl)">$2.67</div></div></div>`},
+{n:'Services',t:'sc-t',bt:1,h:`<h3 style="margin-bottom:6px">SERVICES</h3><div class="inp" style="font-size:7px"><svg width="8" height="8" style="vertical-align:middle;margin-right:3px"><use href="#i-search"/></svg>Search services...</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:4px 8px;z-index:2">${['NFT','Earn','Staking','Portfolio','Card','P2P','Rewards','Referral','Analytics'].map(s=>`<div class="card" style="text-align:center;padding:6px 2px;margin:0"><svg width="14" height="14" style="display:block;margin:0 auto 2px"><use href="#i-${s==='NFT'?'layers':s==='Earn'?'trophy':s==='Staking'?'zap':s==='Portfolio'?'chart':s==='Card'?'card':s==='P2P'?'swap':s==='Rewards'?'star':s==='Referral'?'share':'target'}"/></svg><div style="font-size:5px;color:var(--t2)">${s}</div></div>`).join('')}</div>`},
+{n:'Portfolio',t:'sc-t',bt:1,h:`<h3 style="margin-bottom:4px">PORTFOLIO</h3><div class="card"><div style="font-size:14px;font-weight:800;color:var(--gl)">$39.09</div><div style="font-size:6px;color:var(--ga)">+15.0% vs market</div></div><div class="tabs" style="margin-top:2px"><div class="tb a">1D</div><div class="tb">1W</div><div class="tb">1M</div><div class="tb">3M</div><div class="tb">1Y</div></div><div class="chart-placeholder"></div><div style="font-size:7px;font-weight:600;color:var(--t1);margin:4px 8px 2px">Allocation</div><div class="stat-row"><div class="st"><div class="sv">87%</div><div class="sl">BTC</div></div><div class="st"><div class="sv">7%</div><div class="sl">USDT</div></div><div class="st"><div class="sv">6%</div><div class="sl">USDC</div></div></div>`},
+{n:'Notifications',t:'sc-t',bt:1,h:`<h3 style="margin-bottom:4px">NOTIFICATIONS</h3><div class="tabs"><div class="tb a">All</div><div class="tb">Trades</div><div class="tb">Security</div><div class="tb">Promos</div></div><div class="lst">${[{t:'Deposit confirmed',s:'+0.0005 BTC',i:'i-dl'},{t:'Trade executed',s:'BTC → USDT',i:'i-swap'},{t:'Login from new device',s:'Chrome, London',i:'i-shield'}].map(x=>`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#${x.i}"/></svg></div><div class="li-t">${x.t}</div><div class="li-v" style="font-size:5px">${x.s}</div></div>`).join('')}</div>`},
+{n:'Price Alerts',t:'sc-t',bt:1,h:`<div style="display:flex;justify-content:space-between;align-items:center"><h3>PRICE ALERTS</h3><div class="btn s" style="font-size:6px;padding:3px 6px;margin:0">+ NEW</div></div><div class="lst" style="margin-top:4px">${[{c:'BTC',cond:'Above $70,000',on:true},{c:'ETH',cond:'Below $2,000',on:false},{c:'SOL',cond:'Above $200',on:true}].map(a=>`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-bell"/></svg></div><div class="li-t">${a.c} — ${a.cond}</div><div style="width:20px;height:10px;border-radius:5px;background:${a.on?'var(--g)':'rgba(255,255,255,.1)'}"></div></div>`).join('')}</div>`},
+{n:'Profile',t:'sc-t',bt:1,h:`<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><div class="ic" style="width:32px;height:32px"><svg width="16" height="16"><use href="#i-user"/></svg></div><div><div style="font-size:9px;font-weight:700;color:var(--t1)">Joseph</div><div style="font-size:6px;color:var(--t2)">joseph@email.com</div></div></div><div class="lst">${['KYC Verification','Security Settings','Login History','Payment Methods','API Keys','Rewards Hub','Referral Program','Dark Theme','Language','Help Center','Sign Out'].map(m=>`<div class="li"><div class="li-ic"><svg width="8" height="8"><use href="#i-${m.includes('KYC')?'shield':m.includes('Security')?'lock':m.includes('Login')?'clock':m.includes('Payment')?'card':m.includes('API')?'key':m.includes('Reward')?'trophy':m.includes('Referral')?'share':m.includes('Dark')?'eye':m.includes('Lang')?'grid':m.includes('Help')?'search':'login'}"/></svg></div><div class="li-t">${m}</div><div style="font-size:8px;color:var(--t2)">›</div></div>`).join('')}</div>`}
+]},
+{label:'WALLET', screens:[
+{n:'Wallet Overview',t:'sc-t',bt:1,h:`<h3 style="margin-bottom:4px">WALLET</h3><div class="card"><div style="font-size:6px;color:var(--t2)">Total Balance</div><div style="font-size:14px;font-weight:800;color:var(--gl)">$39.09</div><div style="font-size:6px;color:var(--t2)">≈ 0.00057 BTC</div></div><div class="tabs"><div class="tb a">Funding</div><div class="tb">Earn</div></div><div class="qb"><div class="q"><svg><use href="#i-dl"/></svg><span>Deposit</span></div><div class="q"><svg><use href="#i-arrow"/></svg><span>Withdraw</span></div><div class="q"><svg><use href="#i-swap"/></svg><span>Convert</span></div><div class="q"><svg><use href="#i-dollar"/></svg><span>Buy</span></div></div><div class="inp" style="font-size:6px"><svg width="8" height="8" style="vertical-align:middle"><use href="#i-search"/></svg> Search assets...</div><div class="lst">${[{c:'BTC',v:'0.000500',u:'$34.16'},{c:'USDT',v:'2.667130',u:'$2.67'},{c:'USDC',v:'2.192613',u:'$2.19'},{c:'TRX',v:'0.000001',u:'$0.00'},{c:'LTC',v:'0.001000',u:'$0.05'}].map(a=>`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-dollar"/></svg></div><div class="li-t">${a.c}<br><span style="font-size:5px;color:var(--t2)">${a.v}</span></div><div class="li-v">${a.u}</div></div>`).join('')}</div>`},
+{n:'Deposit — Select',t:'sc-t',h:`<h3>DEPOSIT CRYPTO</h3><div class="stx" style="text-align:left;padding:0;margin:2px 0 4px">Select a cryptocurrency</div><div class="inp" style="font-size:7px"><svg width="8" height="8" style="vertical-align:middle"><use href="#i-search"/></svg> Search...</div><div class="lst">${['BTC|Bitcoin','ETH|Ethereum|2 networks','XRP|XRP|XRP Ledger','USDC|USD Coin|9 networks','USDT|Tether|8 networks'].map(c=>{const[s,n,net]=c.split('|');return`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-dollar"/></svg></div><div class="li-t">${s}<br><span style="font-size:5px;color:var(--t2)">${n}</span></div><div class="li-v" style="font-size:5px;color:var(--gl)">${net||s}</div></div>`}).join('')}</div>`},
+{n:'Deposit — QR',t:'sc-c',h:`<div style="display:flex;align-items:center;gap:4px;z-index:2;margin-bottom:6px"><div class="li-ic" style="width:20px;height:20px;border-radius:10px;background:rgba(247,147,26,.15);display:flex;align-items:center;justify-content:center"><svg width="10" height="10" stroke="#F7931A"><use href="#i-dollar"/></svg></div><div style="font-size:8px;font-weight:700;color:var(--t1)">Bitcoin (BTC)</div></div><div class="card" style="width:80px;height:80px;display:flex;align-items:center;justify-content:center"><svg width="40" height="40"><use href="#i-qr"/></svg></div><div class="stx" style="font-size:6px;margin:4px 0">Scan QR Code or Copy Address</div><div class="card" style="display:flex;align-items:center;gap:4px;font-size:5px;color:var(--t2)"><span style="flex:1;overflow:hidden">bc1qey5rqh...gcq3v8pd</span><svg width="10" height="10" stroke="var(--gl)"><use href="#i-copy"/></svg></div><div class="stat-row" style="margin-top:4px"><div class="st"><div class="sv" style="font-size:6px">0.0001</div><div class="sl">Min Deposit</div></div><div class="st"><div class="sv" style="font-size:6px">3</div><div class="sl">Confirmations</div></div></div>`},
+{n:'Withdraw',t:'sc-t',h:`<h3>WITHDRAW</h3><div class="card" style="display:flex;align-items:center;gap:6px"><div class="li-ic" style="width:24px;height:24px;border-radius:12px;background:rgba(247,147,26,.15);display:flex;align-items:center;justify-content:center"><svg width="12" height="12" stroke="#F7931A"><use href="#i-dollar"/></svg></div><div><div style="font-size:8px;font-weight:700;color:var(--t1)">BTC</div><div style="font-size:5px;color:var(--t2)">Available: 0.000500</div></div><div style="margin-left:auto;font-size:6px;color:var(--gl)">Bitcoin</div></div><div style="font-size:7px;font-weight:600;color:var(--t1);margin:6px 8px 2px">Address</div><div class="inp">Enter BTC address</div><div style="font-size:7px;font-weight:600;color:var(--t1);margin:4px 8px 2px">Amount</div><div class="inp" style="display:flex;align-items:center">0.00 <span style="margin-left:auto;color:var(--gl);font-size:6px">MAX</span></div><div style="font-size:5px;color:var(--red);margin:2px 8px;z-index:2">Fee: 0.00025 BTC</div><div class="btn s" style="margin-top:6px">CONTINUE</div>`},
+{n:'Convert/Swap',t:'sc-t',h:`<h3>CONVERT</h3><div class="stx" style="text-align:left;padding:0;margin:2px 0">Swap between 900+ coins</div><div style="display:flex;gap:3px;margin:4px 8px;z-index:2;flex-wrap:wrap">${['USDT','USDC','BTC','TRX'].map((c,i)=>`<div class="badge" style="${i===0?'background:var(--g);color:#fff':''}">${c}</div>`).join('')}</div><div class="tabs" style="font-size:5px"><div class="tb">BTC→ETH</div><div class="tb">ETH→USDT</div><div class="tb a">BTC→USDT</div></div><div class="card"><div style="font-size:6px;color:var(--t2);margin-bottom:2px">You send</div><div style="display:flex;align-items:center"><div style="font-size:14px;font-weight:700;color:var(--t1)">0.00</div><div style="margin-left:auto;font-size:7px;color:var(--gl)">BTC ▾</div></div></div><div style="text-align:center;z-index:2;margin:2px 0"><svg width="16" height="16" stroke="var(--gl)" fill="none"><use href="#i-swap"/></svg></div><div class="card"><div style="font-size:6px;color:var(--t2);margin-bottom:2px">You receive</div><div style="display:flex;align-items:center"><div style="font-size:14px;font-weight:700;color:var(--t1)">0.00</div><div style="margin-left:auto;font-size:7px;color:var(--gl)">USDT ▾</div></div></div><div class="btn s" style="margin-top:4px">ENTER AMOUNT</div>`},
+{n:'Tx History',t:'sc-t',h:`<h3>TRANSACTIONS</h3><div class="tabs"><div class="tb a">All</div><div class="tb">Received</div><div class="tb">Sent</div><div class="tb">Swapped</div></div><div class="lst">${[{t:'Deposit',c:'USDT',a:'+20.8072',s:'Completed',cl:'var(--gl)'},{t:'Withdrawal',c:'USDT',a:'-20.8072',s:'Completed',cl:'var(--red)'},{t:'Deposit',c:'BTC',a:'+0.0005',s:'Completed',cl:'var(--gl)'},{t:'Conversion',c:'BTC→LTC',a:'-0.0005',s:'Completed',cl:'var(--gd)'},{t:'Withdrawal',c:'LTC',a:'-0.5365',s:'Failed',cl:'var(--red)'}].map(tx=>`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-${tx.t==='Deposit'?'dl':tx.t==='Withdrawal'?'arrow':'swap'}"/></svg></div><div class="li-t">${tx.t} ${tx.c}<br><span style="font-size:5px;color:var(--t2)">2026-03-31</span></div><div class="li-v"><span style="color:${tx.cl}">${tx.a}</span><br><span class="badge" style="font-size:4px">${tx.s}</span></div></div>`).join('')}</div>`}
+]},
+{label:'MARKETS & TRADING', screens:[
+{n:'Markets',t:'sc-t',bt:1,h:`<h3 style="margin-bottom:4px">MARKETS</h3><div class="stat-row"><div class="st"><div class="sv" style="font-size:7px">$2.43T</div><div class="sl">Mkt Cap</div></div><div class="st"><div class="sv" style="font-size:7px">$113B</div><div class="sl">Volume</div></div><div class="st"><div class="sv" style="font-size:7px">56.3%</div><div class="sl">BTC Dom</div></div><div class="st"><div class="sv" style="font-size:7px">63</div><div class="sl">Pairs</div></div></div><div style="font-size:7px;font-weight:600;color:var(--t1);margin:4px 8px 2px">Trending</div><div style="display:flex;gap:4px;margin:0 8px;z-index:2;overflow:hidden">${['BTC|$68K|+2.1%','ETH|$2.1K|+2.6%','SOL|$83|+5.5%'].map(c=>{const[n,p,ch]=c.split('|');return`<div class="card" style="min-width:52px;padding:4px 6px;margin:0"><div style="font-size:6px;font-weight:700;color:var(--t1)">${n}</div><div style="font-size:7px;color:var(--gl)">${p}</div><div style="font-size:5px;color:var(--ga)">${ch}</div></div>`}).join('')}</div>`},
+{n:'Market Table',t:'sc-t',bt:1,h:`<div class="tabs"><div class="tb a">All</div><div class="tb">Favorites</div><div class="tb">Trading</div><div class="tb">Gainers</div><div class="tb">Losers</div></div><div class="lst">${[{p:'BTC/USDT',pr:'$68,473',ch:'+2.89%',cl:'var(--gl)'},{p:'ETH/USDT',pr:'$2,124',ch:'+2.61%',cl:'var(--gl)'},{p:'SOL/USDT',pr:'$83.24',ch:'+5.52%',cl:'var(--gl)'},{p:'BNB/USDT',pr:'$612',ch:'+4.86%',cl:'var(--gl)'},{p:'DOGE/USDT',pr:'$0.089',ch:'-1.52%',cl:'var(--red)'}].map(m=>`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-dollar"/></svg></div><div class="li-t">${m.p}<br><span style="font-size:5px;color:var(--t2)">${m.pr}</span></div><div class="li-v"><span style="color:${m.cl}">${m.ch}</span><br><span class="badge" style="font-size:4px;margin-top:1px">Trade</span></div></div>`).join('')}</div>`},
+{n:'Spot Trading',t:'sc-t',h:`<div style="display:flex;justify-content:space-between;align-items:center"><h3>USDC/USDT</h3><div style="font-size:7px;color:var(--gl)">1.0003</div></div><div class="chart-placeholder" style="height:60px"></div><div style="display:flex;gap:2px;margin:2px 8px;z-index:2"><div style="flex:1"><div style="font-size:5px;color:var(--gl);text-align:center;margin-bottom:1px">Bids</div>${[1.0003,1.0002,1.0001].map(p=>`<div style="font-size:5px;color:var(--gl);text-align:center;background:rgba(27,140,62,.05);padding:1px;margin:1px 0;border-radius:2px">${p}</div>`).join('')}</div><div style="flex:1"><div style="font-size:5px;color:var(--red);text-align:center;margin-bottom:1px">Asks</div>${[1.0004,1.0005,1.0006].map(p=>`<div style="font-size:5px;color:var(--red);text-align:center;background:rgba(239,68,68,.05);padding:1px;margin:1px 0;border-radius:2px">${p}</div>`).join('')}</div></div>`},
+{n:'Order Form',t:'sc-t',h:`<div class="tabs"><div class="tb a" style="background:var(--g);color:#fff">BUY</div><div class="tb" style="background:rgba(239,68,68,.1);color:var(--red)">SELL</div></div><div class="tabs" style="margin-top:2px"><div class="tb a">Limit</div><div class="tb">Market</div></div><div style="font-size:6px;color:var(--t2);margin:4px 8px 1px;z-index:2">Price</div><div class="inp">1.0003 USDT</div><div style="font-size:6px;color:var(--t2);margin:2px 8px 1px;z-index:2">Amount</div><div class="inp">0.00 USDC</div><div style="display:flex;gap:3px;margin:3px 8px;z-index:2">${['25%','50%','75%','100%'].map(p=>`<div class="badge">${p}</div>`).join('')}</div><div style="font-size:6px;color:var(--t2);margin:2px 8px;z-index:2">Total: <span style="color:var(--t1)">0.00 USDT</span></div><div class="btn s" style="margin-top:4px">BUY USDC</div>`},
+{n:'Open Orders',t:'sc-t',h:`<div class="tabs"><div class="tb a">Open</div><div class="tb">History</div><div class="tb">Trades</div></div><div class="lst">${[{p:'BTC/USDT',s:'Buy',a:'0.001',pr:'$67,500',st:'Pending'},{p:'ETH/USDT',s:'Sell',a:'0.5',pr:'$2,200',st:'Partial'}].map(o=>`<div class="li"><div class="li-ic" style="background:${o.s==='Buy'?'rgba(27,140,62,.1)':'rgba(239,68,68,.1)'}"><svg width="10" height="10" stroke="${o.s==='Buy'?'var(--g)':'var(--red)'}"><use href="#i-arrow"/></svg></div><div class="li-t">${o.p} <span style="color:${o.s==='Buy'?'var(--gl)':'var(--red)'}">${o.s}</span><br><span style="font-size:5px;color:var(--t2)">${o.a} @ ${o.pr}</span></div><div class="li-v"><span class="badge">${o.st}</span></div></div>`).join('')}<div style="text-align:center;padding:12px 0;z-index:2"><div style="font-size:7px;color:var(--t2)">No more orders</div></div></div>`},
+{n:'Trade Detail',t:'sc-t',h:`<h3>ORDER DETAIL</h3><div class="card" style="margin-top:4px"><div style="font-size:14px;font-weight:800;color:var(--gl);text-align:center">+0.001 BTC</div></div><div class="lst" style="margin-top:4px">${[['Pair','BTC/USDT'],['Side','Buy'],['Price','$68,473'],['Amount','0.001 BTC'],['Fee','0.1%'],['Status','Completed'],['Date','2026-03-31 22:24']].map(([k,v])=>`<div class="li" style="justify-content:space-between"><div style="font-size:6px;color:var(--t2)">${k}</div><div style="font-size:6px;color:var(--t1)">${v}</div></div>`).join('')}</div>`}
+]},
+{label:'P2P & BUY/SELL', screens:[
+{n:'P2P Landing',t:'sc-t',h:`<h3>P2P TRADING</h3><div class="stx" style="text-align:left;padding:0;margin:2px 0 4px">Buy and sell crypto directly</div><div style="display:flex;gap:3px;margin:0 8px 4px;z-index:2">${['Protected|Secure Escrow','Direct|Fast Trading','Flexible|Multiple Pay','24/7|Always On'].map(f=>{const[t,s]=f.split('|');return`<div class="card" style="flex:1;text-align:center;padding:4px 2px;margin:0"><svg width="12" height="12" style="display:block;margin:0 auto 2px"><use href="#i-shield"/></svg><div style="font-size:5px;font-weight:700;color:var(--t1)">${t}</div><div style="font-size:4px;color:var(--t2)">${s}</div></div>`}).join('')}</div><div class="tabs"><div class="tb a">Buy</div><div class="tb">My Orders</div><div class="tb">My Ads</div></div><div style="text-align:center;padding:16px 0;z-index:2"><svg width="20" height="20" stroke="var(--t2)"><use href="#i-swap"/></svg><div style="font-size:7px;color:var(--t2);margin-top:4px">No orders yet</div><div class="btn s" style="width:80px;margin:6px auto">CREATE ORDER</div></div>`},
+{n:'P2P Marketplace',t:'sc-t',h:`<div class="tabs"><div class="tb a">Buy</div><div class="tb">Sell</div></div><div class="tabs" style="margin-top:2px;font-size:5px"><div class="tb a">USDT</div><div class="tb">BTC</div><div class="tb">ETH</div><div class="tb">USD</div></div><div class="lst">${[{seller:'CryptoKing',price:'$1.01',limit:'$50-$5000',pay:'Bank, PayPal'},{seller:'FastTrader',price:'$1.005',limit:'$100-$10000',pay:'Wise, Revolut'}].map(p=>`<div class="li" style="flex-wrap:wrap"><div class="li-ic"><svg width="10" height="10"><use href="#i-user"/></svg></div><div class="li-t">${p.seller}<br><span style="font-size:5px;color:var(--t2)">${p.price}/USDT · ${p.limit}</span><br><span style="font-size:4px;color:var(--t2)">${p.pay}</span></div><div class="badge" style="background:var(--g);color:#fff">Trade</div></div>`).join('')}</div>`},
+{n:'Buy Crypto',t:'sc-t',h:`<h3>BUY CRYPTO</h3><div style="font-size:6px;color:var(--t2);margin:2px 8px;z-index:2">You Pay</div><div class="card" style="display:flex;align-items:center"><div style="font-size:16px;font-weight:800;color:var(--t1)">100</div><div style="margin-left:auto;font-size:7px;color:var(--gl)">USD ▾</div></div><div style="display:flex;gap:3px;margin:3px 8px;z-index:2">${['$50','$100','$250','$500','$1000'].map((p,i)=>`<div class="badge" style="${i===1?'background:var(--g);color:#fff':''}">${p}</div>`).join('')}</div><div style="font-size:6px;color:var(--t2);margin:4px 8px 1px;z-index:2">You Receive</div><div class="card" style="display:flex;align-items:center"><div style="font-size:12px;font-weight:700;color:var(--gl)">0.00136</div><div style="margin-left:auto;font-size:7px;color:var(--gl)">BTC ▾</div></div><div class="card" style="margin-top:4px"><div style="display:flex;justify-content:space-between;font-size:5px;color:var(--t2);margin-bottom:1px"><span>You pay</span><span style="color:var(--t1)">$100.00</span></div><div style="display:flex;justify-content:space-between;font-size:5px;color:var(--t2);margin-bottom:1px"><span>Fee</span><span style="color:var(--t1)">$0.50</span></div><div style="display:flex;justify-content:space-between;font-size:5px;color:var(--t2)"><span>Rate</span><span style="color:var(--t1)">1 BTC = $68K</span></div></div><div class="btn s" style="margin-top:4px">BUY BTC →</div>`},
+{n:'Sell Crypto',t:'sc-t',h:`<h3>SELL CRYPTO</h3><div class="card" style="display:flex;align-items:center;margin-top:4px"><div style="font-size:14px;font-weight:800;color:var(--t1)">0.001</div><div style="margin-left:auto;font-size:7px;color:var(--gl)">BTC ▾</div></div><div style="text-align:center;z-index:2;margin:4px 0"><svg width="12" height="12" stroke="var(--gl)" fill="none"><use href="#i-swap"/></svg></div><div class="card" style="display:flex;align-items:center"><div style="font-size:14px;font-weight:700;color:var(--gl)">$68.47</div><div style="margin-left:auto;font-size:7px">USD</div></div><div class="btn s" style="margin-top:8px">SELL BTC →</div>`},
+{n:'Fiat On-Ramp',t:'sc-c',h:`<div class="ic" style="width:48px;height:48px"><svg width="24" height="24"><use href="#i-card"/></svg></div><h3 style="margin-top:8px">BUY WITH CARD</h3><div class="stx">Purchase crypto instantly with credit or debit card</div><div class="card" style="margin-top:6px"><div style="display:flex;align-items:center;gap:4px"><div style="width:24px;height:16px;background:linear-gradient(135deg,#1a3c8f,#0d47a1);border-radius:3px"></div><div style="font-size:6px;color:var(--t1)">Credit/Debit Card</div><div style="margin-left:auto;font-size:8px;color:var(--t2)">›</div></div></div><div class="btn s" style="margin-top:6px">CONTINUE</div>`},
+{n:'Asset Detail',t:'sc-t',h:`<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px"><div class="li-ic" style="width:28px;height:28px;border-radius:14px;background:rgba(247,147,26,.15);display:flex;align-items:center;justify-content:center"><svg width="14" height="14" stroke="#F7931A"><use href="#i-dollar"/></svg></div><div><div style="font-size:10px;font-weight:800;color:var(--t1)">Bitcoin</div><div style="font-size:6px;color:var(--t2)">BTC</div></div></div><div class="card"><div style="font-size:6px;color:var(--t2)">Balance</div><div style="font-size:14px;font-weight:800;color:var(--gl)">0.000500 BTC</div><div style="font-size:6px;color:var(--t2)">≈ $34.16</div></div><div class="chart-placeholder" style="height:50px;margin-top:4px"></div><div class="qb" style="margin-top:4px"><div class="q"><svg><use href="#i-dl"/></svg><span>Deposit</span></div><div class="q"><svg><use href="#i-arrow"/></svg><span>Withdraw</span></div><div class="q"><svg><use href="#i-dollar"/></svg><span>Buy/Sell</span></div></div>`}
+]},
+{label:'EARN & STAKING', screens:[
+{n:'Staking',t:'sc-t',h:`<h3>STAKING</h3><div class="stx" style="text-align:left;padding:0;margin:2px 0 4px">Earn rewards by staking</div><div style="display:flex;gap:3px;margin:0 8px 4px;z-index:2;flex-wrap:wrap">${['Marinade','Lido','Ankr','Stader'].map((p,i)=>`<div class="badge" style="${i===0?'background:var(--g);color:#fff':''}">${p}</div>`).join('')}</div><div class="stat-row"><div class="st"><div class="sv">$0</div><div class="sl">Staked</div></div><div class="st"><div class="sv" style="color:var(--gl)">+$0</div><div class="sl">Rewards</div></div><div class="st"><div class="sv">0.0%</div><div class="sl">APY</div></div><div class="st"><div class="sv">0</div><div class="sl">Active</div></div></div><div class="tabs" style="margin-top:4px"><div class="tb a">Stake</div><div class="tb">My Positions</div></div><div class="btn s" style="margin-top:6px">STAKE</div>`},
+{n:'Staking Positions',t:'sc-t',h:`<h3>MY POSITIONS</h3><div class="lst" style="margin-top:4px">${[{c:'SOL',a:'10.5 SOL',apy:'6.8%',rew:'+0.12 SOL'},{c:'ETH',a:'0.5 ETH',apy:'4.2%',rew:'+0.003 ETH'}].map(p=>`<div class="li" style="flex-wrap:wrap"><div class="li-ic"><svg width="10" height="10"><use href="#i-zap"/></svg></div><div class="li-t">${p.c} Staking<br><span style="font-size:5px;color:var(--t2)">${p.a} · APY ${p.apy}</span></div><div class="li-v"><span style="color:var(--gl)">${p.rew}</span><br><span class="badge" style="font-size:4px;background:var(--g);color:#fff">Claim</span></div></div>`).join('')}<div style="text-align:center;padding:8px 0;z-index:2"><div style="font-size:6px;color:var(--t2)">Start staking to see positions</div></div></div>`},
+{n:'Vault/Savings',t:'sc-t',h:`<h3>VAULT</h3><div class="stx" style="text-align:left;padding:0;margin:2px 0">Lock funds to earn yield</div><div class="btn s" style="margin-top:4px">CREATE VAULT</div><div class="card" style="margin-top:4px"><div style="font-size:6px;color:var(--t2)">Vault Options</div><div style="display:flex;gap:4px;margin-top:4px">${['Fixed 30d|8% APY','Fixed 90d|12% APY','Flexible|3% APY'].map(v=>{const[n,a]=v.split('|');return`<div class="card" style="flex:1;text-align:center;padding:6px 2px;margin:0"><div style="font-size:6px;font-weight:700;color:var(--t1)">${n}</div><div style="font-size:7px;color:var(--gl)">${a}</div></div>`}).join('')}</div></div>`},
+{n:'Auto-Invest',t:'sc-t',h:`<h3>AUTO-INVEST</h3><div class="stx" style="text-align:left;padding:0;margin:2px 0">Dollar-cost average into crypto</div><div class="btn s" style="margin-top:4px">CREATE PLAN</div><div class="lst" style="margin-top:4px"><div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-clock"/></svg></div><div class="li-t">BTC Weekly<br><span style="font-size:5px;color:var(--t2)">$25/week · Every Monday</span></div><div style="width:20px;height:10px;border-radius:5px;background:var(--g)"></div></div><div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-clock"/></svg></div><div class="li-t">ETH Monthly<br><span style="font-size:5px;color:var(--t2)">$100/month · 1st</span></div><div style="width:20px;height:10px;border-radius:5px;background:rgba(255,255,255,.1)"></div></div></div>`},
+{n:'Vault Products',t:'sc-t',h:`<h3>VAULT PRODUCTS</h3><div class="tabs"><div class="tb a">Products</div><div class="tb">Positions</div></div><div class="lst" style="margin-top:4px">${[{n:'USDT Fixed',apy:'8%',lock:'30 days',min:'$50'},{n:'BTC Fixed',apy:'5%',lock:'60 days',min:'$100'},{n:'ETH Flex',apy:'3.2%',lock:'Flexible',min:'$25'}].map(p=>`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-layers"/></svg></div><div class="li-t">${p.n}<br><span style="font-size:5px;color:var(--t2)">${p.lock} · Min ${p.min}</span></div><div class="li-v"><span style="color:var(--gl)">${p.apy}</span><br><span class="badge" style="font-size:4px;background:var(--g);color:#fff">Subscribe</span></div></div>`).join('')}</div>`},
+{n:'Earn Overview',t:'sc-t',h:`<h3>EARN</h3><div class="stat-row"><div class="st"><div class="sv">$0</div><div class="sl">Total Staked</div></div><div class="st"><div class="sv" style="color:var(--gl)">+$0</div><div class="sl">Total Rewards</div></div></div><div class="tabs" style="margin-top:4px"><div class="tb a">Staking</div><div class="tb">Vault</div><div class="tb">Auto-Invest</div></div><div class="lst">${[{n:'Liquid Staking',d:'SOL, ETH, BNB',i:'i-zap'},{n:'Fixed Vault',d:'8-12% APY',i:'i-layers'},{n:'DCA Plans',d:'Auto-invest weekly/monthly',i:'i-clock'}].map(e=>`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#${e.i}"/></svg></div><div class="li-t">${e.n}<br><span style="font-size:5px;color:var(--t2)">${e.d}</span></div><div style="font-size:8px;color:var(--t2)">›</div></div>`).join('')}</div>`}
+]},
+{label:'ANALYTICS & NFT', screens:[
+{n:'Risk Analysis',t:'sc-t',h:`<h3>ANALYTICS — RISK</h3><div class="card" style="text-align:center"><div style="font-size:24px;font-weight:900;color:var(--gl)">58</div><div style="font-size:6px;color:var(--t2)">/100 · High Risk</div></div><div style="font-size:7px;font-weight:600;color:var(--t1);margin:4px 8px 2px;z-index:2">Breakdown</div>${[['Concentration',100],['Volatility',71],['Protocol',9],['Liquidity',8],['Correlation',68]].map(([n,v])=>`<div style="margin:2px 8px;z-index:2"><div style="display:flex;justify-content:space-between;font-size:5px;color:var(--t2)"><span>${n}</span><span>${v}/100</span></div><div class="bar" style="margin:1px 0"><div class="fl" style="width:${v}%"></div></div></div>`).join('')}`},
+{n:'Trading Perf',t:'sc-t',h:`<h3>TRADING — 90D</h3><div class="stat-row"><div class="st"><div class="sv">0</div><div class="sl">Trades</div></div><div class="st"><div class="sv" style="color:var(--gl)">0%</div><div class="sl">Win Rate</div></div><div class="st"><div class="sv" style="color:var(--gl)">0</div><div class="sl">Profitable</div></div><div class="st"><div class="sv" style="color:var(--red)">0</div><div class="sl">Losses</div></div></div><div style="text-align:center;padding:16px 0;z-index:2"><div style="font-size:7px;color:var(--t2)">Start trading to see performance</div></div><div style="font-size:7px;font-weight:600;color:var(--t1);margin:4px 8px 2px;z-index:2">Timing Analysis</div><div class="card"><div style="font-size:6px;color:var(--t2)">Most Active: <span style="color:var(--t1)">No data</span></div><div style="font-size:6px;color:var(--t2)">Best Performance: <span style="color:var(--t1)">No data</span></div></div>`},
+{n:'Benchmark',t:'sc-t',h:`<h3>BENCHMARK — 90D</h3><div class="stx" style="text-align:left;padding:0;margin:2px 0 4px">Market Performance</div><div class="lst">${[{n:'Bitcoin (BTC)',v:'-22.1%',c:'var(--red)'},{n:'Ethereum (ETH)',v:'-28.8%',c:'var(--red)'},{n:'Top 10 Index',v:'-15.8%',c:'var(--red)'},{n:'DeFi Index',v:'-11.8%',c:'var(--red)'},{n:'Stablecoin Savings',v:'+1.1%',c:'var(--gl)'}].map(b=>`<div class="li"><div class="li-t">${b.n}</div><div class="li-v" style="color:${b.c};font-weight:700">${b.v}</div></div>`).join('')}</div>`},
+{n:'Goals',t:'sc-t',h:`<h3>PORTFOLIO GOALS</h3><div class="btn s" style="margin-top:4px;font-size:7px">+ ADD GOAL</div><div style="font-size:7px;font-weight:600;color:var(--t1);margin:6px 8px 2px;z-index:2">Milestones</div><div class="lst"><div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-star"/></svg></div><div class="li-t">Welcome to CrymadX<br><span style="font-size:5px;color:var(--t2)">01/04/2026</span></div></div></div><div style="font-size:7px;font-weight:600;color:var(--t1);margin:6px 8px 2px;z-index:2">Streaks</div><div class="stat-row"><div class="st"><div class="sv">0</div><div class="sl">Deposit</div></div><div class="st"><div class="sv">0</div><div class="sl">Longest</div></div><div class="st"><div class="sv">0</div><div class="sl">Profit</div></div></div>`},
+{n:'NFT Gallery',t:'sc-t',h:`<div style="display:flex;justify-content:space-between;align-items:center"><h3>NFT GALLERY</h3><div class="badge" style="border:1px solid var(--red);color:var(--red);background:transparent">COMING SOON</div></div><div class="stat-row" style="margin-top:4px"><div class="st"><div class="sv">0</div><div class="sl">Owned</div></div><div class="st"><div class="sv" style="color:var(--red)">0</div><div class="sl">Listed</div></div><div class="st"><div class="sv" style="color:var(--gl)">50</div><div class="sl">Available</div></div><div class="st"><div class="sv">0</div><div class="sl">Purchases</div></div></div><div class="tabs"><div class="tb">My NFTs</div><div class="tb a">Browse</div><div class="tb">History</div></div><div style="display:flex;gap:3px;margin:3px 8px;z-index:2">${['All','ETH','MATIC','BASE','ARB'].map((c,i)=>`<div class="badge" style="${i===0?'background:var(--g);color:#fff':''}">${c}</div>`).join('')}</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:4px 8px;z-index:2">${[{n:'#3000',p:'1.59 ETH',bg:'linear-gradient(135deg,#1a3a2e,#2a4a3e)'},{n:'#2000',p:'1.66 ETH',bg:'linear-gradient(135deg,#1a2a3e,#2a3a4e)'}].map(nft=>`<div style="background:${nft.bg};border-radius:8px;padding:6px;text-align:center"><div style="font-size:12px;font-weight:800;color:rgba(255,255,255,.3);padding:12px 0">NFT</div><div style="font-size:5px;color:var(--t2)">${nft.n} · ${nft.p}</div></div>`).join('')}</div>`},
+{n:'NFT Marketplace',t:'sc-t',h:`<h3>NFT MARKETPLACE</h3><div style="font-size:7px;font-weight:600;color:var(--t1);margin:4px 8px 2px;z-index:2">Trending Collections</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:3px 8px;z-index:2">${[{n:'Bored Ape Yacht Club',ch:'Ethereum',bg:'linear-gradient(135deg,#2a1a0a,#3a2a1a)'},{n:'Mutant Ape Yacht Club',ch:'Ethereum',bg:'linear-gradient(135deg,#1a2a1a,#2a3a2a)'}].map(c=>`<div style="background:${c.bg};border-radius:8px;padding:8px"><div style="font-size:16px;text-align:center;padding:8px 0;color:rgba(255,255,255,.2)">🖼</div><div style="font-size:6px;font-weight:700;color:var(--t1)">${c.n}</div><div style="font-size:5px;color:var(--t2)">${c.ch}</div></div>`).join('')}</div>`}
+]},
+{label:'REWARDS & ENGAGEMENT', screens:[
+{n:'Rewards Hub',t:'sc-t',h:`<h3>REWARDS HUB</h3><div class="stat-row" style="margin-top:4px"><div class="st"><div class="sv" style="font-size:12px">175</div><div class="sl">Total XP</div></div><div class="st"><div class="sv">4/25</div><div class="sl">Badges</div></div><div class="st"><div class="sv" style="color:var(--gd)">Bronze</div><div class="sl">Tier</div></div></div><div class="card" style="margin-top:4px"><div style="font-size:7px;color:var(--t1)">Next tier: <span style="color:var(--gl)">325 XP</span> away</div><div class="bar" style="margin-top:3px"><div class="fl" style="width:35%"></div></div></div><div class="tabs" style="margin-top:4px"><div class="tb a">Badges</div><div class="tb">Tier Status</div><div class="tb">Activity</div></div><div class="tabs" style="font-size:5px"><div class="tb a">All</div><div class="tb">Trader</div><div class="tb">Volume</div><div class="tb">HODLer</div></div>`},
+{n:'Activity Log',t:'sc-t',h:`<h3>ACTIVITY LOG</h3><div class="lst" style="margin-top:4px">${[{a:'First Trade',xp:'+25 XP',d:'01/04/2026'},{a:'First Deposit',xp:'+25 XP',d:'01/04/2026'},{a:'First Swap',xp:'+25 XP',d:'01/04/2026'},{a:'Verified Trader',xp:'+100 XP',d:'01/04/2026'}].map(ac=>`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-star"/></svg></div><div class="li-t">${ac.a}<br><span style="font-size:5px;color:var(--t2)">${ac.d}</span></div><div class="li-v" style="color:var(--gl)">${ac.xp}</div></div>`).join('')}</div>`},
+{n:'Referral',t:'sc-t',h:`<h3>REFERRAL PROGRAM</h3><div class="card" style="margin-top:4px;text-align:center"><div style="font-size:6px;color:var(--t2)">Your Referral Code</div><div style="font-size:12px;font-weight:800;color:var(--gl);letter-spacing:2px;margin:4px 0">CRYX-J3K9</div><div style="display:flex;gap:4px;justify-content:center"><div class="badge" style="background:var(--g);color:#fff">Copy</div><div class="badge">Share</div></div></div><div class="stat-row" style="margin-top:4px"><div class="st"><div class="sv">0</div><div class="sl">Referrals</div></div><div class="st"><div class="sv" style="color:var(--gl)">$0</div><div class="sl">Earned</div></div></div>`},
+{n:'Card',t:'sc-c',h:`<div class="card" style="width:140px;height:85px;background:linear-gradient(135deg,var(--g),var(--gl));border-radius:10px;display:flex;flex-direction:column;justify-content:space-between;padding:8px;margin-bottom:8px"><div style="font-size:7px;font-weight:700;color:rgba(255,255,255,.8)">CrymadX</div><div style="font-size:5px;color:rgba(255,255,255,.5)">•••• •••• •••• 0000</div><div style="display:flex;justify-content:space-between"><div style="font-size:5px;color:rgba(255,255,255,.6)">VIRTUAL</div><div style="font-size:5px;color:rgba(255,255,255,.6)">VISA</div></div></div><h3>CRYPTO CARD</h3><div class="stx">Spend your crypto anywhere</div><div class="badge" style="border:1px solid var(--gd);color:var(--gd);margin-top:4px">COMING SOON</div><div class="btn s" style="margin-top:8px;width:120px">JOIN WAITLIST</div>`},
+{n:'Ecosystem',t:'sc-t',h:`<h3>ECOSYSTEM</h3><div class="stx" style="text-align:left;padding:0;margin:2px 0 4px">Cryptomadness Financial Ecosystem</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:4px 8px;z-index:2">${[{n:'CrymadX',d:'Exchange',bg:'linear-gradient(135deg,#0a2a15,#153a20)'},{n:'Crymad Cash',d:'E-Wallet',bg:'linear-gradient(135deg,#0a1a2a,#152a3a)'},{n:'PipZen',d:'Trading',bg:'linear-gradient(135deg,#1a0a2a,#2a153a)'},{n:'Crymad Hash',d:'Mining',bg:'linear-gradient(135deg,#2a1a0a,#3a2a15)'}].map(p=>`<div class="card" style="background:${p.bg};text-align:center;padding:10px 4px;margin:0"><div style="font-size:8px;font-weight:800;color:var(--t1)">${p.n}</div><div style="font-size:5px;color:var(--t2)">${p.d}</div></div>`).join('')}</div>`},
+{n:'Help Center',t:'sc-t',h:`<h3>HELP CENTER</h3><div class="inp" style="margin-top:4px"><svg width="8" height="8" style="vertical-align:middle"><use href="#i-search"/></svg> Search for help...</div><div class="lst" style="margin-top:4px">${['Getting Started','Account & Security','Deposits & Withdrawals','Trading','Staking & Earn','NFTs'].map(c=>`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-layers"/></svg></div><div class="li-t">${c}</div><div style="font-size:8px;color:var(--t2)">›</div></div>`).join('')}</div>`}
+]},
+{label:'SECURITY', screens:[
+{n:'Security Hub',t:'sc-t',h:`<h3>SECURITY</h3><div class="card" style="text-align:center;margin-top:4px"><div style="font-size:6px;color:var(--t2)">Security Score</div><div style="font-size:18px;font-weight:900;color:var(--gl)">75%</div><div class="bar" style="margin-top:3px"><div class="fl" style="width:75%"></div></div></div><div class="lst" style="margin-top:4px">${['Change Password|i-lock','Two-Factor Auth|i-shield','Anti-Phishing|i-eye','Login History|i-clock','Active Sessions|i-user','Trusted Devices|i-key'].map(m=>{const[n,i]=m.split('|');return`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#${i}"/></svg></div><div class="li-t">${n}</div><div style="font-size:8px;color:var(--t2)">›</div></div>`}).join('')}</div>`},
+{n:'2FA Setup',t:'sc-c',h:`<div class="ic" style="width:48px;height:48px"><svg width="24" height="24"><use href="#i-shield"/></svg></div><h3 style="margin-top:8px">2FA SETUP</h3><div class="stx">Step 1: Scan QR Code</div><div class="card" style="width:70px;height:70px;display:flex;align-items:center;justify-content:center;margin-top:6px"><svg width="36" height="36"><use href="#i-qr"/></svg></div><div class="stx" style="margin-top:4px;font-size:6px">Scan with your authenticator app</div><div class="btn s" style="margin-top:6px">NEXT STEP</div>`},
+{n:'KYC',t:'sc-t',h:`<h3>KYC VERIFICATION</h3><div style="display:flex;gap:2px;margin:6px 8px;z-index:2">${['Personal','Document','Selfie','Review'].map((s,i)=>`<div style="flex:1;text-align:center"><div style="width:16px;height:16px;border-radius:8px;margin:0 auto;background:${i===0?'var(--g)':'rgba(27,140,62,.1)'};display:flex;align-items:center;justify-content:center;font-size:7px;color:${i===0?'#fff':'var(--t2)'}">${i+1}</div><div style="font-size:4px;color:var(--t2);margin-top:2px">${s}</div></div>`).join('')}</div><div style="font-size:7px;font-weight:600;color:var(--t1);margin:6px 8px 2px;z-index:2">Personal Information</div><div class="inp">Full Name</div><div class="inp">Date of Birth</div><div class="inp">Country</div><div class="inp">Address</div><div class="btn s" style="margin-top:6px">CONTINUE</div>`},
+{n:'Login History',t:'sc-t',h:`<h3>LOGIN HISTORY</h3><div class="tabs"><div class="tb a">All</div><div class="tb">Success</div><div class="tb">Failed</div><div class="tb">Suspicious</div></div><div class="lst">${[{d:'Chrome, London',t:'Today 14:30',s:'Success',c:'var(--gl)'},{d:'Safari, New York',t:'Yesterday 09:15',s:'Success',c:'var(--gl)'},{d:'Firefox, Unknown',t:'Mar 28 03:22',s:'Failed',c:'var(--red)'}].map(l=>`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-clock"/></svg></div><div class="li-t">${l.d}<br><span style="font-size:5px;color:var(--t2)">${l.t}</span></div><div class="li-v"><span class="badge" style="color:${l.c}">${l.s}</span></div></div>`).join('')}</div>`},
+{n:'Sessions',t:'sc-t',h:`<h3>ACTIVE SESSIONS</h3><div class="lst" style="margin-top:4px">${[{d:'Chrome · Windows',l:'London, UK',cur:true},{d:'Safari · iPhone',l:'London, UK',cur:false},{d:'Firefox · MacOS',l:'New York, US',cur:false}].map(s=>`<div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-user"/></svg></div><div class="li-t">${s.d} ${s.cur?'<span class="badge" style="background:var(--g);color:#fff;font-size:4px">Current</span>':''}<br><span style="font-size:5px;color:var(--t2)">${s.l}</span></div>${!s.cur?'<div class="badge" style="border:1px solid var(--red);color:var(--red);font-size:4px">End</div>':''}</div>`).join('')}</div><div class="btn" style="margin-top:6px;border-color:var(--red);color:var(--red)">TERMINATE ALL</div>`},
+{n:'Support',t:'sc-t',h:`<h3>SUPPORT TICKETS</h3><div class="stat-row" style="margin-top:4px"><div class="st"><div class="sv">1</div><div class="sl">Tickets</div></div><div class="st"><div class="sv" style="color:var(--gl)">1</div><div class="sl">Open</div></div><div class="st"><div class="sv">0</div><div class="sl">Progress</div></div><div class="st"><div class="sv">0</div><div class="sl">Resolved</div></div></div><div class="btn s" style="margin-top:4px;font-size:7px">+ NEW TICKET</div><div class="tabs" style="margin-top:4px"><div class="tb a">All 1</div><div class="tb">Open 1</div><div class="tb">Resolved 0</div></div><div class="lst"><div class="li"><div class="li-ic"><svg width="10" height="10"><use href="#i-mail"/></svg></div><div class="li-t">AI Chat Escalation<br><span style="font-size:5px;color:var(--t2)">General · Updated today</span></div><div class="badge" style="color:var(--gl)">Open</div></div></div>`}
+]}
+]};
+
+// Theme definitions
+const themes = [
+  {id:'d1',name:'Cyber Grid',desc:'Grid overlay, scan line animation, HUD corner brackets, Orbitron font. Tech command-center feel.',deco:p=>`<div class="gov"></div><div class="scanl"></div><div class="hc-tl"></div><div class="hc-br"></div>`},
+  {id:'d2',name:'Glass Morphism',desc:'Frosted glass cards, soft blurred gradient blobs, Space Grotesk font. Premium elegant feel.',deco:p=>`<div class="bl1"></div><div class="bl2"></div>`},
+  {id:'d3',name:'Gamified RPG',desc:'XP bars, achievement rings, level badges, floating particles, Rajdhani font. Gamified progression.',deco:p=>`<div class="ptc"></div><div class="xpb"><div class="xpt"><div class="xpf" style="width:65%"></div></div><div class="xpl">XP</div></div>`},
+  {id:'d4',name:'Bold Waves',desc:'Organic wave shapes, large bold typography, gradient CTAs with shadows, Outfit font. High-energy.',deco:p=>`<div class="wt"></div><div class="wb"></div>`},
+  {id:'d5',name:'Luxe Minimal',desc:'Thin decorative lines, subtle glow, maximum whitespace, thin Inter font. Institutional feel.',deco:p=>`<div class="sgw"></div><div class="lnh" style="top:28px"></div>`}
+];
+
+// Render all themes
+const root = document.body;
+themes.forEach((theme,ti) => {
+  const cat = document.createElement('div');
+  cat.className = `cat ${theme.id}`;
+  let html = `<div class="cat-h"><div class="n">${ti+1}</div><h2>${theme.name}</h2></div><p class="cat-d">${theme.desc}</p>`;
+
+  S.rows.forEach(row => {
+    html += `<div class="rl">${row.label}</div><div class="sr">`;
+    row.screens.forEach(screen => {
+      const hasBtab = screen.bt;
+      html += `<div class="ph-f"><div class="ph-b"><div class="ph-i"><div class="sc">`;
+      html += `<div class="nt"></div>`;
+      html += theme.deco();
+      if(screen.t === 'sc-c') {
+        html += `<div class="sc-c">${screen.h}</div>`;
+      } else {
+        html += `<div class="sc-t">${screen.h}</div>`;
+      }
+      if(hasBtab) {
+        html += `<div class="btab"><div class="bt a"><svg><use href="#i-home"/></svg><span>Home</span></div><div class="bt"><svg><use href="#i-bar"/></svg><span>Markets</span></div><div class="bt"><svg><use href="#i-swap"/></svg><span>Trade</span></div><div class="bt"><svg><use href="#i-wallet"/></svg><span>Wallet</span></div><div class="bt"><svg><use href="#i-user"/></svg><span>Profile</span></div></div>`;
+      }
+      html += `</div></div></div><div class="ph-l">${screen.n}</div></div>`;
+    });
+    html += `</div>`;
+  });
+
+  cat.innerHTML = html;
+  root.appendChild(cat);
+});
+</script>
 </body>
 </html>
