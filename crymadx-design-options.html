@@ -1,0 +1,1867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CrymadX — Mobile App Design Options</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ========== CSS VARIABLES ========== */
+:root {
+  --green: #1B8C3E;
+  --green-light: #00C853;
+  --green-accent: #69f0ae;
+  --gold: #C9A84C;
+  --dark-1: #0a1f12;
+  --dark-2: #0d2818;
+  --dark-3: #0f1a0f;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --page-bg: #08080f;
+  --cat-bg: #0c0c18;
+  --cat-border: #1a1a2e;
+  --phone-bezel: #1a1a2e;
+}
+
+/* ========== RESET & BASE ========== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--page-bg);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  padding: 40px 30px;
+}
+
+/* ========== PAGE HEADER ========== */
+.page-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.page-header h1 {
+  font-size: 38px;
+  font-weight: 700;
+  color: var(--green-light);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.page-header p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ========== CATEGORY ========== */
+.category {
+  background: var(--cat-bg);
+  border: 1px solid var(--cat-border);
+  border-radius: 20px;
+  padding: 36px 30px 30px;
+  margin-bottom: 50px;
+}
+.cat-head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.cat-num {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.cat-head h2 {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.cat-desc {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 24px;
+  padding-left: 56px;
+}
+.row-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  margin-top: 24px;
+  padding-left: 4px;
+}
+.phone-row {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+/* ========== PHONE MOCKUP ========== */
+.phone {
+  width: 260px;
+  height: 540px;
+  border-radius: 36px;
+  background: var(--phone-bezel);
+  padding: 10px;
+  position: relative;
+  flex-shrink: 0;
+}
+.notch {
+  width: 90px;
+  height: 22px;
+  background: var(--phone-bezel);
+  border-radius: 0 0 16px 16px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+.phone-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ========== SCREEN BASE ========== */
+.screen-base {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px 24px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+}
+.screen-label {
+  display: block;
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-secondary);
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+
+/* ========== SHARED COMPONENTS ========== */
+/* Icon wrapper */
+.ico { width: 56px; height: 56px; margin-bottom: 14px; }
+.ico svg { width: 100%; height: 100%; }
+.ico-sm { width: 28px; height: 28px; }
+.ico-sm svg { width: 100%; height: 100%; }
+.ico-tab { width: 22px; height: 22px; }
+.ico-tab svg { width: 100%; height: 100%; }
+
+/* Dots */
+.dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 8px;
+}
+.dots span {
+  display: block;
+  width: 8px; height: 8px;
+  border-radius: 4px;
+  background: rgba(255,255,255,0.25);
+}
+.dots span.active {
+  width: 24px;
+  background: var(--green-light);
+}
+
+/* CTA Button */
+.cta-btn {
+  display: inline-block;
+  padding: 10px 36px;
+  border-radius: 24px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  letter-spacing: 1px;
+  margin-top: 8px;
+  color: #fff;
+  background: var(--green);
+  border: none;
+  cursor: pointer;
+}
+
+/* PIN dots */
+.pin-dots {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+.pin-dots span {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  border: 2px solid var(--green-light);
+}
+.pin-dots span.filled {
+  background: var(--green-light);
+}
+
+/* Keypad */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: 80%;
+  max-width: 180px;
+}
+.keypad span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-primary);
+  background: rgba(255,255,255,0.06);
+}
+
+/* Bottom Tab Bar */
+.tab-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(10,10,20,0.95);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 0 4px;
+}
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 9px;
+  color: var(--text-secondary);
+}
+.tab-item.active { color: var(--green-light); }
+.tab-item .ico-tab { margin-bottom: 1px; }
+
+/* Loading bar */
+.loading-bar {
+  width: 60%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.1);
+  margin-top: 18px;
+  overflow: hidden;
+  position: relative;
+}
+.loading-bar::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 40%;
+  height: 100%;
+  background: var(--green-light);
+  border-radius: 2px;
+  animation: loadbar 2s ease-in-out infinite;
+}
+@keyframes loadbar {
+  0% { left: -40%; }
+  100% { left: 100%; }
+}
+
+/* Logo */
+.logo-main { width: 72px; height: 72px; margin-bottom: 12px; }
+.logo-main svg { width: 100%; height: 100%; }
+.logo-sm { width: 48px; height: 48px; margin-bottom: 10px; }
+.logo-sm svg { width: 100%; height: 100%; }
+
+/* Auth buttons row */
+.auth-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 80%;
+  margin-top: 12px;
+}
+.auth-btns .btn-primary {
+  padding: 10px;
+  border-radius: 22px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 1.5px;
+  color: #fff;
+  background: var(--green);
+}
+.auth-btns .btn-outline {
+  padding: 10px;
+  border-radius: 22px;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  letter-spacing: 1.5px;
+  color: var(--green-light);
+  border: 1.5px solid var(--green-light);
+  background: transparent;
+}
+
+/* Quick actions */
+.quick-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.qa-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  color: var(--text-secondary);
+}
+.qa-circle {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(27,140,62,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.qa-circle svg { width: 18px; height: 18px; }
+
+/* ========== ANIMATIONS ========== */
+@keyframes scanmove {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 6px var(--green-light)); opacity: 0.8; }
+  50% { filter: drop-shadow(0 0 20px var(--green-light)); opacity: 1; }
+}
+@keyframes float-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* ========== THEME 1: CYBER GRID ========== */
+.d1 .screen-base {
+  background: var(--dark-1);
+  font-family: 'Orbitron', monospace;
+  background-image:
+    linear-gradient(rgba(27,140,62,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(27,140,62,0.07) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+.d1 .screen-base::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--green-light), transparent);
+  opacity: 0.3;
+  animation: scanmove 4s linear infinite;
+  z-index: 1;
+}
+.d1 h3 {
+  font-family: 'Orbitron', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--green-light);
+  margin-bottom: 6px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.d1 p {
+  font-family: 'Orbitron', monospace;
+  font-size: 9px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.d1 .cta-btn {
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  border-radius: 4px;
+  border: 1px solid var(--green-light);
+  color: #fff;
+  padding: 10px 30px;
+}
+.d1 .hud-bracket {
+  position: absolute;
+  width: 20px; height: 20px;
+  border-color: var(--green-light);
+  opacity: 0.4;
+}
+.d1 .hud-tl { top: 36px; left: 14px; border-top: 2px solid; border-left: 2px solid; }
+.d1 .hud-tr { top: 36px; right: 14px; border-top: 2px solid; border-right: 2px solid; }
+.d1 .hud-bl { bottom: 14px; left: 14px; border-bottom: 2px solid; border-left: 2px solid; }
+.d1 .hud-br { bottom: 14px; right: 14px; border-bottom: 2px solid; border-right: 2px solid; }
+.d1 .keypad span {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,200,83,0.15);
+  background: rgba(27,140,62,0.08);
+  color: var(--green-light);
+}
+.d1 .pin-dots span { border-color: var(--green-light); }
+.d1 .pin-dots span.filled { background: var(--green-light); }
+.d1 .auth-btns .btn-primary {
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  border: 1px solid var(--green-light);
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+}
+.d1 .auth-btns .btn-outline {
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  border-radius: 4px;
+  border: 1.5px solid var(--green-light);
+  color: var(--green-light);
+  background: transparent;
+}
+.d1 .tab-bar { background: rgba(10,31,18,0.95); border-top: 1px solid rgba(0,200,83,0.15); }
+.d1 .tab-item { font-family: 'Orbitron', monospace; font-size: 7px; letter-spacing: 0.5px; }
+
+/* ========== THEME 2: GLASS MORPHISM ========== */
+.d2 .screen-base {
+  background: linear-gradient(160deg, #0a1f12 0%, #0d2818 50%, #0a1a10 100%);
+  font-family: 'Space Grotesk', sans-serif;
+}
+.d2 .screen-base::before {
+  content: '';
+  position: absolute;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,200,83,0.25), transparent 70%);
+  top: 20%; left: -20%;
+  filter: blur(30px);
+}
+.d2 .screen-base::after {
+  content: '';
+  position: absolute;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,76,0.15), transparent 70%);
+  bottom: 10%; right: -10%;
+  filter: blur(25px);
+}
+.d2 .glass-card {
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 18px;
+  padding: 20px 16px;
+  width: 85%;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+.d2 h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+.d2 p {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.d2 .cta-btn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  background: rgba(27,140,62,0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,200,83,0.3);
+  border-radius: 24px;
+  color: #fff;
+  padding: 10px 32px;
+}
+.d2 .keypad span {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.08);
+  color: var(--text-primary);
+}
+.d2 .auth-btns .btn-primary {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border-radius: 22px;
+  background: rgba(27,140,62,0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0,200,83,0.3);
+}
+.d2 .auth-btns .btn-outline {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  border-radius: 22px;
+  border: 1.5px solid rgba(0,200,83,0.4);
+  color: var(--green-light);
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+}
+.d2 .tab-bar { background: rgba(13,40,24,0.85); backdrop-filter: blur(12px); border-top: 1px solid rgba(255,255,255,0.08); }
+.d2 .tab-item { font-family: 'Space Grotesk', sans-serif; font-size: 9px; }
+
+/* ========== THEME 3: GAMIFIED RPG ========== */
+.d3 .screen-base {
+  background: linear-gradient(180deg, #0a1f12 0%, #0d2818 100%);
+  font-family: 'Rajdhani', sans-serif;
+}
+.d3 .xp-bar {
+  width: 70%;
+  height: 6px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+  margin-top: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.d3 .xp-bar::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 65%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--green), var(--green-light));
+  border-radius: 3px;
+}
+.d3 .xp-label {
+  font-size: 8px;
+  color: var(--gold);
+  letter-spacing: 1px;
+  margin-top: 4px;
+  font-weight: 600;
+}
+.d3 .achievement-ring {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  border: 3px solid var(--green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  position: relative;
+  box-shadow: 0 0 15px rgba(27,140,62,0.3), inset 0 0 10px rgba(27,140,62,0.1);
+}
+.d3 .level-badge {
+  position: absolute;
+  top: -6px; right: -6px;
+  background: var(--gold);
+  color: #0a1f12;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 8px;
+  letter-spacing: 0.5px;
+}
+.d3 .particle {
+  position: absolute;
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--green-accent);
+  opacity: 0.4;
+  animation: float-bob 3s ease-in-out infinite;
+}
+.d3 h3 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--green-light);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+.d3 p {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+.d3 .cta-btn {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  border-radius: 20px;
+  border: none;
+  color: #fff;
+  padding: 10px 34px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(0,200,83,0.3);
+}
+.d3 .keypad span {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 12px;
+  background: rgba(27,140,62,0.1);
+  border: 1px solid rgba(0,200,83,0.1);
+  color: var(--text-primary);
+}
+.d3 .auth-btns .btn-primary {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  box-shadow: 0 4px 15px rgba(0,200,83,0.3);
+  text-transform: uppercase;
+}
+.d3 .auth-btns .btn-outline {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  border-radius: 20px;
+  border: 2px solid var(--green-light);
+  color: var(--green-light);
+  background: transparent;
+  text-transform: uppercase;
+}
+.d3 .tab-bar { background: rgba(10,31,18,0.95); border-top: 2px solid rgba(0,200,83,0.15); }
+.d3 .tab-item { font-family: 'Rajdhani', sans-serif; font-size: 9px; font-weight: 600; }
+
+/* ========== THEME 4: BOLD WAVES ========== */
+.d4 .screen-base {
+  background: var(--dark-1);
+  font-family: 'Outfit', sans-serif;
+}
+.d4 .screen-base::before {
+  content: '';
+  position: absolute;
+  bottom: -30%;
+  left: -20%;
+  width: 160%;
+  height: 70%;
+  background: linear-gradient(135deg, rgba(27,140,62,0.2), rgba(0,200,83,0.1));
+  border-radius: 50%;
+  z-index: 0;
+}
+.d4 .screen-base::after {
+  content: '';
+  position: absolute;
+  top: -40%;
+  right: -30%;
+  width: 120%;
+  height: 60%;
+  background: radial-gradient(ellipse, rgba(201,168,76,0.08), transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+.d4 h3 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 2;
+}
+.d4 p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  position: relative;
+  z-index: 2;
+}
+.d4 .cta-btn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  border-radius: 28px;
+  border: none;
+  color: #fff;
+  padding: 12px 38px;
+  box-shadow: 0 6px 24px rgba(0,200,83,0.35);
+  position: relative;
+  z-index: 2;
+}
+.d4 .ico, .d4 .achievement-ring { position: relative; z-index: 2; }
+.d4 .keypad span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 16px;
+  background: rgba(27,140,62,0.12);
+  color: var(--text-primary);
+  position: relative;
+  z-index: 2;
+}
+.d4 .auth-btns .btn-primary {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 28px;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  box-shadow: 0 6px 24px rgba(0,200,83,0.35);
+}
+.d4 .auth-btns .btn-outline {
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  border-radius: 28px;
+  border: 2px solid var(--green-light);
+  color: var(--green-light);
+  background: transparent;
+}
+.d4 .tab-bar { background: rgba(10,31,18,0.92); border-top: 1px solid rgba(0,200,83,0.12); }
+.d4 .tab-item { font-family: 'Outfit', sans-serif; font-size: 9px; font-weight: 500; }
+
+/* ========== THEME 5: LUXE MINIMAL ========== */
+.d5 .screen-base {
+  background: var(--dark-3);
+  font-family: 'Inter', sans-serif;
+}
+.d5 .screen-base::before {
+  content: '';
+  position: absolute;
+  width: 200px; height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(27,140,62,0.08), transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.d5 .line-h {
+  position: absolute;
+  left: 20px; right: 20px;
+  height: 1px;
+  background: rgba(255,255,255,0.04);
+}
+.d5 .line-v {
+  position: absolute;
+  top: 40px; bottom: 20px;
+  width: 1px;
+  background: rgba(255,255,255,0.04);
+}
+.d5 h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+.d5 p {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  letter-spacing: 1px;
+}
+.d5 .cta-btn {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  background: transparent;
+  border: 1px solid var(--green);
+  border-radius: 0;
+  color: var(--green-light);
+  padding: 10px 32px;
+  text-transform: uppercase;
+}
+.d5 .keypad span {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  border-radius: 0;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--text-primary);
+  letter-spacing: 1px;
+}
+.d5 .pin-dots span { border-radius: 0; border-width: 1px; }
+.d5 .pin-dots span.filled { border-radius: 0; }
+.d5 .auth-btns .btn-primary {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  border-radius: 0;
+  background: var(--green);
+  border: 1px solid var(--green-light);
+  text-transform: uppercase;
+}
+.d5 .auth-btns .btn-outline {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  border-radius: 0;
+  border: 1px solid rgba(0,200,83,0.3);
+  color: var(--green-light);
+  background: transparent;
+  text-transform: uppercase;
+}
+.d5 .dots span { border-radius: 0; width: 8px; height: 2px; }
+.d5 .dots span.active { width: 24px; border-radius: 0; }
+.d5 .tab-bar { background: rgba(15,26,15,0.95); border-top: 1px solid rgba(255,255,255,0.06); }
+.d5 .tab-item { font-family: 'Inter', sans-serif; font-size: 8px; font-weight: 300; letter-spacing: 1px; }
+
+/* Fingerprint pulse */
+.fp-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Floating particles for d3 */
+.d3 .particle:nth-child(1) { top: 15%; left: 10%; animation-delay: 0s; }
+.d3 .particle:nth-child(2) { top: 30%; right: 15%; animation-delay: 0.5s; width: 3px; height: 3px; }
+.d3 .particle:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 1s; width: 5px; height: 5px; }
+.d3 .particle:nth-child(4) { top: 60%; right: 10%; animation-delay: 1.5s; }
+
+/* ========== Z-INDEX HELPERS ========== */
+.z2 { position: relative; z-index: 2; }
+</style>
+</head>
+<body>
+
+<!-- ========== HIDDEN SVG SYMBOL DEFS ========== -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <!-- CrymadX Shield Logo -->
+  <symbol id="logo-crymadx" viewBox="0 0 80 80">
+    <path d="M40 4 L70 18 V46 C70 60 56 72 40 78 C24 72 10 60 10 46 V18 Z" fill="none" stroke="#1B8C3E" stroke-width="3"/>
+    <path d="M40 10 L64 22 V44 C64 56 52 66 40 72 C28 66 16 56 16 44 V22 Z" fill="#0a1f12" stroke="none"/>
+    <path d="M40 10 L64 22 V44 C64 56 52 66 40 72 C28 66 16 56 16 44 V22 Z" fill="url(#logoGrad)" opacity="0.3"/>
+    <path d="M30 36 L40 26 L50 36" fill="none" stroke="#00C853" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M40 26 V54" fill="none" stroke="#00C853" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M28 46 L40 58 L52 46" fill="none" stroke="#69f0ae" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+    <defs>
+      <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#1B8C3E"/>
+        <stop offset="100%" stop-color="#00C853"/>
+      </linearGradient>
+    </defs>
+  </symbol>
+
+  <!-- Wallet -->
+  <symbol id="ico-wallet" viewBox="0 0 24 24">
+    <rect x="2" y="6" width="20" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M2 10h20" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="17" cy="14" r="1.5" fill="currentColor"/>
+    <path d="M6 6V5a2 2 0 012-2h8a2 2 0 012 2v1" stroke="currentColor" stroke-width="1.8" fill="none"/>
+  </symbol>
+
+  <!-- Shield -->
+  <symbol id="ico-shield" viewBox="0 0 24 24">
+    <path d="M12 2L3 7v5c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7L12 2z" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Globe -->
+  <symbol id="ico-globe" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <ellipse cx="12" cy="12" rx="4" ry="10" fill="none" stroke="currentColor" stroke-width="1.2"/>
+    <path d="M2 12h20M4 7h16M4 17h16" stroke="currentColor" stroke-width="1" fill="none"/>
+  </symbol>
+
+  <!-- Fingerprint -->
+  <symbol id="ico-fingerprint" viewBox="0 0 24 24">
+    <path d="M12 2C9.24 2 7 4.24 7 7v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M17 7v3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M12 6c1.66 0 3 1.34 3 3v2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M9 9v4c0 2.21 1.79 4 3 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M12 12v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M7 14c0 3 2 5 5 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M15 14c0 2-1 4-3 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M5 10c0 5 3 9 7 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    <path d="M19 10c0 5-3 9-7 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- Lock -->
+  <symbol id="ico-lock" viewBox="0 0 24 24">
+    <rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M8 11V7a4 4 0 018 0v4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="12" cy="16" r="1.5" fill="currentColor"/>
+  </symbol>
+
+  <!-- Wifi Off -->
+  <symbol id="ico-wifi-off" viewBox="0 0 24 24">
+    <path d="M1 1l22 22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M5 12.5C7.5 10 9.5 9 12 9c1 0 2 .2 3 .5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M1.5 8.5C5 5.5 8.5 4 12 4c2 0 4 .5 6 1.3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M8.5 16.5c1-.8 2.2-1.5 3.5-1.5s2.5.7 3.5 1.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="12" cy="20" r="1.5" fill="currentColor"/>
+  </symbol>
+
+  <!-- Download -->
+  <symbol id="ico-download" viewBox="0 0 24 24">
+    <path d="M12 4v12m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M4 18v2h16v-2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Refresh -->
+  <symbol id="ico-refresh" viewBox="0 0 24 24">
+    <path d="M4 12a8 8 0 0114-5.3L21 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M21 4v6h-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M20 12a8 8 0 01-14 5.3L3 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M3 20v-6h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Chart / Trending -->
+  <symbol id="ico-chart" viewBox="0 0 24 24">
+    <polyline points="22,6 14,14 10,10 2,18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="16,6 22,6 22,12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Coin Stack -->
+  <symbol id="ico-coinstack" viewBox="0 0 24 24">
+    <ellipse cx="12" cy="6" rx="8" ry="3" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M4 6v4c0 1.66 3.58 3 8 3s8-1.34 8-3V6" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M4 10v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M4 14v4c0 1.66 3.58 3 8 3s8-1.34 8-3v-4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  </symbol>
+
+  <!-- Tools / Wrench -->
+  <symbol id="ico-tools" viewBox="0 0 24 24">
+    <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Arrow Right -->
+  <symbol id="ico-arrow-right" viewBox="0 0 24 24">
+    <path d="M5 12h14m0 0l-6-6m6 6l-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Login -->
+  <symbol id="ico-login" viewBox="0 0 24 24">
+    <path d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+    <path d="M10 17l5-5-5-5M15 12H3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- User Plus -->
+  <symbol id="ico-user-plus" viewBox="0 0 24 24">
+    <path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <circle cx="8.5" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M20 8v6m3-3h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- Home -->
+  <symbol id="ico-home" viewBox="0 0 24 24">
+    <path d="M3 12l2-2m0 0l7-7 7 7m-14 0v9a1 1 0 001 1h3m10-10l2 2m-2-2v9a1 1 0 01-1 1h-3m-4 0a1 1 0 01-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 01-1 1" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Bar Chart -->
+  <symbol id="ico-barchart" viewBox="0 0 24 24">
+    <rect x="4" y="12" width="4" height="8" rx="1" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <rect x="10" y="6" width="4" height="14" rx="1" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <rect x="16" y="9" width="4" height="11" rx="1" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  </symbol>
+
+  <!-- Swap Arrows -->
+  <symbol id="ico-swap" viewBox="0 0 24 24">
+    <path d="M7 16V4m0 12l-4-4m4 4l4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M17 8v12m0-12l4 4m-4-4l-4 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+
+  <!-- Credit Card -->
+  <symbol id="ico-card" viewBox="0 0 24 24">
+    <rect x="2" y="5" width="20" height="14" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M2 10h20" stroke="currentColor" stroke-width="1.8"/>
+    <path d="M6 15h4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- Grid / Menu -->
+  <symbol id="ico-grid" viewBox="0 0 24 24">
+    <rect x="3" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <rect x="14" y="3" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <rect x="3" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+    <rect x="14" y="14" width="7" height="7" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.8"/>
+  </symbol>
+
+  <!-- Deposit (arrow down into tray) -->
+  <symbol id="ico-deposit" viewBox="0 0 24 24">
+    <path d="M12 3v12m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M5 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- Withdraw (arrow up from tray) -->
+  <symbol id="ico-withdraw" viewBox="0 0 24 24">
+    <path d="M12 15V3m0 0l-4 4m4-4l4 4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M5 18h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+
+  <!-- Convert (circular arrows) -->
+  <symbol id="ico-convert" viewBox="0 0 24 24">
+    <path d="M4 12a8 8 0 0114-5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M20 12a8 8 0 01-14 5.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    <path d="M18 7l-1-4 4-1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6 17l1 4-4 1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
+</svg>
+
+<!-- ========== PAGE HEADER ========== -->
+<div class="page-header">
+  <h1>CrymadX — Mobile App Design Options</h1>
+  <p>5 Design Themes &bull; Same Brand Colors &bull; All Screens</p>
+</div>
+
+<!-- ============================================================ -->
+<!-- THEME 1: CYBER GRID                                          -->
+<!-- ============================================================ -->
+<div class="category d1">
+  <div class="cat-head">
+    <div class="cat-num">1</div>
+    <h2>Cyber Grid</h2>
+  </div>
+  <div class="cat-desc">Grid overlay background, scan line animation, HUD corner brackets, Orbitron font. Tech command-center feel.</div>
+
+  <div class="row-label">Splash &amp; Onboarding</div>
+  <div class="phone-row">
+
+    <!-- 1. Splash -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
+      <div class="logo-main z2"><svg><use href="#logo-crymadx"/></svg></div>
+      <h3 class="z2">CrymadX</h3>
+      <p class="z2" style="font-size:8px;letter-spacing:3px;color:var(--gold)">EXCHANGE</p>
+      <div class="loading-bar z2"></div>
+    </div></div></div><span class="screen-label">Splash</span></div>
+
+    <!-- 2. Onboarding 1 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
+      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-chart"/></svg></div>
+      <h3 class="z2">Trade the Future<br>of Finance</h3>
+      <p class="z2">Your complete crypto exchange with spot trading, analytics and more.</p>
+      <div class="dots z2"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 1</span></div>
+
+    <!-- 3. Onboarding 2 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
+      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-barchart"/></svg></div>
+      <h3 class="z2">63+ Markets,<br>Real-Time</h3>
+      <p class="z2">Live data, trending coins, and deep market analytics at your fingertips.</p>
+      <div class="dots z2"><span></span><span class="active"></span><span></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 2</span></div>
+
+    <!-- 4. Onboarding 3 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
+      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-coinstack"/></svg></div>
+      <h3 class="z2">Earn While<br>You Hold</h3>
+      <p class="z2">Stake your assets, earn rewards, and watch your portfolio grow.</p>
+      <div class="dots z2"><span></span><span></span><span class="active"></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 3</span></div>
+
+    <!-- 5. Onboarding 4 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
+      <div class="ico z2" style="color:var(--gold)"><svg><use href="#ico-shield"/></svg></div>
+      <h3 class="z2" style="color:var(--gold)">Bank-Grade<br>Security</h3>
+      <p class="z2">Advanced encryption, biometric auth, and 2FA protect every transaction.</p>
+      <div class="dots z2"><span></span><span></span><span></span><span class="active"></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 4</span></div>
+
+    <!-- 6. Onboarding 5 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
+      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-tools"/></svg></div>
+      <h3 class="z2">Your Complete<br>Crypto Toolkit</h3>
+      <p class="z2">Trade, swap, P2P, NFTs, staking, virtual card — all in one app.</p>
+      <div class="dots z2"><span></span><span></span><span></span><span></span><span class="active"></span></div>
+      <div class="cta-btn z2">Get Started</div>
+    </div></div></div><span class="screen-label">Onboarding 5</span></div>
+
+  </div>
+
+  <div class="row-label">Auth &amp; System Screens</div>
+  <div class="phone-row">
+
+    <!-- 7. Login/Signup -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
+      <div class="logo-sm z2"><svg><use href="#logo-crymadx"/></svg></div>
+      <h3 class="z2" style="font-size:11px;letter-spacing:3px;margin-bottom:2px">ACCESS TERMINAL</h3>
+      <p class="z2" style="margin-bottom:16px;color:var(--text-secondary)">Authenticate to proceed</p>
+      <div class="auth-btns z2">
+        <div class="btn-primary">LOGIN</div>
+        <div class="btn-outline">REGISTER</div>
+      </div>
+    </div></div></div><span class="screen-label">Login / Signup</span></div>
+
+    <!-- 8. Biometric -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
+      <div class="ico z2 fp-glow" style="color:var(--green-light);width:72px;height:72px"><svg><use href="#ico-fingerprint"/></svg></div>
+      <h3 class="z2" style="margin-top:14px">Biometric Scan</h3>
+      <p class="z2">Place your finger on the sensor to authenticate.</p>
+    </div></div></div><span class="screen-label">Biometric</span></div>
+
+    <!-- 9. PIN Setup -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:60px">
+      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
+      <div class="ico z2" style="color:var(--green-light);width:36px;height:36px"><svg><use href="#ico-lock"/></svg></div>
+      <h3 class="z2" style="font-size:11px;margin-top:8px;margin-bottom:16px">SET YOUR PIN</h3>
+      <div class="pin-dots z2"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span><span></span></div>
+      <div class="keypad z2">
+        <span>1</span><span>2</span><span>3</span>
+        <span>4</span><span>5</span><span>6</span>
+        <span>7</span><span>8</span><span>9</span>
+        <span></span><span>0</span><span style="font-size:12px">&larr;</span>
+      </div>
+    </div></div></div><span class="screen-label">PIN Setup</span></div>
+
+    <!-- 10. Tab Bar Preview -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:50px;padding-bottom:60px">
+      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
+      <p class="z2" style="font-size:8px;color:var(--text-secondary);letter-spacing:2px;margin-bottom:4px">PORTFOLIO VALUE</p>
+      <h3 class="z2" style="font-size:22px;color:var(--green-light);margin-bottom:2px">$39.09</h3>
+      <p class="z2" style="font-size:8px;color:var(--green-accent)">+2.4% today</p>
+      <div class="quick-actions z2" style="margin-top:18px">
+        <div class="qa-item"><div class="qa-circle"><svg style="color:var(--green-light)"><use href="#ico-deposit"/></svg></div><span style="font-family:'Orbitron';font-size:7px">Deposit</span></div>
+        <div class="qa-item"><div class="qa-circle"><svg style="color:var(--green-light)"><use href="#ico-withdraw"/></svg></div><span style="font-family:'Orbitron';font-size:7px">Withdraw</span></div>
+        <div class="qa-item"><div class="qa-circle"><svg style="color:var(--green-light)"><use href="#ico-convert"/></svg></div><span style="font-family:'Orbitron';font-size:7px">Convert</span></div>
+      </div>
+      <!-- Tab bar -->
+      <div class="tab-bar">
+        <div class="tab-item active"><div class="ico-tab"><svg style="color:var(--green-light)"><use href="#ico-home"/></svg></div>Home</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-chart"/></svg></div>Markets</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-swap"/></svg></div>Trade</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-wallet"/></svg></div>Wallet</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-grid"/></svg></div>More</div>
+      </div>
+    </div></div></div><span class="screen-label">Tab Bar Preview</span></div>
+
+    <!-- 11. Offline -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
+      <div class="ico z2" style="color:var(--text-secondary);width:64px;height:64px"><svg><use href="#ico-wifi-off"/></svg></div>
+      <h3 class="z2" style="margin-top:12px">Connection Lost</h3>
+      <p class="z2">Unable to reach CrymadX servers. Check your connection.</p>
+      <div class="cta-btn z2" style="margin-top:16px">Retry</div>
+    </div></div></div><span class="screen-label">Offline</span></div>
+
+    <!-- 12. Force Update -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <span class="hud-bracket hud-tl"></span><span class="hud-bracket hud-tr"></span><span class="hud-bracket hud-bl"></span><span class="hud-bracket hud-br"></span>
+      <div class="ico z2" style="color:var(--green-light);width:64px;height:64px"><svg><use href="#ico-download"/></svg></div>
+      <h3 class="z2" style="margin-top:12px;font-size:11px">UPDATE REQUIRED</h3>
+      <p class="z2">A new version of CrymadX is available with critical improvements.</p>
+      <div class="cta-btn z2" style="margin-top:16px">Update Now</div>
+    </div></div></div><span class="screen-label">Force Update</span></div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- THEME 2: GLASS MORPHISM                                      -->
+<!-- ============================================================ -->
+<div class="category d2">
+  <div class="cat-head">
+    <div class="cat-num">2</div>
+    <h2>Glass Morphism</h2>
+  </div>
+  <div class="cat-desc">Frosted glass card containers, soft blurred gradient blobs, Space Grotesk font. Premium elegant feel.</div>
+
+  <div class="row-label">Splash &amp; Onboarding</div>
+  <div class="phone-row">
+
+    <!-- 1. Splash -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="logo-main z2"><svg><use href="#logo-crymadx"/></svg></div>
+      <h3 class="z2">CrymadX</h3>
+      <p class="z2" style="font-size:9px;letter-spacing:2px;color:var(--gold)">EXCHANGE</p>
+      <div class="loading-bar z2"></div>
+    </div></div></div><span class="screen-label">Splash</span></div>
+
+    <!-- 2. Onboarding 1 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="glass-card">
+        <div class="ico" style="color:var(--green-light);margin:0 auto 10px"><svg><use href="#ico-chart"/></svg></div>
+        <h3>Trade the Future of Finance</h3>
+        <p>Your complete crypto exchange with spot trading, analytics and more.</p>
+      </div>
+      <div class="dots z2"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 1</span></div>
+
+    <!-- 3. Onboarding 2 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="glass-card">
+        <div class="ico" style="color:var(--green-light);margin:0 auto 10px"><svg><use href="#ico-barchart"/></svg></div>
+        <h3>63+ Markets, Real-Time</h3>
+        <p>Live data, trending coins, and deep market analytics at your fingertips.</p>
+      </div>
+      <div class="dots z2"><span></span><span class="active"></span><span></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 2</span></div>
+
+    <!-- 4. Onboarding 3 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="glass-card">
+        <div class="ico" style="color:var(--green-light);margin:0 auto 10px"><svg><use href="#ico-coinstack"/></svg></div>
+        <h3>Earn While You Hold</h3>
+        <p>Stake your assets, earn rewards, and watch your portfolio grow.</p>
+      </div>
+      <div class="dots z2"><span></span><span></span><span class="active"></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 3</span></div>
+
+    <!-- 5. Onboarding 4 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="glass-card">
+        <div class="ico" style="color:var(--gold);margin:0 auto 10px"><svg><use href="#ico-shield"/></svg></div>
+        <h3 style="color:var(--gold)">Bank-Grade Security</h3>
+        <p>Advanced encryption, biometric auth, and 2FA protect every transaction.</p>
+      </div>
+      <div class="dots z2"><span></span><span></span><span></span><span class="active"></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 4</span></div>
+
+    <!-- 6. Onboarding 5 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="glass-card">
+        <div class="ico" style="color:var(--green-light);margin:0 auto 10px"><svg><use href="#ico-tools"/></svg></div>
+        <h3>Your Complete Crypto Toolkit</h3>
+        <p>Trade, swap, P2P, NFTs, staking, virtual card — all in one app.</p>
+      </div>
+      <div class="dots z2"><span></span><span></span><span></span><span></span><span class="active"></span></div>
+      <div class="cta-btn z2">Get Started</div>
+    </div></div></div><span class="screen-label">Onboarding 5</span></div>
+
+  </div>
+
+  <div class="row-label">Auth &amp; System Screens</div>
+  <div class="phone-row">
+
+    <!-- 7. Login/Signup -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="glass-card">
+        <div class="logo-sm" style="margin:0 auto 8px"><svg><use href="#logo-crymadx"/></svg></div>
+        <h3 style="font-size:13px">Welcome to CrymadX</h3>
+        <p style="margin-bottom:14px">Sign in to access your exchange</p>
+        <div class="auth-btns" style="width:100%">
+          <div class="btn-primary">LOGIN</div>
+          <div class="btn-outline">REGISTER</div>
+        </div>
+      </div>
+    </div></div></div><span class="screen-label">Login / Signup</span></div>
+
+    <!-- 8. Biometric -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="glass-card">
+        <div class="ico fp-glow" style="color:var(--green-light);width:72px;height:72px;margin:0 auto 12px"><svg><use href="#ico-fingerprint"/></svg></div>
+        <h3>Biometric Login</h3>
+        <p>Touch the sensor to authenticate securely.</p>
+      </div>
+    </div></div></div><span class="screen-label">Biometric</span></div>
+
+    <!-- 9. PIN Setup -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:55px">
+      <div class="ico z2" style="color:var(--green-light);width:32px;height:32px"><svg><use href="#ico-lock"/></svg></div>
+      <h3 class="z2" style="margin-top:8px;margin-bottom:16px;font-size:13px">Set Your PIN</h3>
+      <div class="pin-dots z2"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span><span></span></div>
+      <div class="keypad z2">
+        <span>1</span><span>2</span><span>3</span>
+        <span>4</span><span>5</span><span>6</span>
+        <span>7</span><span>8</span><span>9</span>
+        <span></span><span>0</span><span>&larr;</span>
+      </div>
+    </div></div></div><span class="screen-label">PIN Setup</span></div>
+
+    <!-- 10. Tab Bar Preview -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:50px;padding-bottom:60px">
+      <p class="z2" style="font-size:9px;color:var(--text-secondary);letter-spacing:1px;margin-bottom:4px">Portfolio Value</p>
+      <h3 class="z2" style="font-size:24px;color:var(--text-primary);margin-bottom:2px">$39.09</h3>
+      <p class="z2" style="font-size:9px;color:var(--green-accent)">+2.4% today</p>
+      <div class="quick-actions z2" style="margin-top:18px">
+        <div class="qa-item"><div class="qa-circle" style="background:rgba(27,140,62,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08)"><svg style="color:var(--green-light)"><use href="#ico-deposit"/></svg></div><span>Deposit</span></div>
+        <div class="qa-item"><div class="qa-circle" style="background:rgba(27,140,62,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08)"><svg style="color:var(--green-light)"><use href="#ico-withdraw"/></svg></div><span>Withdraw</span></div>
+        <div class="qa-item"><div class="qa-circle" style="background:rgba(27,140,62,0.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,0.08)"><svg style="color:var(--green-light)"><use href="#ico-convert"/></svg></div><span>Convert</span></div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active"><div class="ico-tab"><svg style="color:var(--green-light)"><use href="#ico-home"/></svg></div>Home</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-chart"/></svg></div>Markets</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-swap"/></svg></div>Trade</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-wallet"/></svg></div>Wallet</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-grid"/></svg></div>More</div>
+      </div>
+    </div></div></div><span class="screen-label">Tab Bar Preview</span></div>
+
+    <!-- 11. Offline -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="glass-card">
+        <div class="ico" style="color:var(--text-secondary);width:64px;height:64px;margin:0 auto 10px"><svg><use href="#ico-wifi-off"/></svg></div>
+        <h3>Connection Lost</h3>
+        <p>Unable to reach CrymadX servers. Check your connection.</p>
+        <div class="cta-btn" style="margin-top:14px">Retry</div>
+      </div>
+    </div></div></div><span class="screen-label">Offline</span></div>
+
+    <!-- 12. Force Update -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="glass-card">
+        <div class="ico" style="color:var(--green-light);width:64px;height:64px;margin:0 auto 10px"><svg><use href="#ico-download"/></svg></div>
+        <h3>Update Required</h3>
+        <p>A new version of CrymadX is available with critical improvements.</p>
+        <div class="cta-btn" style="margin-top:14px">Update Now</div>
+      </div>
+    </div></div></div><span class="screen-label">Force Update</span></div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- THEME 3: GAMIFIED RPG                                        -->
+<!-- ============================================================ -->
+<div class="category d3">
+  <div class="cat-head">
+    <div class="cat-num">3</div>
+    <h2>Gamified RPG</h2>
+  </div>
+  <div class="cat-desc">XP progress bars, achievement ring containers for icons, level badges, floating particle dots, Rajdhani font. Gamified trading progression.</div>
+
+  <div class="row-label">Splash &amp; Onboarding</div>
+  <div class="phone-row">
+
+    <!-- 1. Splash -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="achievement-ring z2"><div class="logo-sm" style="margin:0;width:40px;height:40px"><svg><use href="#logo-crymadx"/></svg></div></div>
+      <h3 class="z2">CrymadX</h3>
+      <p class="z2" style="font-size:9px;letter-spacing:2px;color:var(--gold)">EXCHANGE</p>
+      <div class="loading-bar z2"></div>
+      <div class="xp-label z2">LOADING ARENA...</div>
+    </div></div></div><span class="screen-label">Splash</span></div>
+
+    <!-- 2. Onboarding 1 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="achievement-ring z2">
+        <div class="level-badge">LV1</div>
+        <div class="ico" style="color:var(--green-light);margin:0;width:36px;height:36px"><svg><use href="#ico-chart"/></svg></div>
+      </div>
+      <h3 class="z2">Trade the Future of Finance</h3>
+      <p class="z2">Your complete crypto exchange with spot trading, analytics and more.</p>
+      <div class="xp-bar z2"></div>
+      <div class="xp-label z2">QUEST 1/5</div>
+      <div class="dots z2"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next Quest</div>
+    </div></div></div><span class="screen-label">Onboarding 1</span></div>
+
+    <!-- 3. Onboarding 2 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="achievement-ring z2">
+        <div class="level-badge">LV2</div>
+        <div class="ico" style="color:var(--green-light);margin:0;width:36px;height:36px"><svg><use href="#ico-barchart"/></svg></div>
+      </div>
+      <h3 class="z2">63+ Markets, Real-Time</h3>
+      <p class="z2">Live data, trending coins, and deep market analytics at your fingertips.</p>
+      <div class="xp-bar z2"></div>
+      <div class="xp-label z2">QUEST 2/5</div>
+      <div class="dots z2"><span></span><span class="active"></span><span></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next Quest</div>
+    </div></div></div><span class="screen-label">Onboarding 2</span></div>
+
+    <!-- 4. Onboarding 3 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="achievement-ring z2">
+        <div class="level-badge">LV3</div>
+        <div class="ico" style="color:var(--green-light);margin:0;width:36px;height:36px"><svg><use href="#ico-coinstack"/></svg></div>
+      </div>
+      <h3 class="z2">Earn While You Hold</h3>
+      <p class="z2">Stake your assets, earn rewards, and watch your portfolio grow.</p>
+      <div class="xp-bar z2"></div>
+      <div class="xp-label z2">QUEST 3/5</div>
+      <div class="dots z2"><span></span><span></span><span class="active"></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next Quest</div>
+    </div></div></div><span class="screen-label">Onboarding 3</span></div>
+
+    <!-- 5. Onboarding 4 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="achievement-ring z2" style="border-color:var(--gold);box-shadow:0 0 15px rgba(201,168,76,0.3),inset 0 0 10px rgba(201,168,76,0.1)">
+        <div class="level-badge">LV4</div>
+        <div class="ico" style="color:var(--gold);margin:0;width:36px;height:36px"><svg><use href="#ico-shield"/></svg></div>
+      </div>
+      <h3 class="z2" style="color:var(--gold)">Bank-Grade Security</h3>
+      <p class="z2">Advanced encryption, biometric auth, and 2FA protect every transaction.</p>
+      <div class="xp-bar z2"></div>
+      <div class="xp-label z2">QUEST 4/5</div>
+      <div class="dots z2"><span></span><span></span><span></span><span class="active"></span><span></span></div>
+      <div class="cta-btn z2">Next Quest</div>
+    </div></div></div><span class="screen-label">Onboarding 4</span></div>
+
+    <!-- 6. Onboarding 5 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="achievement-ring z2">
+        <div class="level-badge">LV5</div>
+        <div class="ico" style="color:var(--green-light);margin:0;width:36px;height:36px"><svg><use href="#ico-tools"/></svg></div>
+      </div>
+      <h3 class="z2">Your Complete Crypto Toolkit</h3>
+      <p class="z2">Trade, swap, P2P, NFTs, staking, virtual card — all in one app.</p>
+      <div class="xp-bar z2"></div>
+      <div class="xp-label z2">QUEST 5/5 COMPLETE!</div>
+      <div class="dots z2"><span></span><span></span><span></span><span></span><span class="active"></span></div>
+      <div class="cta-btn z2">Enter Arena</div>
+    </div></div></div><span class="screen-label">Onboarding 5</span></div>
+
+  </div>
+
+  <div class="row-label">Auth &amp; System Screens</div>
+  <div class="phone-row">
+
+    <!-- 7. Login/Signup -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="achievement-ring z2">
+        <div class="logo-sm" style="margin:0;width:40px;height:40px"><svg><use href="#logo-crymadx"/></svg></div>
+      </div>
+      <h3 class="z2" style="font-size:14px;margin-top:8px">Enter the Arena</h3>
+      <p class="z2" style="margin-bottom:14px">Choose your path, trader.</p>
+      <div class="auth-btns z2">
+        <div class="btn-primary">LOGIN</div>
+        <div class="btn-outline">REGISTER</div>
+      </div>
+    </div></div></div><span class="screen-label">Login / Signup</span></div>
+
+    <!-- 8. Biometric -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="achievement-ring z2" style="width:84px;height:84px">
+        <div class="ico fp-glow" style="color:var(--green-light);margin:0;width:48px;height:48px"><svg><use href="#ico-fingerprint"/></svg></div>
+      </div>
+      <h3 class="z2" style="margin-top:14px">Biometric Scan</h3>
+      <p class="z2">Verify your identity to proceed.</p>
+      <div class="xp-bar z2"></div>
+      <div class="xp-label z2">AUTHENTICATING...</div>
+    </div></div></div><span class="screen-label">Biometric</span></div>
+
+    <!-- 9. PIN Setup -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:55px">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="ico z2" style="color:var(--green-light);width:32px;height:32px"><svg><use href="#ico-lock"/></svg></div>
+      <h3 class="z2" style="margin-top:8px;margin-bottom:4px;font-size:14px">Set Your PIN</h3>
+      <div class="xp-label z2" style="margin-bottom:12px">SECURITY QUEST</div>
+      <div class="pin-dots z2"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span><span></span></div>
+      <div class="keypad z2">
+        <span>1</span><span>2</span><span>3</span>
+        <span>4</span><span>5</span><span>6</span>
+        <span>7</span><span>8</span><span>9</span>
+        <span></span><span>0</span><span>&larr;</span>
+      </div>
+    </div></div></div><span class="screen-label">PIN Setup</span></div>
+
+    <!-- 10. Tab Bar Preview -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:50px;padding-bottom:60px">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <p class="z2" style="font-size:9px;color:var(--gold);letter-spacing:1px;margin-bottom:2px">PORTFOLIO XP</p>
+      <h3 class="z2" style="font-size:24px;margin-bottom:2px">$39.09</h3>
+      <p class="z2" style="font-size:9px;color:var(--green-accent)">+2.4% today</p>
+      <div class="xp-bar z2" style="margin-top:8px"></div>
+      <div class="xp-label z2">LEVEL 7 TRADER</div>
+      <div class="quick-actions z2" style="margin-top:14px">
+        <div class="qa-item"><div class="qa-circle" style="border:2px solid var(--green);box-shadow:0 0 8px rgba(27,140,62,0.3)"><svg style="color:var(--green-light)"><use href="#ico-deposit"/></svg></div><span style="font-family:'Rajdhani';font-size:9px;font-weight:600">Deposit</span></div>
+        <div class="qa-item"><div class="qa-circle" style="border:2px solid var(--green);box-shadow:0 0 8px rgba(27,140,62,0.3)"><svg style="color:var(--green-light)"><use href="#ico-withdraw"/></svg></div><span style="font-family:'Rajdhani';font-size:9px;font-weight:600">Withdraw</span></div>
+        <div class="qa-item"><div class="qa-circle" style="border:2px solid var(--green);box-shadow:0 0 8px rgba(27,140,62,0.3)"><svg style="color:var(--green-light)"><use href="#ico-convert"/></svg></div><span style="font-family:'Rajdhani';font-size:9px;font-weight:600">Convert</span></div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active"><div class="ico-tab"><svg style="color:var(--green-light)"><use href="#ico-home"/></svg></div>Home</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-chart"/></svg></div>Markets</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-swap"/></svg></div>Trade</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-wallet"/></svg></div>Wallet</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-grid"/></svg></div>More</div>
+      </div>
+    </div></div></div><span class="screen-label">Tab Bar Preview</span></div>
+
+    <!-- 11. Offline -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="achievement-ring z2" style="border-color:var(--text-secondary);box-shadow:none">
+        <div class="ico" style="color:var(--text-secondary);margin:0;width:36px;height:36px"><svg><use href="#ico-wifi-off"/></svg></div>
+      </div>
+      <h3 class="z2" style="margin-top:12px">Connection Lost</h3>
+      <p class="z2">Unable to reach CrymadX servers. Check your connection.</p>
+      <div class="cta-btn z2" style="margin-top:16px">Retry</div>
+    </div></div></div><span class="screen-label">Offline</span></div>
+
+    <!-- 12. Force Update -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="achievement-ring z2">
+        <div class="level-badge" style="background:var(--green-light);color:#0a1f12">NEW</div>
+        <div class="ico" style="color:var(--green-light);margin:0;width:36px;height:36px"><svg><use href="#ico-download"/></svg></div>
+      </div>
+      <h3 class="z2" style="margin-top:12px">Update Required</h3>
+      <p class="z2">A new version with critical improvements is available.</p>
+      <div class="cta-btn z2" style="margin-top:16px">Update Now</div>
+    </div></div></div><span class="screen-label">Force Update</span></div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- THEME 4: BOLD WAVES                                          -->
+<!-- ============================================================ -->
+<div class="category d4">
+  <div class="cat-head">
+    <div class="cat-num">4</div>
+    <h2>Bold Waves</h2>
+  </div>
+  <div class="cat-desc">Organic wave shape backgrounds (clip-path ellipse), large bold typography, gradient-filled CTAs with shadows, Outfit font. High-energy fintech.</div>
+
+  <div class="row-label">Splash &amp; Onboarding</div>
+  <div class="phone-row">
+
+    <!-- 1. Splash -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="logo-main z2"><svg><use href="#logo-crymadx"/></svg></div>
+      <h3 class="z2" style="font-size:22px">CrymadX</h3>
+      <p class="z2" style="font-size:10px;letter-spacing:3px;color:var(--gold);font-weight:500">EXCHANGE</p>
+      <div class="loading-bar z2"></div>
+    </div></div></div><span class="screen-label">Splash</span></div>
+
+    <!-- 2. Onboarding 1 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="ico z2" style="color:var(--green-light);width:64px;height:64px"><svg><use href="#ico-chart"/></svg></div>
+      <h3 class="z2">Trade the Future of Finance</h3>
+      <p class="z2">Your complete crypto exchange with spot trading, analytics and more.</p>
+      <div class="dots z2"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 1</span></div>
+
+    <!-- 3. Onboarding 2 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="ico z2" style="color:var(--green-light);width:64px;height:64px"><svg><use href="#ico-barchart"/></svg></div>
+      <h3 class="z2">63+ Markets, Real-Time</h3>
+      <p class="z2">Live data, trending coins, and deep market analytics at your fingertips.</p>
+      <div class="dots z2"><span></span><span class="active"></span><span></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 2</span></div>
+
+    <!-- 4. Onboarding 3 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="ico z2" style="color:var(--green-light);width:64px;height:64px"><svg><use href="#ico-coinstack"/></svg></div>
+      <h3 class="z2">Earn While You Hold</h3>
+      <p class="z2">Stake your assets, earn rewards, and watch your portfolio grow.</p>
+      <div class="dots z2"><span></span><span></span><span class="active"></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 3</span></div>
+
+    <!-- 5. Onboarding 4 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="ico z2" style="color:var(--gold);width:64px;height:64px"><svg><use href="#ico-shield"/></svg></div>
+      <h3 class="z2" style="color:var(--gold)">Bank-Grade Security</h3>
+      <p class="z2">Advanced encryption, biometric auth, and 2FA protect every transaction.</p>
+      <div class="dots z2"><span></span><span></span><span></span><span class="active"></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 4</span></div>
+
+    <!-- 6. Onboarding 5 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="ico z2" style="color:var(--green-light);width:64px;height:64px"><svg><use href="#ico-tools"/></svg></div>
+      <h3 class="z2">Your Complete Crypto Toolkit</h3>
+      <p class="z2">Trade, swap, P2P, NFTs, staking, virtual card — all in one app.</p>
+      <div class="dots z2"><span></span><span></span><span></span><span></span><span class="active"></span></div>
+      <div class="cta-btn z2">Get Started</div>
+    </div></div></div><span class="screen-label">Onboarding 5</span></div>
+
+  </div>
+
+  <div class="row-label">Auth &amp; System Screens</div>
+  <div class="phone-row">
+
+    <!-- 7. Login/Signup -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="logo-sm z2"><svg><use href="#logo-crymadx"/></svg></div>
+      <h3 class="z2" style="font-size:20px;margin-bottom:2px">Welcome</h3>
+      <p class="z2" style="margin-bottom:18px">Start trading with CrymadX</p>
+      <div class="auth-btns z2">
+        <div class="btn-primary">LOGIN</div>
+        <div class="btn-outline">REGISTER</div>
+      </div>
+    </div></div></div><span class="screen-label">Login / Signup</span></div>
+
+    <!-- 8. Biometric -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="ico z2 fp-glow" style="color:var(--green-light);width:80px;height:80px"><svg><use href="#ico-fingerprint"/></svg></div>
+      <h3 class="z2" style="margin-top:16px;font-size:20px">Biometric Login</h3>
+      <p class="z2">Touch the sensor to verify your identity.</p>
+    </div></div></div><span class="screen-label">Biometric</span></div>
+
+    <!-- 9. PIN Setup -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:55px">
+      <div class="ico z2" style="color:var(--green-light);width:32px;height:32px"><svg><use href="#ico-lock"/></svg></div>
+      <h3 class="z2" style="margin-top:8px;margin-bottom:16px;font-size:18px">Set Your PIN</h3>
+      <div class="pin-dots z2"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span><span></span></div>
+      <div class="keypad z2">
+        <span>1</span><span>2</span><span>3</span>
+        <span>4</span><span>5</span><span>6</span>
+        <span>7</span><span>8</span><span>9</span>
+        <span></span><span>0</span><span>&larr;</span>
+      </div>
+    </div></div></div><span class="screen-label">PIN Setup</span></div>
+
+    <!-- 10. Tab Bar Preview -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:50px;padding-bottom:60px">
+      <p class="z2" style="font-size:10px;color:var(--text-secondary);margin-bottom:4px">Portfolio Value</p>
+      <h3 class="z2" style="font-size:28px;margin-bottom:2px">$39.09</h3>
+      <p class="z2" style="font-size:10px;color:var(--green-accent);font-weight:600">+2.4% today</p>
+      <div class="quick-actions z2" style="margin-top:18px">
+        <div class="qa-item"><div class="qa-circle" style="background:linear-gradient(135deg,rgba(27,140,62,0.3),rgba(0,200,83,0.15));box-shadow:0 4px 12px rgba(0,200,83,0.2)"><svg style="color:var(--green-light)"><use href="#ico-deposit"/></svg></div><span style="font-family:'Outfit';font-weight:600;font-size:9px">Deposit</span></div>
+        <div class="qa-item"><div class="qa-circle" style="background:linear-gradient(135deg,rgba(27,140,62,0.3),rgba(0,200,83,0.15));box-shadow:0 4px 12px rgba(0,200,83,0.2)"><svg style="color:var(--green-light)"><use href="#ico-withdraw"/></svg></div><span style="font-family:'Outfit';font-weight:600;font-size:9px">Withdraw</span></div>
+        <div class="qa-item"><div class="qa-circle" style="background:linear-gradient(135deg,rgba(27,140,62,0.3),rgba(0,200,83,0.15));box-shadow:0 4px 12px rgba(0,200,83,0.2)"><svg style="color:var(--green-light)"><use href="#ico-convert"/></svg></div><span style="font-family:'Outfit';font-weight:600;font-size:9px">Convert</span></div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active"><div class="ico-tab"><svg style="color:var(--green-light)"><use href="#ico-home"/></svg></div>Home</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-chart"/></svg></div>Markets</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-swap"/></svg></div>Trade</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-wallet"/></svg></div>Wallet</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-grid"/></svg></div>More</div>
+      </div>
+    </div></div></div><span class="screen-label">Tab Bar Preview</span></div>
+
+    <!-- 11. Offline -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="ico z2" style="color:var(--text-secondary);width:72px;height:72px"><svg><use href="#ico-wifi-off"/></svg></div>
+      <h3 class="z2" style="margin-top:14px;font-size:20px">Connection Lost</h3>
+      <p class="z2">Unable to reach CrymadX servers. Check your connection.</p>
+      <div class="cta-btn z2" style="margin-top:16px">Retry</div>
+    </div></div></div><span class="screen-label">Offline</span></div>
+
+    <!-- 12. Force Update -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="ico z2" style="color:var(--green-light);width:72px;height:72px"><svg><use href="#ico-download"/></svg></div>
+      <h3 class="z2" style="margin-top:14px;font-size:18px">Update Required</h3>
+      <p class="z2">A new version of CrymadX is available with critical improvements.</p>
+      <div class="cta-btn z2" style="margin-top:16px">Update Now</div>
+    </div></div></div><span class="screen-label">Force Update</span></div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- THEME 5: LUXE MINIMAL                                        -->
+<!-- ============================================================ -->
+<div class="category d5">
+  <div class="cat-head">
+    <div class="cat-num">5</div>
+    <h2>Luxe Minimal</h2>
+  </div>
+  <div class="cat-desc">Thin decorative lines (horizontal + vertical), subtle center glow, maximum whitespace, thin Inter font with wide letter-spacing. Institutional / private-banking feel.</div>
+
+  <div class="row-label">Splash &amp; Onboarding</div>
+  <div class="phone-row">
+
+    <!-- 1. Splash -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="line-h" style="top:35%"></div>
+      <div class="line-h" style="bottom:35%"></div>
+      <div class="line-v" style="left:20px"></div>
+      <div class="line-v" style="right:20px"></div>
+      <div class="logo-main z2"><svg><use href="#logo-crymadx"/></svg></div>
+      <h3 class="z2" style="font-size:16px;letter-spacing:8px;font-weight:300">CRYMADX</h3>
+      <p class="z2" style="font-size:8px;letter-spacing:5px;color:var(--gold);margin-top:4px">EXCHANGE</p>
+      <div class="loading-bar z2"></div>
+    </div></div></div><span class="screen-label">Splash</span></div>
+
+    <!-- 2. Onboarding 1 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="line-h" style="top:30%"></div>
+      <div class="line-h" style="bottom:30%"></div>
+      <div class="line-v" style="left:20px"></div>
+      <div class="line-v" style="right:20px"></div>
+      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-chart"/></svg></div>
+      <h3 class="z2">Trade the Future of Finance</h3>
+      <p class="z2">Your complete crypto exchange with spot trading, analytics and more.</p>
+      <div class="dots z2"><span class="active"></span><span></span><span></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 1</span></div>
+
+    <!-- 3. Onboarding 2 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="line-h" style="top:30%"></div>
+      <div class="line-h" style="bottom:30%"></div>
+      <div class="line-v" style="left:20px"></div>
+      <div class="line-v" style="right:20px"></div>
+      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-barchart"/></svg></div>
+      <h3 class="z2">63+ Markets Real-Time</h3>
+      <p class="z2">Live data, trending coins, and deep market analytics at your fingertips.</p>
+      <div class="dots z2"><span></span><span class="active"></span><span></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 2</span></div>
+
+    <!-- 4. Onboarding 3 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="line-h" style="top:30%"></div>
+      <div class="line-h" style="bottom:30%"></div>
+      <div class="line-v" style="left:20px"></div>
+      <div class="line-v" style="right:20px"></div>
+      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-coinstack"/></svg></div>
+      <h3 class="z2">Earn While You Hold</h3>
+      <p class="z2">Stake your assets, earn rewards, and watch your portfolio grow.</p>
+      <div class="dots z2"><span></span><span></span><span class="active"></span><span></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 3</span></div>
+
+    <!-- 5. Onboarding 4 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="line-h" style="top:30%"></div>
+      <div class="line-h" style="bottom:30%"></div>
+      <div class="line-v" style="left:20px"></div>
+      <div class="line-v" style="right:20px"></div>
+      <div class="ico z2" style="color:var(--gold)"><svg><use href="#ico-shield"/></svg></div>
+      <h3 class="z2" style="color:var(--gold)">Bank-Grade Security</h3>
+      <p class="z2">Advanced encryption, biometric auth, and 2FA protect every transaction.</p>
+      <div class="dots z2"><span></span><span></span><span></span><span class="active"></span><span></span></div>
+      <div class="cta-btn z2">Next</div>
+    </div></div></div><span class="screen-label">Onboarding 4</span></div>
+
+    <!-- 6. Onboarding 5 -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="line-h" style="top:30%"></div>
+      <div class="line-h" style="bottom:30%"></div>
+      <div class="line-v" style="left:20px"></div>
+      <div class="line-v" style="right:20px"></div>
+      <div class="ico z2" style="color:var(--green-light)"><svg><use href="#ico-tools"/></svg></div>
+      <h3 class="z2">Your Complete Crypto Toolkit</h3>
+      <p class="z2">Trade, swap, P2P, NFTs, staking, virtual card — all in one app.</p>
+      <div class="dots z2"><span></span><span></span><span></span><span></span><span class="active"></span></div>
+      <div class="cta-btn z2">Get Started</div>
+    </div></div></div><span class="screen-label">Onboarding 5</span></div>
+
+  </div>
+
+  <div class="row-label">Auth &amp; System Screens</div>
+  <div class="phone-row">
+
+    <!-- 7. Login/Signup -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="line-h" style="top:30%"></div>
+      <div class="line-h" style="bottom:30%"></div>
+      <div class="line-v" style="left:20px"></div>
+      <div class="line-v" style="right:20px"></div>
+      <div class="logo-sm z2"><svg><use href="#logo-crymadx"/></svg></div>
+      <h3 class="z2" style="font-size:12px;letter-spacing:6px;margin-bottom:4px">CRYMADX</h3>
+      <p class="z2" style="margin-bottom:20px;letter-spacing:2px">Access your exchange</p>
+      <div class="auth-btns z2">
+        <div class="btn-primary">LOGIN</div>
+        <div class="btn-outline">REGISTER</div>
+      </div>
+    </div></div></div><span class="screen-label">Login / Signup</span></div>
+
+    <!-- 8. Biometric -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="line-h" style="top:30%"></div>
+      <div class="line-h" style="bottom:30%"></div>
+      <div class="line-v" style="left:20px"></div>
+      <div class="line-v" style="right:20px"></div>
+      <div class="ico z2 fp-glow" style="color:var(--green-light);width:72px;height:72px"><svg><use href="#ico-fingerprint"/></svg></div>
+      <h3 class="z2" style="margin-top:16px">Biometric</h3>
+      <p class="z2">Place your finger on the sensor.</p>
+    </div></div></div><span class="screen-label">Biometric</span></div>
+
+    <!-- 9. PIN Setup -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:55px">
+      <div class="line-h" style="top:30%"></div>
+      <div class="line-v" style="left:20px"></div>
+      <div class="line-v" style="right:20px"></div>
+      <div class="ico z2" style="color:var(--green-light);width:28px;height:28px"><svg><use href="#ico-lock"/></svg></div>
+      <h3 class="z2" style="margin-top:10px;margin-bottom:18px;font-size:12px;letter-spacing:6px">SET PIN</h3>
+      <div class="pin-dots z2"><span class="filled"></span><span class="filled"></span><span class="filled"></span><span></span><span></span><span></span></div>
+      <div class="keypad z2">
+        <span>1</span><span>2</span><span>3</span>
+        <span>4</span><span>5</span><span>6</span>
+        <span>7</span><span>8</span><span>9</span>
+        <span></span><span>0</span><span>&larr;</span>
+      </div>
+    </div></div></div><span class="screen-label">PIN Setup</span></div>
+
+    <!-- 10. Tab Bar Preview -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base" style="justify-content:flex-start;padding-top:55px;padding-bottom:60px">
+      <div class="line-h" style="top:28%"></div>
+      <div class="line-v" style="left:20px"></div>
+      <div class="line-v" style="right:20px"></div>
+      <p class="z2" style="font-size:9px;color:var(--text-secondary);letter-spacing:3px;margin-bottom:6px">PORTFOLIO</p>
+      <h3 class="z2" style="font-size:26px;font-weight:300;letter-spacing:2px;margin-bottom:2px">$39.09</h3>
+      <p class="z2" style="font-size:9px;color:var(--green-accent);letter-spacing:1px">+2.4% today</p>
+      <div class="quick-actions z2" style="margin-top:20px">
+        <div class="qa-item"><div class="qa-circle" style="background:transparent;border:1px solid rgba(255,255,255,0.08);border-radius:0"><svg style="color:var(--green-light)"><use href="#ico-deposit"/></svg></div><span style="font-size:8px;letter-spacing:1px">Deposit</span></div>
+        <div class="qa-item"><div class="qa-circle" style="background:transparent;border:1px solid rgba(255,255,255,0.08);border-radius:0"><svg style="color:var(--green-light)"><use href="#ico-withdraw"/></svg></div><span style="font-size:8px;letter-spacing:1px">Withdraw</span></div>
+        <div class="qa-item"><div class="qa-circle" style="background:transparent;border:1px solid rgba(255,255,255,0.08);border-radius:0"><svg style="color:var(--green-light)"><use href="#ico-convert"/></svg></div><span style="font-size:8px;letter-spacing:1px">Convert</span></div>
+      </div>
+      <div class="tab-bar">
+        <div class="tab-item active"><div class="ico-tab"><svg style="color:var(--green-light)"><use href="#ico-home"/></svg></div>Home</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-chart"/></svg></div>Markets</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-swap"/></svg></div>Trade</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-wallet"/></svg></div>Wallet</div>
+        <div class="tab-item"><div class="ico-tab"><svg style="color:var(--text-secondary)"><use href="#ico-grid"/></svg></div>More</div>
+      </div>
+    </div></div></div><span class="screen-label">Tab Bar Preview</span></div>
+
+    <!-- 11. Offline -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="line-h" style="top:30%"></div>
+      <div class="line-h" style="bottom:30%"></div>
+      <div class="line-v" style="left:20px"></div>
+      <div class="line-v" style="right:20px"></div>
+      <div class="ico z2" style="color:var(--text-secondary);width:56px;height:56px"><svg><use href="#ico-wifi-off"/></svg></div>
+      <h3 class="z2" style="margin-top:14px">Connection Lost</h3>
+      <p class="z2">Unable to reach servers. Check your connection.</p>
+      <div class="cta-btn z2" style="margin-top:18px">Retry</div>
+    </div></div></div><span class="screen-label">Offline</span></div>
+
+    <!-- 12. Force Update -->
+    <div><div class="phone"><div class="notch"></div><div class="phone-inner"><div class="screen-base">
+      <div class="line-h" style="top:30%"></div>
+      <div class="line-h" style="bottom:30%"></div>
+      <div class="line-v" style="left:20px"></div>
+      <div class="line-v" style="right:20px"></div>
+      <div class="ico z2" style="color:var(--green-light);width:56px;height:56px"><svg><use href="#ico-download"/></svg></div>
+      <h3 class="z2" style="margin-top:14px">Update Required</h3>
+      <p class="z2">A critical update is available for CrymadX.</p>
+      <div class="cta-btn z2" style="margin-top:18px">Update Now</div>
+    </div></div></div><span class="screen-label">Force Update</span></div>
+
+  </div>
+</div>
+
+</body>
+</html>
